@@ -3,7 +3,7 @@ import { LocationData } from './types';
 export const PHONE_DISPLAY = "(41) 3345-1194";
 export const PHONE_LINK = "tel:4133451194";
 export const WHATSAPP_DISPLAY = "(41) 98517-1966";
-export const WHATSAPP_LINK = "https://wa.me/5541985171966?text=Olá,%20vi%20o%20site%20e%20preciso%20de%20um%20orçamento%20urgente!";
+export const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F";
 
 export const CITIES: string[] = [
   "Curitiba", "Adrianópolis", "Agudos do Sul", "Almirante Tamandaré", "Araucária", 

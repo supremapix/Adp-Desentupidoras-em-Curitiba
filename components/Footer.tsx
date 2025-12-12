@@ -1,7 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PHONE_DISPLAY, PHONE_LINK, CITIES } from '../constants';
+import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, CITIES } from '../constants';
 
 const Footer = () => {
   return (
@@ -19,8 +19,8 @@ const Footer = () => {
               Tecnologia de ponta, atendimento 24 horas e garantia total de satisfação.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Facebook size={20} /></a>
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Instagram size={20} /></a>
+              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Facebook size={20} /></a>
+              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Instagram size={20} /></a>
             </div>
           </div>
 
