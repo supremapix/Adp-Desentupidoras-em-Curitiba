@@ -109,8 +109,8 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <img 
-                src="https://picsum.photos/600/600?random=1" 
-                alt="Técnico Desentupidora ADP" 
+                src="/images/tecnico-adp-servico.png" 
+                alt="Técnico da ADP Desentupidora uniformizado realizando serviço de desentupimento em Curitiba" 
                 className="rounded-3xl shadow-2xl object-cover w-full h-[500px]"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-adp-blue max-w-xs">

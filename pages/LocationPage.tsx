@@ -67,8 +67,8 @@ const LocationPage = () => {
               </p>
             </div>
             <img 
-              src={`https://picsum.photos/800/400?random=${slug}`} 
-              alt={`Atendimento em ${locationName}`} 
+              src="/images/atendimento-local.png" 
+              alt={`Equipe ADP Desentupidora realizando atendimento em ${locationName} - Serviço profissional 24 horas`} 
               className="w-full h-64 object-cover rounded-lg mb-6"
             />
           </section>
