@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { CheckCircle, Phone, ArrowRight, Shield, Clock, Tool, Droplets, Camera, Truck, Wrench } from 'lucide-react';
+import { CheckCircle, Phone, ArrowRight, Shield, Clock, Droplets, Camera, Truck, Wrench } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { PHONE_LINK, WHATSAPP_LINK } from '../constants';
 
@@ -174,7 +174,7 @@ const ServicePage = () => {
             </p>
             
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Tool className="text-adp-blue" />
+              <Wrench className="text-adp-blue" />
               Processo de Execução
             </h3>
             <div className="grid gap-4">
@@ -214,7 +214,7 @@ const ServicePage = () => {
                <ul className="space-y-3 mb-8">
                  <li className="flex items-center gap-2"><Shield size={18} /> Nota Fiscal</li>
                  <li className="flex items-center gap-2"><Clock size={18} /> Atendimento 24h</li>
-                 <li className="flex items-center gap-2"><Tool size={18} /> Técnicos Experientes</li>
+                 <li className="flex items-center gap-2"><Wrench size={18} /> Técnicos Experientes</li>
                </ul>
                <a href={WHATSAPP_LINK} className="bg-white text-adp-blue text-center py-3 rounded-lg font-bold hover:bg-gray-100 transition">
                  Agendar Agora
