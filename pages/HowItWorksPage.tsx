@@ -3,6 +3,7 @@ import { Phone, Clock, FileText, Wrench, CheckCircle, Shield, Truck, ArrowRight 
 import { PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import LeadForm from '../components/LeadForm';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const HowItWorksPage = () => {
   useEffect(() => {
@@ -134,6 +135,10 @@ const HowItWorksPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Video CTA */}
+      <VideoCTA />
+
     </div>
   );
 };

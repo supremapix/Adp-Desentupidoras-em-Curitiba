@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CITIES, NEIGHBORHOODS } from '../constants';
 import LeadForm from '../components/LeadForm';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const CoveragePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -122,6 +123,9 @@ const CoveragePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Video CTA */}
+      <VideoCTA location="Curitiba e Região Metropolitana" />
     </div>
   );
 };

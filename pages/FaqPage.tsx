@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, HelpCircle, DollarSign, Wrench, Shield, Clock } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const FaqPage = () => {
   useEffect(() => {
@@ -114,6 +115,9 @@ const FaqPage = () => {
               </div>
             </div>
           ))}
+
+          {/* Video CTA */}
+          <VideoCTA />
 
         </div>
 

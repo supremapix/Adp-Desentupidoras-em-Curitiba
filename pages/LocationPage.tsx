@@ -4,6 +4,7 @@ import { Phone, CheckCircle, Clock, MapPin, Shield, ChevronDown } from 'lucide-r
 import LeadForm from '../components/LeadForm';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const LocationPage = () => {
   const { type, slug } = useParams();
@@ -121,6 +122,9 @@ const LocationPage = () => {
               <p className="text-adp-blue font-bold">📍 Base móvel próxima a {locationName} pronta para atendimento imediato.</p>
             </div>
           </section>
+
+          {/* Video Section Injected */}
+          <VideoCTA location={locationName} />
 
           {/* Section 2: Services */}
           <section>

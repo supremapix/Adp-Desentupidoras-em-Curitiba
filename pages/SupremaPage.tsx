@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, Globe, MessageCircle } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
+import VideoCTA from '../components/VideoCTA';
 
 const SupremaPage = () => {
   return (
@@ -52,6 +53,10 @@ const SupremaPage = () => {
             <LeadForm />
           </div>
         </div>
+        
+        {/* Video Integration */}
+        <VideoCTA location="Nossos Projetos" />
+        
       </div>
     </div>
   );

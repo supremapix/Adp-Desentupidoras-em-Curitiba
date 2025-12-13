@@ -4,6 +4,7 @@ import { CheckCircle, Phone, ArrowRight, Shield, Clock, Droplets, Camera, Truck,
 import LeadForm from '../components/LeadForm';
 import { PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const ServicePage = () => {
   const { slug } = useParams();
@@ -235,6 +236,9 @@ const ServicePage = () => {
               ))}
             </div>
           </section>
+
+          {/* Video Section Injected */}
+          <VideoCTA service={content.title} />
 
           {/* Benefits Section */}
           <section className="grid md:grid-cols-2 gap-6">

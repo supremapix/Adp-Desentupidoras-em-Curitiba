@@ -4,6 +4,7 @@ import LeadForm from '../components/LeadForm';
 import { CITIES, NEIGHBORHOODS, PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import { Link } from 'react-router-dom';
 import EnhancedSEO from '../components/EnhancedSEO';
+import VideoCTA from '../components/VideoCTA';
 
 const Home = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -114,6 +115,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* VIDEO CTA SECTION */}
+      <VideoCTA location="Curitiba e Região" />
 
       {/* VALUE PROPOSITION GRID */}
       <section className="py-20 bg-white">
