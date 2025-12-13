@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Phone, CheckCircle, Clock, MapPin, Shield } from 'lucide-react';
+import { Phone, CheckCircle, Clock, MapPin, Shield, ChevronDown } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import EnhancedSEO from '../components/EnhancedSEO';
 
 const LocationPage = () => {
   const { type, slug } = useParams();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   
   // Convert slug back to readable name (approximate)
   const formatName = (str: string | undefined) => {
@@ -19,7 +20,12 @@ const LocationPage = () => {
   
   useEffect(() => {
     window.scrollTo(0, 0);
+    setOpenFaq(null);
   }, [locationName]);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
 
   const locationSchema = {
     "@context": "https://schema.org",
@@ -30,6 +36,25 @@ const LocationPage = () => {
       "name": locationName
     }
   };
+
+  const faqItems = [
+    { 
+      q: `Quanto tempo demora para chegar em ${locationName}?`, 
+      a: `Devido à nossa logística estratégica, o tempo médio de chegada em ${locationName} é de 30 minutos após o chamado.` 
+    },
+    { 
+      q: `Vocês atendem condomínios em ${locationName}?`, 
+      a: `Sim, temos condições especiais e contratos de manutenção preventiva para condomínios e empresas da região.` 
+    },
+    {
+      q: "Qual o valor do orçamento?",
+      a: "O orçamento é totalmente gratuito e sem compromisso. Avaliamos o problema no local antes de passar o valor exato."
+    },
+    {
+      q: "Aceitam cartão?",
+      a: "Sim, aceitamos todos os cartões de crédito, débito e PIX. Parcelamos serviços de maior valor."
+    }
+  ];
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -144,14 +169,20 @@ const LocationPage = () => {
           <section>
             <h3 className="text-xl font-bold mb-6">Dúvidas Comuns em {locationName}</h3>
             <div className="space-y-4">
-               <div className="bg-white p-6 rounded-lg shadow-sm">
-                 <h4 className="font-bold mb-2">Quanto tempo demora para chegar em {locationName}?</h4>
-                 <p className="text-gray-600">Devido à nossa logística estratégica, o tempo médio de chegada em {locationName} é de 30 minutos após o chamado.</p>
-               </div>
-               <div className="bg-white p-6 rounded-lg shadow-sm">
-                 <h4 className="font-bold mb-2">Vocês atendem condomínios em {locationName}?</h4>
-                 <p className="text-gray-600">Sim, temos condições especiais e contratos de manutenção preventiva para condomínios e empresas da região.</p>
-               </div>
+              {faqItems.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                  <button 
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full text-left px-6 py-4 font-bold text-gray-800 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition"
+                  >
+                    <span>{item.q}</span>
+                    <ChevronDown className={`transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div className={`px-6 text-gray-600 bg-gray-50 transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-40 py-4 opacity-100' : 'max-h-0 py-0 opacity-0 overflow-hidden'}`}>
+                    {item.a}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 
