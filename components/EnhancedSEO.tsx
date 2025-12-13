@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface EnhancedSEOProps {
   title: string;
@@ -18,23 +19,23 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   schemaData,
   noindex = false
 }) => {
-  const baseUrl = "https://adpdesentupidora.com.br"; // Substitua pelo domínio real quando tiver
-  const currentUrl = `${baseUrl}${canonicalPath}`;
+  const location = useLocation();
+  const baseUrl = "https://adpservicos.app.br"; 
+  const currentUrl = `${baseUrl}${canonicalPath || location.pathname}`;
 
   // Schema padrão de Negócio Local para todas as páginas
   const defaultSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "ADP Desentupidora",
-    "image": "https://adpdesentupidora.com.br/logo-social.jpg",
+    "name": "ADP Desentupidora Curitiba",
+    "image": `${baseUrl}/logo-social.jpg`,
     "telephone": "4133451194",
     "url": baseUrl,
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua Exemplo, 123",
       "addressLocality": "Curitiba",
       "addressRegion": "PR",
-      "postalCode": "80000-000",
       "addressCountry": "BR"
     },
     "geo": {
@@ -53,11 +54,30 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     "sameAs": [
       "https://www.facebook.com/adpdesentupidora",
       "https://www.instagram.com/adpdesentupidora"
-    ],
-    "priceRange": "$$"
+    ]
   };
 
-  const finalSchema = schemaData || defaultSchema;
+  // Generate Breadcrumbs Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": baseUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": title.split('|')[0].trim(),
+        "item": currentUrl
+      }
+    ]
+  };
+
+  const finalSchema = schemaData ? [defaultSchema, breadcrumbSchema, schemaData] : [defaultSchema, breadcrumbSchema];
 
   return (
     <Helmet>
@@ -70,7 +90,9 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="Portuguese" />
-      <meta name="author" content="Suprema Sites Express" />
+      <meta name="author" content="ADP Desentupidora" />
+      <meta name="geo.region" content="BR-PR" />
+      <meta name="geo.placename" content="Curitiba" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
@@ -79,7 +101,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
       <meta property="og:locale" content="pt_BR" />
-      <meta property="og:site_name" content="ADP Desentupidora Curitiba" />
+      <meta property="og:site_name" content="ADP Desentupidora" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />

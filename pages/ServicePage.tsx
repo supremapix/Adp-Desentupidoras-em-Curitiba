@@ -8,15 +8,18 @@ import EnhancedSEO from '../components/EnhancedSEO';
 const ServicePage = () => {
   const { slug } = useParams();
 
-  // Content Data Base (Keep content same as before, just ensuring component structure)
+  // Content Data Base with specific SEO Fields
   const servicesContent: Record<string, any> = {
     "desentupimento-de-esgoto": {
-      title: "Desentupimento de Esgoto",
+      seoTitle: "Desentupimento de Esgoto em Curitiba | Preço Justo | ADP",
+      seoDesc: "Serviço profissional de desentupimento de esgoto em Curitiba. Atendimento 24 horas, visita grátis e garantia. Resolvemos entupimento de rede de esgoto sem quebrar piso.",
+      seoKeywords: "desentupimento esgoto curitiba, desentupidora de esgoto, preço desentupimento esgoto, limpar rede de esgoto",
+      title: "Desentupimento de Esgoto Profissional",
       icon: <Droplets size={48} className="text-adp-blue" />,
-      heroText: "Rede de esgoto fluindo livremente. Atendimento 24h sem quebrar pisos.",
-      description: "O entupimento de esgoto é um problema sério que pode causar retorno de dejetos, mau cheiro e riscos à saúde. A ADP Desentupidora utiliza equipamentos rotativos e de hidrojateamento para desobstruir tubulações de qualquer diâmetro, garantindo a limpeza completa das paredes internas do cano e prevenindo novos entupimentos.",
+      heroText: "Rede de esgoto fluindo livremente. Atendimento 24h em Curitiba sem quebrar pisos.",
+      description: "O entupimento de esgoto é um problema sério que pode causar retorno de dejetos, mau cheiro e riscos à saúde. A ADP Desentupidora utiliza equipamentos rotativos (Roto Rooter) e de hidrojateamento para desobstruir tubulações de qualquer diâmetro, garantindo a limpeza completa das paredes internas do cano e prevenindo novos entupimentos.",
       benefits: [
-        "Eliminação imediata do mau cheiro",
+        "Eliminação imediata do mau cheiro de esgoto",
         "Prevenção de transbordamentos e infiltrações",
         "Equipamentos que não danificam a tubulação",
         "Garantia de 90 dias no serviço executado"
@@ -29,9 +32,12 @@ const ServicePage = () => {
       ]
     },
     "limpeza-de-fossa": {
-      title: "Limpeza de Fossa",
+      seoTitle: "Limpeza de Fossa em Curitiba e Região | Caminhão Auto Vácuo | ADP",
+      seoDesc: "Limpeza de Fossa Séptica em Curitiba com descarte correto. Caminhão auto vácuo, atendimento imediato e certificado de destinação. Solicite orçamento grátis.",
+      seoKeywords: "limpa fossa curitiba, limpeza de fossa preço, caminhão limpa fossa, esgotamento de fossa",
+      title: "Limpeza de Fossa Séptica",
       icon: <Truck size={48} className="text-adp-blue" />,
-      heroText: "Caminhões auto-vácuo para limpeza completa e descarte ecológico.",
+      heroText: "Caminhões auto-vácuo para limpeza completa de fossas e descarte ecológico.",
       description: "A limpeza periódica de fossas sépticas, sumidouros e caixas de gordura é essencial para evitar o transbordamento e a contaminação do solo. Possuímos frota própria de caminhões equipados com bombas de alta sucção, realizando o esgotamento total e o transporte dos resíduos para estações de tratamento autorizadas (SANEPAR).",
       benefits: [
         "Prevenção de entupimentos na rede interna",
@@ -47,9 +53,12 @@ const ServicePage = () => {
       ]
     },
     "caca-vazamentos": {
-      title: "Caça Vazamentos",
+      seoTitle: "Caça Vazamentos em Curitiba | Detecção Eletrônica | ADP",
+      seoDesc: "Empresa de Caça Vazamentos em Curitiba. Detectamos vazamentos ocultos sem quebrar parede. Laudo técnico para Sanepar e redução da conta de água.",
+      seoKeywords: "caça vazamentos curitiba, detecção de vazamentos, conta de água alta, geofone curitiba",
+      title: "Caça Vazamentos Especializado",
       icon: <Wrench size={48} className="text-adp-blue" />,
-      heroText: "Detectamos vazamentos invisíveis sem quebrar sua casa. Economize água!",
+      heroText: "Detectamos vazamentos invisíveis sem quebrar sua casa. Economize água e dinheiro!",
       description: "Sua conta de água aumentou sem motivo? Pode haver um vazamento oculto. Utilizamos tecnologia de ponta, como Geofones Eletrônicos e Câmeras Termográficas, para localizar o ponto exato do vazamento com precisão milimétrica, evitando quebra-quebra desnecessário e reduzindo o custo do reparo.",
       benefits: [
         "Redução imediata na conta de água",
@@ -65,7 +74,10 @@ const ServicePage = () => {
       ]
     },
     "hidrojateamento": {
-      title: "Hidrojateamento",
+      seoTitle: "Hidrojateamento em Curitiba | Alta Pressão | ADP Desentupidora",
+      seoDesc: "Serviço de Hidrojateamento em Curitiba para limpeza de tubulações, galerias e fachadas. Alta pressão para remoção de gordura e detritos. Orçamento grátis.",
+      seoKeywords: "hidrojateamento curitiba, limpeza alta pressão, desentupimento hidrojato",
+      title: "Hidrojateamento de Alta Pressão",
       icon: <Droplets size={48} className="text-adp-blue" />,
       heroText: "Limpeza de alta pressão para tubulações industriais e galerias.",
       description: "O hidrojateamento utiliza jatos de água em altíssima velocidade para remover as incrustações mais difíceis, como gordura solidificada, cimento, raízes e detritos industriais. É a solução ideal para limpeza de redes pluviais, caixas de gordura de restaurantes, tubulações industriais e fachadas.",
@@ -83,9 +95,12 @@ const ServicePage = () => {
       ]
     },
     "limpeza-de-caixa-dagua": {
+      seoTitle: "Limpeza de Caixa d'Água Curitiba | Higienização Completa | ADP",
+      seoDesc: "Limpeza e higienização de caixa d'água em Curitiba. Serviço com certificado e análise de potabilidade. Residencial e predial. Agende agora.",
+      seoKeywords: "limpeza caixa d'agua curitiba, higienização caixa d'agua, limpeza de reservatórios",
       title: "Limpeza de Caixa d'Água",
       icon: <Shield size={48} className="text-adp-blue" />,
-      heroText: "Água pura e saudável para sua família. Higienização completa.",
+      heroText: "Água pura e saudável para sua família. Higienização completa com certificado.",
       description: "A limpeza da caixa d'água deve ser realizada a cada 6 meses para garantir a qualidade da água consumida e evitar doenças. Nosso processo segue rigorosamente as normas da vigilância sanitária, incluindo o esvaziamento, escovação mecânica, desinfecção com hipoclorito de sódio e testes de potabilidade.",
       benefits: [
         "Eliminação de bactérias, fungos e lodo",
@@ -101,7 +116,10 @@ const ServicePage = () => {
       ]
     },
     "video-inspecao": {
-      title: "Vídeo Inspeção",
+      seoTitle: "Vídeo Inspeção de Esgoto Curitiba | Câmera para Tubulação | ADP",
+      seoDesc: "Localize problemas na tubulação com Vídeo Inspeção em Curitiba. Filmagem interna de canos de esgoto para diagnóstico preciso sem quebrar.",
+      seoKeywords: "video inspeção esgoto, filmagem tubulação curitiba, camera esgoto",
+      title: "Vídeo Inspeção de Tubulações",
       icon: <Camera size={48} className="text-adp-blue" />,
       heroText: "Diagnóstico visual preciso por dentro da tubulação.",
       description: "A vídeo inspeção é a tecnologia mais avançada para diagnosticar problemas complexos em tubulações. Inserimos uma câmera de alta resolução com iluminação LED dentro do cano, permitindo visualizar rachaduras, ligações clandestinas, raízes ou objetos obstrutivos em tempo real, gravando tudo para análise.",
@@ -137,18 +155,28 @@ const ServicePage = () => {
     "name": content.title,
     "provider": {
       "@type": "LocalBusiness",
-      "name": "ADP Desentupidora"
+      "name": "ADP Desentupidora Curitiba",
+      "telephone": "+554133451194",
+      "priceRange": "$$"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Curitiba"
     },
     "description": content.description,
-    "areaServed": "Curitiba, PR"
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock"
+    }
   };
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
-        title={`${content.title} em Curitiba | Preço Justo e Chegada em 30min`}
-        description={content.description.substring(0, 160)}
-        keywords={`${content.title.toLowerCase()}, desentupidora curitiba, serviço de ${content.title.toLowerCase()}`}
+        title={content.seoTitle}
+        description={content.seoDesc}
+        keywords={content.seoKeywords}
         canonicalPath={`/servicos/${slug}`}
         schemaData={serviceSchema}
       />
@@ -162,15 +190,15 @@ const ServicePage = () => {
                {content.icon}
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-black mb-6">
+          <h1 className="text-3xl md:text-5xl font-heading font-black mb-6">
             {content.title}
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-light">
+          <h2 className="text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-light">
             {content.heroText}
-          </p>
+          </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
              <a href={PHONE_LINK} className="bg-adp-blue text-white px-8 py-4 rounded-full font-bold hover:bg-blue-600 transition shadow-lg flex items-center justify-center gap-2">
-               <Phone size={20} /> Solicitar Orçamento
+               <Phone size={20} /> Orçamento Grátis
              </a>
              <a href={WHATSAPP_LINK} className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
                Falar no WhatsApp
@@ -185,17 +213,17 @@ const ServicePage = () => {
           
           {/* Description Section */}
           <section className="bg-white p-8 rounded-2xl shadow-sm">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-adp-orange pl-4">
-              O que é e como funciona?
-            </h2>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-adp-orange pl-4">
+              Como funciona o serviço de {content.title}?
+            </h3>
             <p className="text-gray-600 leading-relaxed text-lg mb-6">
               {content.description}
             </p>
             
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
               <Wrench className="text-adp-blue" />
-              Processo de Execução
-            </h3>
+              Processo de Execução Passo a Passo
+            </h4>
             <div className="grid gap-4">
               {content.process.map((step: string, index: number) => (
                 <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
@@ -213,7 +241,7 @@ const ServicePage = () => {
             <div className="bg-white p-8 rounded-2xl shadow-sm h-full">
                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                  <CheckCircle className="text-adp-green" />
-                 Vantagens ADP
+                 Vantagens da ADP Desentupidora
                </h3>
                <ul className="space-y-4">
                  {content.benefits.map((benefit: string, idx: number) => (
@@ -228,11 +256,11 @@ const ServicePage = () => {
             <div className="bg-adp-blue p-8 rounded-2xl shadow-sm text-white flex flex-col justify-center">
                <h3 className="text-xl font-bold mb-4">Garantia e Segurança</h3>
                <p className="mb-6 opacity-90">
-                 Todos os nossos serviços de {content.title.toLowerCase()} acompanham garantia por escrito de até 90 dias.
+                 Todos os nossos serviços de {content.title.toLowerCase()} acompanham garantia por escrito de até 90 dias conforme CDC.
                </p>
                <ul className="space-y-3 mb-8">
-                 <li className="flex items-center gap-2"><Shield size={18} /> Nota Fiscal</li>
-                 <li className="flex items-center gap-2"><Clock size={18} /> Atendimento 24h</li>
+                 <li className="flex items-center gap-2"><Shield size={18} /> Nota Fiscal de Serviços</li>
+                 <li className="flex items-center gap-2"><Clock size={18} /> Atendimento 24h Emergencial</li>
                  <li className="flex items-center gap-2"><Wrench size={18} /> Técnicos Experientes</li>
                </ul>
                <a href={WHATSAPP_LINK} className="bg-white text-adp-blue text-center py-3 rounded-lg font-bold hover:bg-gray-100 transition">
@@ -254,7 +282,7 @@ const ServicePage = () => {
             <LeadForm />
             
             <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-              <h4 className="font-bold text-gray-800 mb-4 border-b pb-2">Veja Também</h4>
+              <h4 className="font-bold text-gray-800 mb-4 border-b pb-2">Outros Serviços em Curitiba</h4>
               <ul className="space-y-3">
                 <li className="hover:text-adp-blue transition">
                   <Link to="/servicos/desentupimento-de-esgoto" className="flex items-center gap-2 text-sm text-gray-600">
