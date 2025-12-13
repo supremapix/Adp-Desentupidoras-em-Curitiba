@@ -3,12 +3,12 @@ import { MapPin, Search, ArrowRight, Navigation } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { CITIES, NEIGHBORHOODS } from '../constants';
 import LeadForm from '../components/LeadForm';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const CoveragePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   useEffect(() => {
-    document.title = "Área de Cobertura | Atendimento em Curitiba e Região";
     window.scrollTo(0, 0);
   }, []);
 
@@ -22,6 +22,11 @@ const CoveragePage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      <EnhancedSEO 
+        title="Área de Cobertura - ADP Desentupidora Curitiba e Região"
+        description="Confira nossa área de atuação em Curitiba e Região Metropolitana. Atendemos todos os bairros e cidades vizinhas com frota própria."
+        canonicalPath="/cobertura"
+      />
       {/* Hero */}
       <div className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">

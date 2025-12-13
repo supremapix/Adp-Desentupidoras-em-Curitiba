@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adpdesentupidora.com.br/sitemap.xml

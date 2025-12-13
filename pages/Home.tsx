@@ -3,6 +3,7 @@ import { Shield, Clock, Banknote, PenTool, CheckCircle, Droplets, MapPin, Chevro
 import LeadForm from '../components/LeadForm';
 import { CITIES, NEIGHBORHOODS, PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import { Link } from 'react-router-dom';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const Home = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -11,8 +12,20 @@ const Home = () => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  const generateWhatsappLink = (serviceName: string) => {
+    const text = `Olá, gostaria de um orçamento para *${serviceName}*. Vi no site da ADP.`;
+    return `https://api.whatsapp.com/send?phone=5541985171966&text=${encodeURIComponent(text)}`;
+  };
+
   return (
     <div className="overflow-hidden">
+      <EnhancedSEO 
+        title="ADP Desentupidora Curitiba - Atendimento 24 Horas"
+        description="Desentupidora em Curitiba com chegada em 30 min. Desentupimento de esgoto, pias, vasos e caça vazamentos. Atendimento 24h com garantia por escrito."
+        keywords="desentupidora curitiba, desentupimento 24 horas, caça vazamentos curitiba, limpa fossa, hidrojateamento"
+        canonicalPath="/"
+      />
+
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-gray-900 to-blue-900 min-h-[90vh] flex items-center pt-20 pb-20 overflow-hidden">
         {/* Abstract shapes */}
@@ -90,7 +103,7 @@ const Home = () => {
                { title: "Caixa de Gordura", desc: "Cheiro forte e retorno no ralo.", color: "orange", icon: <PenTool /> },
                { title: "Conta Alta", desc: "Possível vazamento oculto na rede.", color: "green", icon: <Search /> }
              ].map((item, idx) => (
-               <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-transparent hover:border-adp-blue group cursor-pointer">
+               <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-transparent hover:border-adp-blue group cursor-pointer" onClick={() => window.location.href = WHATSAPP_LINK}>
                  <div className={`w-14 h-14 rounded-full bg-${item.color}-100 flex items-center justify-center text-${item.color}-600 mb-6 group-hover:scale-110 transition-transform`}>
                     {item.icon}
                  </div>
@@ -112,6 +125,9 @@ const Home = () => {
                 src="https://picsum.photos/600/600?random=1" 
                 alt="Técnico Desentupidora ADP" 
                 className="rounded-3xl shadow-2xl object-cover w-full h-[500px]"
+                loading="lazy"
+                width="600"
+                height="500"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-adp-blue max-w-xs">
                  <p className="font-bold text-gray-800 text-lg mb-1">Chegada em 30min</p>
@@ -145,7 +161,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SERVICES WITH PRICING INDICATOR */}
+      {/* SERVICES WITH WHATSAPP LINK INTEGRATION */}
       <section className="py-20 bg-gray-900 text-white" id="servicos">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -160,7 +176,13 @@ const Home = () => {
                { name: "Caça Vazamentos", price: "200,00" },
                { name: "Hidrojateamento", price: "250,00" }
              ].map((srv, i) => (
-               <div key={i} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-adp-blue transition group relative overflow-hidden">
+               <a 
+                 key={i} 
+                 href={generateWhatsappLink(srv.name)}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-adp-blue transition group relative overflow-hidden transform hover:-translate-y-1"
+               >
                  {i === 0 && <div className="absolute top-3 right-3 bg-adp-orange text-xs font-bold px-2 py-1 rounded text-white">MAIS PEDIDO</div>}
                  <h3 className="text-xl font-bold mb-4">{srv.name}</h3>
                  <ul className="text-gray-400 text-sm space-y-2 mb-6">
@@ -173,11 +195,12 @@ const Home = () => {
                       <span className="text-xs text-gray-500 block">A partir de</span>
                       <span className="text-xl font-bold text-white">R$ {srv.price}</span>
                     </div>
-                    <button className="bg-adp-blue p-2 rounded-full group-hover:bg-white group-hover:text-adp-blue transition">
-                      <ChevronDown className="-rotate-90" size={20} />
-                    </button>
+                    <div className="bg-[#25D366] p-2 rounded-full group-hover:scale-110 transition flex items-center gap-1 text-xs px-3 font-bold text-white">
+                       <span>Solicitar</span>
+                       <ChevronDown className="-rotate-90" size={16} />
+                    </div>
                  </div>
-               </div>
+               </a>
              ))}
           </div>
         </div>

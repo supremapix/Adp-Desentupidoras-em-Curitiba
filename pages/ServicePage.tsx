@@ -3,11 +3,12 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle, Phone, ArrowRight, Shield, Clock, Droplets, Camera, Truck, Wrench } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { PHONE_LINK, WHATSAPP_LINK } from '../constants';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const ServicePage = () => {
   const { slug } = useParams();
 
-  // Content Data Base
+  // Content Data Base (Keep content same as before, just ensuring component structure)
   const servicesContent: Record<string, any> = {
     "desentupimento-de-esgoto": {
       title: "Desentupimento de Esgoto",
@@ -122,18 +123,36 @@ const ServicePage = () => {
   const content = slug ? servicesContent[slug] : null;
 
   useEffect(() => {
-    if (content) {
-      document.title = `${content.title} em Curitiba | ADP Desentupidora`;
-      window.scrollTo(0, 0);
-    }
-  }, [slug, content]);
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!content) {
     return <Navigate to="/" replace />;
   }
 
+  // Schema específico para o serviço
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": content.title,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "ADP Desentupidora"
+    },
+    "description": content.description,
+    "areaServed": "Curitiba, PR"
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <EnhancedSEO 
+        title={`${content.title} em Curitiba | Preço Justo e Chegada em 30min`}
+        description={content.description.substring(0, 160)}
+        keywords={`${content.title.toLowerCase()}, desentupidora curitiba, serviço de ${content.title.toLowerCase()}`}
+        canonicalPath={`/servicos/${slug}`}
+        schemaData={serviceSchema}
+      />
+
       {/* Service Hero */}
       <div className="bg-gray-900 text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-20 skew-x-12"></div>

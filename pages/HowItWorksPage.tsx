@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Phone, Clock, FileText, Wrench, CheckCircle, Shield, Truck, ArrowRight } from 'lucide-react';
 import { PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import LeadForm from '../components/LeadForm';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const HowItWorksPage = () => {
   useEffect(() => {
-    document.title = "Como Funciona | ADP Desentupidora Curitiba";
     window.scrollTo(0, 0);
   }, []);
 
@@ -50,6 +50,11 @@ const HowItWorksPage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      <EnhancedSEO 
+        title="Como Funciona - ADP Desentupidora | Processo Passo a Passo"
+        description="Entenda como funciona o atendimento da ADP Desentupidora. Da ligação até a garantia, veja como resolvemos seu problema em 30 minutos."
+        canonicalPath="/como-funciona"
+      />
       {/* Hero */}
       <div className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">

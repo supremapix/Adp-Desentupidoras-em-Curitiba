@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Phone, CheckCircle, Clock, MapPin, Shield } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK } from '../constants';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const LocationPage = () => {
   const { type, slug } = useParams();
@@ -17,12 +18,29 @@ const LocationPage = () => {
   const isCity = type === 'cidade';
   
   useEffect(() => {
-    document.title = `Desentupidora em ${locationName} | Atendimento 24 Horas`;
     window.scrollTo(0, 0);
   }, [locationName]);
 
+  const locationSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `ADP Desentupidora em ${locationName}`,
+    "areaServed": {
+      "@type": isCity ? "City" : "Place",
+      "name": locationName
+    }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <EnhancedSEO 
+        title={`Desentupidora em ${locationName} | Atendimento 24h e Chegada em 30min`}
+        description={`Precisa de Desentupidora em ${locationName}? A ADP chega em 30 minutos. Desentupimento de esgoto, pias e vasos com garantia. Orçamento grátis.`}
+        keywords={`desentupidora ${locationName}, desentupimento ${locationName}, encanador ${locationName}`}
+        canonicalPath={`/local/${type}/${slug}`}
+        schemaData={locationSchema}
+      />
+
       {/* Mini Hero */}
       <div className="bg-adp-blue text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -67,9 +85,10 @@ const LocationPage = () => {
               </p>
             </div>
             <img 
-              src={`https://picsum.photos/800/400?random=${slug}`} 
+              src={`https://picsum.photos/800/400?random=${Math.floor(Math.random() * 100)}`} 
               alt={`Atendimento em ${locationName}`} 
               className="w-full h-64 object-cover rounded-lg mb-6"
+              loading="lazy"
             />
           </section>
 

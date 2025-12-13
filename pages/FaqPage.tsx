@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, HelpCircle, DollarSign, Wrench, Shield, Clock } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const FaqPage = () => {
   useEffect(() => {
-    document.title = "Dúvidas Frequentes | ADP Desentupidora";
     window.scrollTo(0, 0);
   }, []);
 
@@ -47,8 +47,27 @@ const FaqPage = () => {
     }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.flatMap(section => section.items.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    })))
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <EnhancedSEO 
+        title="Perguntas Frequentes - ADP Desentupidora"
+        description="Tire suas dúvidas sobre preço de desentupimento, formas de pagamento, garantia e área de atendimento."
+        canonicalPath="/duvidas"
+        schemaData={faqSchema}
+      />
       {/* Hero */}
       <div className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
