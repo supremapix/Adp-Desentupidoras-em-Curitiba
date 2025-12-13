@@ -46,7 +46,7 @@ const Footer = () => {
                 <li key={city}><span className="hover:text-white cursor-default">{city}</span></li>
               ))}
             </ul>
-            <Link to="/" className="text-adp-orange text-sm font-bold mt-4 inline-block hover:underline">Ver todos os locais &rarr;</Link>
+            <Link to="/cobertura" className="text-adp-orange text-sm font-bold mt-4 inline-block hover:underline">Ver todos os locais &rarr;</Link>
           </div>
 
           {/* Column 4: Contact */}

@@ -47,9 +47,9 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link to="/#como-funciona" className="text-gray-600 hover:text-adp-blue font-medium">Como Funciona</Link>
-              <Link to="/#locais" className="text-gray-600 hover:text-adp-blue font-medium">Cobertura</Link>
-              <Link to="/#faq" className="text-gray-600 hover:text-adp-blue font-medium">Dúvidas</Link>
+              <Link to="/como-funciona" className="text-gray-600 hover:text-adp-blue font-medium">Como Funciona</Link>
+              <Link to="/cobertura" className="text-gray-600 hover:text-adp-blue font-medium">Cobertura</Link>
+              <Link to="/duvidas" className="text-gray-600 hover:text-adp-blue font-medium">Dúvidas</Link>
             </nav>
 
             {/* CTA Button */}
@@ -89,8 +89,9 @@ const Header = () => {
                 </Link>
               ))}
               <div className="border-t my-2"></div>
-              <a href="/#locais" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Área de Atendimento</a>
-              <a href="/#contato" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Contato</a>
+              <Link to="/como-funciona" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Como Funciona</Link>
+              <Link to="/cobertura" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Área de Atendimento</Link>
+              <Link to="/duvidas" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Dúvidas</Link>
               <div className="mt-4 px-3">
                  <a 
                   href={PHONE_LINK} 
