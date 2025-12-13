@@ -1,6 +1,6 @@
 import React from 'react';
-import { Phone, Menu, X } from 'lucide-react';
-import { PHONE_DISPLAY, PHONE_LINK } from '../constants';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
+import { PHONE_DISPLAY, PHONE_LINK, SERVICES } from '../constants';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -28,11 +28,28 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <a href="#servicos" className="text-gray-600 hover:text-adp-blue font-medium">Serviços</a>
-              <a href="#como-funciona" className="text-gray-600 hover:text-adp-blue font-medium">Como Funciona</a>
-              <a href="#locais" className="text-gray-600 hover:text-adp-blue font-medium">Cobertura</a>
-              <a href="#faq" className="text-gray-600 hover:text-adp-blue font-medium">Dúvidas</a>
+            <nav className="hidden md:flex space-x-8 items-center">
+              <div className="relative group">
+                <button className="flex items-center gap-1 text-gray-600 hover:text-adp-blue font-medium py-2">
+                  Serviços <ChevronDown size={16} />
+                </button>
+                {/* Dropdown */}
+                <div className="absolute top-full -left-4 w-64 bg-white shadow-xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border-t-2 border-adp-blue">
+                  {SERVICES.map((service) => (
+                    <Link 
+                      key={service.slug}
+                      to={`/servicos/${service.slug}`}
+                      className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-adp-blue border-b border-gray-50 last:border-0"
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <Link to="/#como-funciona" className="text-gray-600 hover:text-adp-blue font-medium">Como Funciona</Link>
+              <Link to="/#locais" className="text-gray-600 hover:text-adp-blue font-medium">Cobertura</Link>
+              <Link to="/#faq" className="text-gray-600 hover:text-adp-blue font-medium">Dúvidas</Link>
             </nav>
 
             {/* CTA Button */}
@@ -58,11 +75,22 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+          <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl max-h-[90vh] overflow-y-auto">
             <div className="px-4 pt-2 pb-6 space-y-1">
-              <a href="#servicos" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Serviços</a>
-              <a href="#locais" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Área de Atendimento</a>
-              <a href="#contato" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Contato</a>
+              <div className="px-3 py-2 text-sm font-bold text-gray-400 uppercase tracking-wider">Serviços</div>
+              {SERVICES.map((service) => (
+                <Link 
+                  key={service.slug}
+                  to={`/servicos/${service.slug}`}
+                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md pl-6"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {service.title}
+                </Link>
+              ))}
+              <div className="border-t my-2"></div>
+              <a href="/#locais" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Área de Atendimento</a>
+              <a href="/#contato" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Contato</a>
               <div className="mt-4 px-3">
                  <a 
                   href={PHONE_LINK} 

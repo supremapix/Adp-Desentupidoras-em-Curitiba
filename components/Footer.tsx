@@ -1,7 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, CITIES } from '../constants';
+import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, CITIES, SERVICES } from '../constants';
 
 const Footer = () => {
   return (
@@ -28,12 +28,13 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Serviços Rápidos</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:text-adp-blue transition">Desentupimento de Esgoto</a></li>
-              <li><a href="#" className="hover:text-adp-blue transition">Limpeza de Fossa</a></li>
-              <li><a href="#" className="hover:text-adp-blue transition">Caça Vazamentos</a></li>
-              <li><a href="#" className="hover:text-adp-blue transition">Hidrojateamento</a></li>
-              <li><a href="#" className="hover:text-adp-blue transition">Limpeza de Caixa d'Água</a></li>
-              <li><a href="#" className="hover:text-adp-blue transition">Vídeo Inspeção</a></li>
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link to={`/servicos/${service.slug}`} className="hover:text-adp-blue transition">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
