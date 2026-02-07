@@ -4,58 +4,29 @@
   <url><loc>https://adpservicos.app.br/</loc><priority>1.0</priority></url>
   <url><loc>https://adpservicos.app.br/como-funciona</loc><priority>0.8</priority></url>
   <url><loc>https://adpservicos.app.br/cobertura</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/duvidas</loc><priority>0.7</priority></url>
   <url><loc>https://adpservicos.app.br/mapa-do-site</loc><priority>0.8</priority></url>
 
   <!-- Serviços -->
   <url><loc>https://adpservicos.app.br/servicos/desentupimento-de-esgoto</loc><priority>0.9</priority></url>
   <url><loc>https://adpservicos.app.br/servicos/limpeza-de-fossa</loc><priority>0.9</priority></url>
   <url><loc>https://adpservicos.app.br/servicos/caca-vazamentos</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/servicos/hidrojateamento</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/servicos/video-inspecao</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/servicos/limpeza-de-caixa-dagua</loc><priority>0.8</priority></url>
 
-  <!-- Cidades (RMC) -->
+  <!-- Cidades Selecionadas -->
   <url><loc>https://adpservicos.app.br/local/cidade/curitiba</loc><priority>1.0</priority></url>
   <url><loc>https://adpservicos.app.br/local/cidade/sao-jose-dos-pinhais</loc><priority>0.9</priority></url>
   <url><loc>https://adpservicos.app.br/local/cidade/araucaria</loc><priority>0.9</priority></url>
   <url><loc>https://adpservicos.app.br/local/cidade/colombo</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/pinhais</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/fazenda-rio-grande</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/piraquara</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/almirante-tamandare</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/campo-largo</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/campina-grande-do-sul</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/quatro-barras</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/itaperucu</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/rio-branco-do-sul</loc><priority>0.8</priority></url>
-  <url><loc>https://adpservicos.app.br/local/cidade/lapa</loc><priority>0.8</priority></url>
 
-  <!-- Bairros Curitiba (Amostra Completa para SEO) -->
-  <url><loc>https://adpservicos.app.br/local/bairro/agua-verde</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/batel</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/bigorrilho</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/centro</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/centro-civico</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/cic</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/ecoville</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/portao</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/santa-felicidade</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/boqueirao</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/sitio-cercado</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/uberaba</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/xaxim</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/pinheirinho</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/reboucas</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/bacacheri</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/cabral</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/juveve</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/merces</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/hugo-lange</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/jardim-botanico</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/jardim-das-americas</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/novo-mundo</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/fazendinha</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/cajuru</loc><priority>0.9</priority></url>
-  <url><loc>https://adpservicos.app.br/local/bairro/alto-da-xv</loc><priority>0.9</priority></url>
+  <!-- Bairros e Vilas Prioritários (SEO Force) -->
+  <url><loc>https://adpservicos.app.br/local/bairro/cic</loc><priority>1.0</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/vila-parolin</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/vila-torres</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/vila-sabara</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/vila-nossa-senhora-da-luz</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/vila-zumbi</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/jardim-schaffer</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/tangua</loc><priority>0.9</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/batel</loc><priority>0.8</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/ecoville</loc><priority>0.8</priority></url>
+  <url><loc>https://adpservicos.app.br/local/bairro/agua-verde</loc><priority>0.8</priority></url>
 </urlset>
