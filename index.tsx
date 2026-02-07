@@ -6,18 +6,20 @@ import { HelmetProvider } from "react-helmet-async";
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 root.render(
-  <HelmetProvider>
-    <App />
-  </HelmetProvider>
+  <React.StrictMode>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </React.StrictMode>
 );
 
-// Service Worker Registration
-if ('serviceWorker' in navigator) {
+// Service Worker Registration com proteção de origem para preview
+if ('serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('usercontent.goog')) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then(registration => {
       console.log('SW registered: ', registration);
     }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
+      console.log('SW registration skipped or failed in this environment');
     });
   });
 }
