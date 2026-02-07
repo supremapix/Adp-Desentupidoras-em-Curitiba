@@ -20,7 +20,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   noindex = false
 }) => {
   const location = useLocation();
-  const baseUrl = "https://adpdesentupidora.com.br"; 
+  const baseUrl = "https://adpservicos.app.br"; 
   const currentUrl = `${baseUrl}${canonicalPath || location.pathname}`;
 
   const localBusinessSchema = {
