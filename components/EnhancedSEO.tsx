@@ -20,44 +20,45 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   noindex = false
 }) => {
   const location = useLocation();
-  const baseUrl = "https://adpservicos.app.br"; 
+  const baseUrl = "https://adpdesentupidora.com.br"; 
   const currentUrl = `${baseUrl}${canonicalPath || location.pathname}`;
 
-  // Schema padrão de Negócio Local para todas as páginas
-  const defaultSchema = {
+  const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "PlumbingService",
     "name": "ADP Desentupidora Curitiba",
+    "alternateName": "ADP Serviços de Desentupimento",
     "image": `${baseUrl}/logo-social.jpg`,
     "telephone": "4133451194",
     "url": baseUrl,
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Rua João Negrão",
       "addressLocality": "Curitiba",
       "addressRegion": "PR",
-      "addressCountry": "BR"
+      "addressCountry": "BR",
+      "postalCode": "80010-200"
     },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": -25.4284,
       "longitude": -49.2733
     },
+    "areaServed": [
+      { "@type": "City", "name": "Curitiba" },
+      { "@type": "City", "name": "São José dos Pinhais" },
+      { "@type": "City", "name": "Pinhais" },
+      { "@type": "City", "name": "Araucária" }
+    ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-      ],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "00:00",
       "closes": "23:59"
-    },
-    "sameAs": [
-      "https://www.facebook.com/adpdesentupidora",
-      "https://www.instagram.com/adpdesentupidora"
-    ]
+    }
   };
 
-  // Generate Breadcrumbs Schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -65,7 +66,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
+        "name": "Início",
         "item": baseUrl
       },
       {
@@ -77,45 +78,33 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     ]
   };
 
-  const finalSchema = schemaData ? [defaultSchema, breadcrumbSchema, schemaData] : [defaultSchema, breadcrumbSchema];
+  const finalSchema = schemaData ? [localBusinessSchema, breadcrumbSchema, schemaData] : [localBusinessSchema, breadcrumbSchema];
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={currentUrl} />
-      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="language" content="Portuguese" />
-      <meta name="author" content="ADP Desentupidora" />
-      <meta name="geo.region" content="BR-PR" />
-      <meta name="geo.placename" content="Curitiba" />
-
-      {/* Open Graph / Facebook */}
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+      
+      {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
       <meta property="og:locale" content="pt_BR" />
-      <meta property="og:site_name" content="ADP Desentupidora" />
 
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={currentUrl} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={`${baseUrl}/og-image.jpg`} />
-
-      {/* Resource Hints (Performance) */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      
+      {/* Resource Hints */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-
-      {/* Structured Data (JSON-LD) */}
+      
       <script type="application/ld+json">
         {JSON.stringify(finalSchema)}
       </script>

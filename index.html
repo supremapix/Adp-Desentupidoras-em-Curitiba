@@ -2,10 +2,23 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>ADP Desentupidora Curitiba - Atendimento 24h</title>
+    
+    <!-- PWA & Mobile Optimization -->
+    <meta name="theme-color" content="#0066CC" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Resource Hints para Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.whatsapp.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    
     <script>
       tailwind.config = {
         theme: {
@@ -26,18 +39,31 @@
             },
             animation: {
               'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
             }
           }
         }
       }
     </script>
+    
     <style>
-      html { scroll-behavior: smooth; }
+      /* Critical CSS */
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body { overflow-x: hidden; font-family: 'Inter', sans-serif; }
       .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #0066CC; border-radius: 10px; }
+      @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+      .animate-slide { animation: slideIn 0.3s ease-out; }
     </style>
+    
     <meta name="google-site-verification" content="lOD8JwSTcclXga5LF3X9UQ8RAjOsNtotuvWunA95VzM" />
   <script type="importmap">
 {
