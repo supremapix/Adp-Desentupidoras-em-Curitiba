@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Phone, CheckCircle, Clock, MapPin, Shield, ChevronDown } from 'lucide-react';
+import { Phone, CheckCircle, Clock, MapPin, Shield, ChevronDown, Wrench, Droplets, Truck, Building2, Home as HomeIcon, Factory, Sparkles } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK } from '../constants';
 import EnhancedSEO from '../components/EnhancedSEO';
@@ -10,7 +10,6 @@ const LocationPage = () => {
   const { type, slug } = useParams();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   
-  // Convert slug back to readable name (approximate)
   const formatName = (str: string | undefined) => {
     if (!str) return '';
     return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -18,203 +17,263 @@ const LocationPage = () => {
 
   const locationName = formatName(slug);
   const isCity = type === 'cidade';
-  
+
+  // Motor de Contexto Local Avançado
+  const context = useMemo(() => {
+    const highDensity = ['Batel', 'Bigorrilho', 'Champagnat', 'Ecoville', 'Agua Verde', 'Cabral', 'Juveve', 'Centro Civico', 'Centro', 'Cristo Rei'];
+    const industrialZones = ['CIC', 'Tatuquara', 'Pinheirinho', 'Cidade Industrial', 'Fazenda Rio Grande', 'Araucaria', 'Sao Jose dos Pinhais'];
+    const residentialZones = ['Santa Felicidade', 'Jardim das Americas', 'Uberaba', 'Xaxim', 'Boqueirao', 'Bacacheri', 'Boa Vista', 'Merces', 'Vila Izabel'];
+
+    if (highDensity.some(b => locationName.includes(b))) return 'HIGH_DENSITY';
+    if (industrialZones.some(i => locationName.includes(i))) return 'INDUSTRIAL';
+    if (residentialZones.some(r => locationName.includes(r))) return 'RESIDENTIAL';
+    return isCity ? 'CITY_RMC' : 'GENERAL_LOCAL';
+  }, [locationName, isCity]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    setOpenFaq(null);
   }, [locationName]);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  // Dynamic SEO Data
-  const pageTitle = `Desentupidora em ${locationName} 24h | Chegada em 30min | ADP`;
-  const pageDesc = `Precisa de Desentupidora em ${locationName}? A ADP tem equipe de plantão no seu bairro. Desentupimento de esgoto, pia e vaso com preço justo. Visita Grátis.`;
-  const pageKeywords = `desentupidora ${locationName}, desentupimento ${locationName}, encanador ${locationName}, limpa fossa ${locationName}, caça vazamentos ${locationName}`;
+  const getDynamicContent = () => {
+    const base = {
+      location: locationName,
+      cta: `Chamar Técnico em ${locationName}`
+    };
 
-  const locationSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": `ADP Desentupidora ${locationName}`,
-    "telephone": "+554133451194",
-    "areaServed": {
-      "@type": isCity ? "City" : "Place",
-      "name": locationName
-    },
-    "priceRange": "$$",
-    "description": pageDesc
+    switch (context) {
+      case 'HIGH_DENSITY':
+        return {
+          ...base,
+          typeLabel: "Bairro de Alta Densidade",
+          headline: `Líder em Desentupimento de Prédios e Apartamentos no ${locationName}`,
+          intro: `O ${locationName} é conhecido por sua infraestrutura vertical e sofisticação. Entupimentos em colunas de prédios e pias de apartamentos aqui exigem uma empresa que opere com total silêncio, limpeza e técnica.`,
+          detailText: `Atendemos condomínios residenciais e comerciais no ${locationName} com equipamentos de baixa emissão de ruído. Nossa especialidade em colunas de esgoto e ramais de pia garante que o serviço seja feito sem sujar áreas comuns ou causar transtornos aos vizinhos. Conhecemos os projetos hidráulicos da região e estamos prontos para atuar em prédios clássicos e modernos.`,
+          icon: <Building2 className="text-adp-blue" />,
+          localRef: "Atendimento especializado em áreas de condomínios e centros comerciais."
+        };
+      case 'INDUSTRIAL':
+        return {
+          ...base,
+          typeLabel: "Zona Industrial e Logística",
+          headline: `Desentupidora Industrial e de Grande Porte em ${locationName}`,
+          intro: `Devido ao forte perfil industrial e logístico de ${locationName}, a ADP oferece soluções robustas para desobstrução de galerias, pátios e redes coletoras de grande diâmetro.`,
+          detailText: `Seja na Cidade Industrial (CIC) ou nas zonas de logística de ${locationName}, operamos com caminhões de Hidrojateamento de Alta Pressão e sistemas de sucção auto-vácuo. Fornecemos certificados de destinação de resíduos e realizamos manutenção preventiva em cozinhas industriais e redes de esgoto sanitário de larga escala, garantindo que sua operação não pare por problemas hidráulicos.`,
+          icon: <Factory className="text-adp-blue" />,
+          localRef: "Equipamentos pesados para atender fábricas, galpões e transportadoras."
+        };
+      case 'RESIDENTIAL':
+        return {
+          ...base,
+          typeLabel: "Zona Residencial Familiar",
+          headline: `Sua Casa em ${locationName} Livre de Entupimentos 24h`,
+          intro: `O ${locationName} possui um perfil familiar com muitas casas e sobrados. Entupimentos de rede pluvial (chuva) ou esgoto doméstico são comuns e exigem solução rápida para evitar danos ao jardim e pisos.`,
+          detailText: `Nossa equipe para o ${locationName} utiliza máquinas Roto-Rooter com cabos flexíveis que navegam por curvas complexas de canos residenciais sem a necessidade de escavações. Atendemos desde as residências tradicionais de Santa Felicidade até os novos sobrados do Jardim das Américas e Xaxim. Chegamos rápido e deixamos tudo limpo, protegendo seu patrimônio.`,
+          icon: <HomeIcon className="text-adp-blue" />,
+          localRef: "Foco em residências e sobrados com solução limpa e sem quebra-quebra."
+        };
+      case 'CITY_RMC':
+        return {
+          ...base,
+          typeLabel: "Região Metropolitana",
+          headline: `Desentupidora e Limpa Fossa em ${locationName} com Chegada Rápida`,
+          intro: `Atendemos toda a cidade de ${locationName} com frota própria para esgotamento de fossas e desentupimento de redes urbanas e rurais.`,
+          detailText: `Moradores de ${locationName} e regiões vizinhas podem contar com a ADP para serviços de Limpeza de Fossa Séptica e desentupimento de esgoto em geral. Mesmo em áreas mais afastadas do centro de ${locationName}, garantimos o deslocamento imediato de nossos caminhões auto-vácuo. Serviço certificado, com descarte correto e garantia por escrito para sua tranquilidade.`,
+          icon: <Truck className="text-adp-blue" />,
+          localRef: "Atendimento completo para residências, chácaras e comércios da cidade."
+        };
+      default:
+        return {
+          ...base,
+          typeLabel: "Atendimento Especializado",
+          headline: `Referência em Desentupimento em ${locationName}`,
+          intro: `A ADP é a escolha certa para quem busca rapidez e preço justo em ${locationName}. Atendemos qualquer tipo de entupimento hidráulico com tecnologia de ponta.`,
+          detailText: `Com mais de 10 anos de experiência atendendo ${locationName}, nossa empresa se destaca pela transparência. Realizamos a vídeo inspeção para mostrar o problema real e passamos o orçamento na hora, sem taxas de visita. Seja no comércio local ou na sua residência, nossa solução é definitiva e garantida.`,
+          icon: <Sparkles className="text-adp-blue" />,
+          localRef: "Visita técnica gratuita em todos os endereços da região."
+        };
+    }
   };
 
-  const faqItems = [
-    { 
-      q: `Quanto tempo demora para chegar em ${locationName}?`, 
-      a: `Como temos equipes posicionadas estrategicamente, nosso tempo médio de chegada em ${locationName} é de apenas 30 minutos após o seu chamado.` 
-    },
-    { 
-      q: `Vocês atendem condomínios e empresas em ${locationName}?`, 
-      a: `Sim, atendemos residências, comércios e oferecemos contratos especiais para condomínios em ${locationName} com manutenção preventiva.` 
-    },
-    {
-      q: "Qual o valor da visita para orçamento?",
-      a: "A visita técnica é totalmente gratuita para toda a região de Curitiba, incluindo " + locationName + ". O orçamento é passado na hora, sem compromisso."
-    },
-    {
-      q: "Aceitam cartão e emitem nota fiscal?",
-      a: "Sim, aceitamos todos os cartões, PIX e emitimos nota fiscal para todos os serviços realizados em " + locationName + "."
-    }
-  ];
+  const content = getDynamicContent();
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
-        title={pageTitle}
-        description={pageDesc}
-        keywords={pageKeywords}
+        title={`Desentupidora em ${locationName} 24h | Atendimento em 30min | ADP`}
+        description={`Precisando de Desentupidora em ${locationName}? Resolvemos entupimentos de esgoto, pias e vasos. Visita grátis e garantia em ${locationName}. Chame a ADP AGORA!`}
+        keywords={`desentupidora ${locationName}, desentupimento ${locationName}, encanador ${locationName}, limpa fossa ${locationName}, preço desentupidora ${locationName}`}
         canonicalPath={`/local/${type}/${slug}`}
-        schemaData={locationSchema}
       />
 
-      {/* Mini Hero */}
-      <div className="bg-adp-blue text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-blue-200 font-bold tracking-widest uppercase text-sm mb-2">
-            {isCity ? 'Atendimento na Região Metropolitana' : 'Atendimento nos Bairros de Curitiba'}
-          </p>
-          <h1 className="text-3xl md:text-5xl font-heading font-black mb-6">
-            Desentupidora em <span className="text-adp-orange">{locationName}</span>
-          </h1>
-          <h2 className="text-lg max-w-2xl mx-auto mb-8 font-light">
-            Equipe técnica de plantão para atender <strong>{locationName}</strong> em até 30 minutos. 
-            Serviço rápido, limpo e com garantia por escrito.
-          </h2>
-          <div className="flex justify-center gap-4">
-             <a href={PHONE_LINK} className="bg-white text-adp-blue px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition shadow-lg">
-               Ligar Agora
-             </a>
-             <a href={WHATSAPP_LINK} className="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition shadow-lg">
-               WhatsApp 24h
-             </a>
+      {/* Header Localizado */}
+      <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 -skew-x-12 translate-x-1/2"></div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 bg-adp-blue/20 text-adp-blue border border-adp-blue/30 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                <MapPin size={14} /> Atendimento Local: {locationName}
+              </div>
+              <h1 className="text-4xl md:text-6xl font-heading font-black leading-tight">
+                Desentupidora em <span className="text-adp-orange">{locationName}</span>
+              </h1>
+              <p className="text-xl text-gray-300 max-w-2xl font-light leading-relaxed">
+                {content.intro} Equipes de prontidão para chegar no seu endereço em até <strong>30 minutos</strong>.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
+                <a href={PHONE_LINK} className="bg-adp-blue hover:bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
+                  <Phone size={24} fill="currentColor" /> {PHONE_DISPLAY}
+                </a>
+                <a href={WHATSAPP_LINK} className="bg-[#25D366] hover:bg-green-600 text-white px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
+                  <Sparkles size={24} /> ORÇAMENTO GRÁTIS
+                </a>
+              </div>
+            </div>
+            <div className="hidden lg:block w-96">
+               <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+                 <div className="flex items-center gap-4 mb-6">
+                    <div className="bg-adp-orange p-3 rounded-2xl text-white">
+                      <Clock size={32} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-adp-orange uppercase">Chegada Rápida</p>
+                      <p className="text-2xl font-black">30 Minutos</p>
+                    </div>
+                 </div>
+                 <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-sm">
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Visita Grátis em {locationName}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm">
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Preço Fechado na Hora</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm">
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Garantia de até 90 Dias</span>
+                    </div>
+                 </div>
+               </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-12">
-        {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
-          {/* Section 1 */}
-          <section className="bg-white p-8 rounded-xl shadow-sm">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Atendimento de Emergência 24 Horas em {locationName}
-            </h2>
-            <div className="prose text-gray-600 mb-6 text-lg leading-relaxed">
-              <p className="mb-4">
-                Moradores e empresas de <strong>{locationName}</strong> agora contam com a estrutura completa da ADP Desentupidora. 
-                Sabemos que problemas hidráulicos não têm hora para acontecer, por isso mantemos equipes estratégicas próximas à região para garantir o menor tempo de resposta do mercado.
-              </p>
-              <p>
-                Chegamos ao seu endereço em <strong>{locationName}</strong> em minutos, realizamos o diagnóstico preciso sem custo e resolvemos o problema de forma definitiva. 
-                Seja um entupimento simples em pia, vaso sanitário ou um problema complexo na rede de esgoto, temos a tecnologia certa (Roto Rooter e Hidrojato) para resolver sem quebrar pisos.
-              </p>
-            </div>
-            <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-adp-blue">
-              <p className="text-adp-blue font-bold">📍 Base móvel próxima a {locationName} pronta para atendimento imediato.</p>
-            </div>
-          </section>
+          {/* Conteúdo Contextual Local */}
+          <article className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative">
+             <div className="absolute top-10 right-10 opacity-10">
+                {React.cloneElement(content.icon as React.ReactElement, { size: 120 })}
+             </div>
+             <h2 className="text-3xl font-bold text-gray-900 mb-6 leading-tight border-l-8 border-adp-blue pl-6">
+               {content.headline}
+             </h2>
+             <div className="prose text-gray-600 text-lg leading-relaxed space-y-6 max-w-none">
+                <p>
+                  A <strong>ADP Desentupidora</strong> consolidou-se como a principal escolha para moradores e empresas de <strong>{locationName}</strong> devido ao nosso compromisso com a agilidade e o preço justo. 
+                  {content.detailText}
+                </p>
+                <p>
+                  Nossa base operacional volante em <strong>{locationName}</strong> está equipada com tecnologia de vídeo-inspeção e máquinas rotativas de diversas potências, permitindo desobstruir desde pias domésticas até galerias industriais complexas sem quebrar pisos ou azulejos.
+                </p>
+             </div>
+             
+             <div className="mt-12 p-6 bg-slate-50 rounded-2xl border border-slate-200">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <MapPin className="text-adp-orange" /> {content.typeLabel}
+                </h4>
+                <p className="text-sm text-gray-500">{content.localRef}</p>
+             </div>
+          </article>
 
-          {/* Video Section Injected */}
+          {/* Vídeo com Contexto Local */}
           <VideoCTA location={locationName} />
 
-          {/* Section 2: Services */}
+          {/* Serviços Populares na Região */}
           <section>
-            <h3 className="text-xl font-bold mb-6">Serviços de Desentupimento em {locationName}</h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <h3 className="text-2xl font-bold mb-8 text-gray-900">O que resolvemos hoje em {locationName}:</h3>
+            <div className="grid md:grid-cols-2 gap-6">
                {[
-                 `Desentupimento de Vaso em ${locationName}`,
-                 `Limpeza de Caixa de Gordura em ${locationName}`,
-                 "Hidrojateamento de Alta Pressão",
-                 "Caça Vazamentos Ocultos",
-                 `Desentupimento de Pias em ${locationName}`,
-                 "Limpeza de Fossa Séptica"
-               ].map((svc, i) => (
-                 <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-lg border border-gray-100 shadow-sm hover:border-adp-blue transition">
-                   <CheckCircle size={20} className="text-adp-green flex-shrink-0" />
-                   <span className="font-medium text-gray-700">{svc}</span>
+                 { t: "Desentupimento de Esgoto", d: "Limpeza de ramais e redes principais obstruídas.", i: <Droplets /> },
+                 { t: "Caça Vazamentos", d: "Detecção eletrônica precisa para economia na conta de água.", i: <Wrench /> },
+                 { t: "Limpeza de Fossa", d: "Esgotamento técnico com caminhão auto-vácuo próprio.", i: <Truck /> },
+                 { t: "Vídeo Inspeção", d: "Filmagem interna para diagnóstico exato sem quebra.", i: <Building2 /> }
+               ].map((serv, idx) => (
+                 <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
+                    <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-adp-blue mb-6 group-hover:bg-adp-blue group-hover:text-white transition-colors">
+                      {serv.i}
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">{serv.t} em {locationName}</h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">{serv.d}</p>
+                    <a href={WHATSAPP_LINK} className="mt-6 inline-flex items-center gap-2 text-adp-blue font-bold text-sm">
+                      Orçamento via WhatsApp &rarr;
+                    </a>
                  </div>
                ))}
             </div>
           </section>
 
-          {/* Section 3: Why Choose Us */}
-          <section className="bg-white p-8 rounded-xl shadow-sm border-l-4 border-adp-orange">
-             <h3 className="text-2xl font-bold mb-4">Por que escolher a ADP Desentupidora em {locationName}?</h3>
-             <p className="text-gray-600 mb-6">
-               Nossa reputação foi construída com base na confiança e na transparência. 
-               Ao contratar a ADP, você tem a certeza de um serviço executado por profissionais treinados, frota própria e equipamentos de última geração.
-               <strong> Não cobramos taxa de visita para {locationName}</strong> e oferecemos garantia de até 90 dias em todos os serviços.
-             </p>
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-4 bg-gray-50 rounded hover:bg-white hover:shadow-md transition">
-                   <Clock className="mx-auto text-adp-blue mb-2" />
-                   <div className="font-bold text-sm">Chegada Rápida</div>
-                </div>
-                <div className="p-4 bg-gray-50 rounded hover:bg-white hover:shadow-md transition">
-                   <Shield className="mx-auto text-adp-blue mb-2" />
-                   <div className="font-bold text-sm">Garantia Total</div>
-                </div>
-                <div className="p-4 bg-gray-50 rounded hover:bg-white hover:shadow-md transition">
-                   <MapPin className="mx-auto text-adp-blue mb-2" />
-                   <div className="font-bold text-sm">Atendemos {locationName}</div>
-                </div>
-                <div className="p-4 bg-gray-50 rounded hover:bg-white hover:shadow-md transition">
-                   <Phone className="mx-auto text-adp-blue mb-2" />
-                   <div className="font-bold text-sm">Plantão 24h</div>
-                </div>
-             </div>
-          </section>
-
-          {/* Accordion FAQ Local */}
-          <section>
-            <h3 className="text-xl font-bold mb-6">Dúvidas Comuns em {locationName}</h3>
-            <div className="space-y-4">
-              {faqItems.map((item, idx) => (
-                <div key={idx} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                  <button 
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full text-left px-6 py-4 font-bold text-gray-800 flex justify-between items-center focus:outline-none hover:bg-gray-50 transition"
-                  >
-                    <span className="pr-4">{item.q}</span>
-                    <ChevronDown className={`flex-shrink-0 transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`} />
-                  </button>
-                  <div className={`px-6 text-gray-600 bg-gray-50 transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-40 py-4 opacity-100' : 'max-h-0 py-0 opacity-0 overflow-hidden'}`}>
-                    {item.a}
-                  </div>
-                </div>
-              ))}
+          {/* FAQ Dinâmica */}
+          <section className="bg-white p-8 md:p-12 rounded-3xl shadow-sm">
+            <h3 className="text-2xl font-bold mb-8">Perguntas sobre Atendimento em {locationName}</h3>
+            <div className="space-y-2">
+               {[
+                 { q: `Quanto custa a visita em ${locationName}?`, a: `Zero. Nossa visita para diagnóstico e orçamento em ${locationName} é 100% gratuita. Você só paga pelo serviço se aprovar o valor na hora.` },
+                 { q: `Vocês atendem aos domingos em ${locationName}?`, a: `Sim! Mantemos o plantão 24h ativo todos os dias do ano em ${locationName}, incluindo domingos e feriados nacionais.` },
+                 { q: `O serviço tem garantia por escrito?`, a: `Sim. Ao finalizar o trabalho em ${locationName}, emitimos o certificado de garantia de até 90 dias e a nota fiscal de serviço.` }
+               ].map((item, i) => (
+                 <div key={i} className="border-b border-gray-100 last:border-0">
+                    <button 
+                      onClick={() => toggleFaq(i)}
+                      className="w-full text-left py-6 font-bold text-gray-800 flex justify-between items-center group"
+                    >
+                      <span className="group-hover:text-adp-blue transition-colors">{item.q}</span>
+                      <ChevronDown className={`text-adp-blue transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                    </button>
+                    {openFaq === i && (
+                      <div className="pb-6 text-gray-600 leading-relaxed animate-fade-in">
+                        {item.a}
+                      </div>
+                    )}
+                 </div>
+               ))}
             </div>
           </section>
 
-          <div className="mt-8">
-            <Link to="/" className="text-adp-blue font-bold hover:underline">&larr; Voltar para a Página Inicial</Link>
+          <div className="pt-8 border-t border-gray-200">
+            <Link to="/cobertura" className="text-adp-blue font-bold hover:underline">
+              &larr; Ver outras cidades e bairros atendidos
+            </Link>
           </div>
         </div>
 
-        {/* Sidebar */}
-        <div className="lg:col-span-1">
+        {/* Lateral de Conversão */}
+        <aside className="lg:col-span-1">
           <div className="sticky top-24 space-y-8">
-            <LeadForm />
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center border border-gray-100">
-              <h4 className="font-bold text-gray-800 mb-2">Precisa de Ajuda em {locationName}?</h4>
-              <p className="text-sm text-gray-500 mb-4">Plantão técnico ativo agora na sua região.</p>
-              <a href={PHONE_LINK} className="block w-full bg-adp-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition mb-2 shadow-md">
-                {PHONE_DISPLAY}
-              </a>
-              <p className="text-xs text-gray-400">Atendimento 24h, 7 dias por semana</p>
-            </div>
+             <LeadForm />
+             
+             <div className="bg-adp-red text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden group">
+               <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:scale-110 transition-transform">
+                 <Clock size={80} />
+               </div>
+               <h4 className="text-2xl font-black mb-2">Emergência em {locationName}?</h4>
+               <p className="text-sm mb-8 opacity-90">Temos um técnico agora mesmo na sua região. Ligue e solicite prioridade.</p>
+               <a href={PHONE_LINK} className="block w-full bg-white text-adp-red py-4 rounded-2xl font-black text-2xl text-center hover:bg-gray-100 transition shadow-lg transform active:scale-95">
+                 {PHONE_DISPLAY}
+               </a>
+             </div>
+
+             <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
+                <Shield className="mx-auto text-adp-green mb-4" size={48} />
+                <h5 className="font-bold text-gray-900 mb-2">Empresa Certificada</h5>
+                <p className="text-sm text-gray-500">Operamos com todas as licenças ambientais e nota fiscal.</p>
+             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );
