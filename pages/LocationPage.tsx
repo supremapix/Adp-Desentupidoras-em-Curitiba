@@ -18,15 +18,15 @@ const LocationPage = () => {
   const locationName = formatName(slug);
   const isCity = type === 'cidade';
 
-  // Motor de Contexto Local Avançado
+  // Motor de Contexto Local: Classifica o perfil da região para injetar textos específicos
   const context = useMemo(() => {
-    const highDensity = ['Batel', 'Bigorrilho', 'Champagnat', 'Ecoville', 'Agua Verde', 'Cabral', 'Juveve', 'Centro Civico', 'Centro', 'Cristo Rei'];
+    const verticalDensity = ['Batel', 'Bigorrilho', 'Champagnat', 'Ecoville', 'Agua Verde', 'Cabral', 'Juveve', 'Centro Civico', 'Centro', 'Cristo Rei'];
     const industrialZones = ['CIC', 'Tatuquara', 'Pinheirinho', 'Cidade Industrial', 'Fazenda Rio Grande', 'Araucaria', 'Sao Jose dos Pinhais'];
-    const residentialZones = ['Santa Felicidade', 'Jardim das Americas', 'Uberaba', 'Xaxim', 'Boqueirao', 'Bacacheri', 'Boa Vista', 'Merces', 'Vila Izabel'];
+    const familyResidential = ['Santa Felicidade', 'Jardim das Americas', 'Uberaba', 'Xaxim', 'Boqueirao', 'Bacacheri', 'Boa Vista', 'Merces', 'Vila Izabel', 'Sao Braz'];
 
-    if (highDensity.some(b => locationName.includes(b))) return 'HIGH_DENSITY';
+    if (verticalDensity.some(b => locationName.includes(b))) return 'VERTICAL';
     if (industrialZones.some(i => locationName.includes(i))) return 'INDUSTRIAL';
-    if (residentialZones.some(r => locationName.includes(r))) return 'RESIDENTIAL';
+    if (familyResidential.some(r => locationName.includes(r))) return 'RESIDENTIAL';
     return isCity ? 'CITY_RMC' : 'GENERAL_LOCAL';
   }, [locationName, isCity]);
 
@@ -41,59 +41,59 @@ const LocationPage = () => {
   const getDynamicContent = () => {
     const base = {
       location: locationName,
-      cta: `Chamar Técnico em ${locationName}`
+      cta: `Técnico em ${locationName} Agora`
     };
 
     switch (context) {
-      case 'HIGH_DENSITY':
+      case 'VERTICAL':
         return {
           ...base,
-          typeLabel: "Bairro de Alta Densidade",
-          headline: `Líder em Desentupimento de Prédios e Apartamentos no ${locationName}`,
-          intro: `O ${locationName} é conhecido por sua infraestrutura vertical e sofisticação. Entupimentos em colunas de prédios e pias de apartamentos aqui exigem uma empresa que opere com total silêncio, limpeza e técnica.`,
-          detailText: `Atendemos condomínios residenciais e comerciais no ${locationName} com equipamentos de baixa emissão de ruído. Nossa especialidade em colunas de esgoto e ramais de pia garante que o serviço seja feito sem sujar áreas comuns ou causar transtornos aos vizinhos. Conhecemos os projetos hidráulicos da região e estamos prontos para atuar em prédios clássicos e modernos.`,
+          typeLabel: "Especialista em Edifícios",
+          headline: `Desentupidora de Prédios e Apartamentos no ${locationName}`,
+          intro: `O ${locationName} possui uma das maiores densidades verticais da região. Entupimentos em colunas de esgoto e ramais de pia em apartamentos exigem técnica e equipamentos silenciosos.`,
+          detailText: `Atendemos condomínios de alto padrão no ${locationName} com máquinas K-50 e K-500 que operam com baixo ruído, garantindo a desobstrução de colunas sem danificar a estrutura hidráulica ou incomodar os vizinhos. Nossa equipe conhece os projetos das principais construtoras do bairro e está pronta para agir rápido.`,
           icon: <Building2 className="text-adp-blue" />,
-          localRef: "Atendimento especializado em áreas de condomínios e centros comerciais."
+          localRef: "Atendimento preferencial para Síndicos e Administradoras de Condomínios no " + locationName
         };
       case 'INDUSTRIAL':
         return {
           ...base,
-          typeLabel: "Zona Industrial e Logística",
-          headline: `Desentupidora Industrial e de Grande Porte em ${locationName}`,
-          intro: `Devido ao forte perfil industrial e logístico de ${locationName}, a ADP oferece soluções robustas para desobstrução de galerias, pátios e redes coletoras de grande diâmetro.`,
-          detailText: `Seja na Cidade Industrial (CIC) ou nas zonas de logística de ${locationName}, operamos com caminhões de Hidrojateamento de Alta Pressão e sistemas de sucção auto-vácuo. Fornecemos certificados de destinação de resíduos e realizamos manutenção preventiva em cozinhas industriais e redes de esgoto sanitário de larga escala, garantindo que sua operação não pare por problemas hidráulicos.`,
+          typeLabel: "Soluções Industriais",
+          headline: `Desentupidora Industrial e Hidrojateamento em ${locationName}`,
+          intro: `Para as zonas industriais e logísticas de ${locationName}, oferecemos equipamentos de alta potência capazes de limpar galerias de grande diâmetro e redes coletoras complexas.`,
+          detailText: `Operamos em ${locationName} com caminhões de Hidrojateamento de Alta Pressão e sistemas de sucção auto-vácuo. Somos certificados para realizar a limpeza de caixas de gordura industriais, fossas sépticas de galpões e manutenção preventiva em cozinhas industriais da região, fornecendo laudo técnico e certificado de destinação de resíduos.`,
           icon: <Factory className="text-adp-blue" />,
-          localRef: "Equipamentos pesados para atender fábricas, galpões e transportadoras."
+          localRef: "Equipes treinadas para normas de segurança NR-33 e NR-35 na região de " + locationName
         };
       case 'RESIDENTIAL':
         return {
           ...base,
-          typeLabel: "Zona Residencial Familiar",
+          typeLabel: "Atendimento Residencial",
           headline: `Sua Casa em ${locationName} Livre de Entupimentos 24h`,
-          intro: `O ${locationName} possui um perfil familiar com muitas casas e sobrados. Entupimentos de rede pluvial (chuva) ou esgoto doméstico são comuns e exigem solução rápida para evitar danos ao jardim e pisos.`,
-          detailText: `Nossa equipe para o ${locationName} utiliza máquinas Roto-Rooter com cabos flexíveis que navegam por curvas complexas de canos residenciais sem a necessidade de escavações. Atendemos desde as residências tradicionais de Santa Felicidade até os novos sobrados do Jardim das Américas e Xaxim. Chegamos rápido e deixamos tudo limpo, protegendo seu patrimônio.`,
+          intro: `O ${locationName} é um bairro tradicionalmente residencial, com muitas casas e sobrados que possuem redes pluviais e de esgoto integradas que entopem com raízes e detritos.`,
+          detailText: `Nossos técnicos para o ${locationName} são especialistas em desentupimento de ralos de quintal, pias de cozinha e vasos sanitários. Utilizamos máquinas rotativas que navegam pelas curvas dos canos residenciais de ${locationName} sem a necessidade de quebrar calçadas ou jardins. Limpeza rápida e solução definitiva para o conforto da sua família.`,
           icon: <HomeIcon className="text-adp-blue" />,
-          localRef: "Foco em residências e sobrados com solução limpa e sem quebra-quebra."
+          localRef: "Viatura de plantão circulando nas principais ruas do " + locationName
         };
       case 'CITY_RMC':
         return {
           ...base,
           typeLabel: "Região Metropolitana",
-          headline: `Desentupidora e Limpa Fossa em ${locationName} com Chegada Rápida`,
-          intro: `Atendemos toda a cidade de ${locationName} com frota própria para esgotamento de fossas e desentupimento de redes urbanas e rurais.`,
-          detailText: `Moradores de ${locationName} e regiões vizinhas podem contar com a ADP para serviços de Limpeza de Fossa Séptica e desentupimento de esgoto em geral. Mesmo em áreas mais afastadas do centro de ${locationName}, garantimos o deslocamento imediato de nossos caminhões auto-vácuo. Serviço certificado, com descarte correto e garantia por escrito para sua tranquilidade.`,
+          headline: `Desentupidora e Limpa Fossa em ${locationName} (Plantão 24h)`,
+          intro: `Atendemos todos os bairros e distritos de ${locationName} com agilidade, oferecendo desde desentupimentos simples até esgotamento de fossas com caminhão próprio.`,
+          detailText: `Para os moradores e empresários de ${locationName}, a ADP garante o deslocamento imediato. Possuímos uma base estratégica próxima que permite aos nossos caminhões de limpa fossa chegarem a qualquer ponto de ${locationName} em poucos minutos. Atendimento para residências urbanas e áreas industriais da cidade com preço de capital.`,
           icon: <Truck className="text-adp-blue" />,
-          localRef: "Atendimento completo para residências, chácaras e comércios da cidade."
+          localRef: "Referência em esgotamento de fossa e limpeza de redes em toda a cidade de " + locationName
         };
       default:
         return {
           ...base,
-          typeLabel: "Atendimento Especializado",
-          headline: `Referência em Desentupimento em ${locationName}`,
-          intro: `A ADP é a escolha certa para quem busca rapidez e preço justo em ${locationName}. Atendemos qualquer tipo de entupimento hidráulico com tecnologia de ponta.`,
-          detailText: `Com mais de 10 anos de experiência atendendo ${locationName}, nossa empresa se destaca pela transparência. Realizamos a vídeo inspeção para mostrar o problema real e passamos o orçamento na hora, sem taxas de visita. Seja no comércio local ou na sua residência, nossa solução é definitiva e garantida.`,
+          typeLabel: "Plantão Local 24h",
+          headline: `Desentupidora em ${locationName}: Orçamento Grátis e Imediato`,
+          intro: `A ADP é a desentupidora líder em ${locationName} pela transparência e rapidez. Nossa equipe técnica está a poucos minutos do seu endereço.`,
+          detailText: `Com mais de uma década de experiência atendendo ${locationName}, resolvemos qualquer bloqueio em redes de esgoto, pias, ralos ou vasos. Não cobramos taxa de visita em ${locationName} e passamos o preço exato após a avaliação técnica. Garantia total por escrito de até 90 dias em todos os serviços executados.`,
           icon: <Sparkles className="text-adp-blue" />,
-          localRef: "Visita técnica gratuita em todos os endereços da região."
+          localRef: "Técnico especialista disponível agora para " + locationName
         };
     }
   };
@@ -104,35 +104,37 @@ const LocationPage = () => {
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
         title={`Desentupidora em ${locationName} 24h | Atendimento em 30min | ADP`}
-        description={`Precisando de Desentupidora em ${locationName}? Resolvemos entupimentos de esgoto, pias e vasos. Visita grátis e garantia em ${locationName}. Chame a ADP AGORA!`}
+        description={`Melhor Desentupidora em ${locationName}. Desentupimento de esgoto, pias, vasos e caça vazamentos. Orçamento grátis em ${locationName}. Equipe local, ligue já!`}
         keywords={`desentupidora ${locationName}, desentupimento ${locationName}, encanador ${locationName}, limpa fossa ${locationName}, preço desentupidora ${locationName}`}
         canonicalPath={`/local/${type}/${slug}`}
       />
 
-      {/* Header Localizado */}
+      {/* Hero Section Localizado */}
       <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 -skew-x-12 translate-x-1/2"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center md:text-left">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 skew-x-12 translate-x-1/2"></div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1 space-y-6">
+            <div className="flex-1 space-y-6 text-center md:text-left">
               <div className="inline-flex items-center gap-2 bg-adp-blue/20 text-adp-blue border border-adp-blue/30 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                <MapPin size={14} /> Atendimento Local: {locationName}
+                <MapPin size={14} /> Unidade Móvel: {locationName}
               </div>
               <h1 className="text-4xl md:text-6xl font-heading font-black leading-tight">
                 Desentupidora em <span className="text-adp-orange">{locationName}</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-2xl font-light leading-relaxed">
-                {content.intro} Equipes de prontidão para chegar no seu endereço em até <strong>30 minutos</strong>.
+                {content.intro} Chegamos em <strong>30 minutos</strong> com orçamento gratuito e solução na hora.
               </p>
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <a href={PHONE_LINK} className="bg-adp-blue hover:bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
                   <Phone size={24} fill="currentColor" /> {PHONE_DISPLAY}
                 </a>
                 <a href={WHATSAPP_LINK} className="bg-[#25D366] hover:bg-green-600 text-white px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
-                  <Sparkles size={24} /> ORÇAMENTO GRÁTIS
+                  <Sparkles size={24} /> VISITA GRÁTIS
                 </a>
               </div>
             </div>
+            
+            {/* Widget de Status Rápido */}
             <div className="hidden lg:block w-96">
                <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
                  <div className="flex items-center gap-4 mb-6">
@@ -140,19 +142,19 @@ const LocationPage = () => {
                       <Clock size={32} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-adp-orange uppercase">Chegada Rápida</p>
-                      <p className="text-2xl font-black">30 Minutos</p>
+                      <p className="text-sm font-bold text-adp-orange uppercase tracking-tighter">Status Atual</p>
+                      <p className="text-2xl font-black">LIVRE EM {locationName.toUpperCase()}</p>
                     </div>
                  </div>
                  <div className="space-y-4">
                     <div className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="text-adp-green" size={18} /> <span>Visita Grátis em {locationName}</span>
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Técnico a 15min de você</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="text-adp-green" size={18} /> <span>Preço Fechado na Hora</span>
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Equipamento K-500 em mãos</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="text-adp-green" size={18} /> <span>Garantia de até 90 Dias</span>
+                      <CheckCircle className="text-adp-green" size={18} /> <span>Orçamento sem compromisso</span>
                     </div>
                  </div>
                </div>
@@ -164,21 +166,22 @@ const LocationPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
-          {/* Conteúdo Contextual Local */}
+          {/* Conteúdo Contextual Localizado */}
           <article className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative">
-             <div className="absolute top-10 right-10 opacity-10">
-                {React.cloneElement(content.icon as React.ReactElement, { size: 120 })}
+             <div className="absolute top-10 right-10 opacity-5">
+                {/* Fix: Casting to React.ReactElement<any> to allow 'size' property */}
+                {React.cloneElement(content.icon as React.ReactElement<any>, { size: 140 })}
              </div>
              <h2 className="text-3xl font-bold text-gray-900 mb-6 leading-tight border-l-8 border-adp-blue pl-6">
                {content.headline}
              </h2>
              <div className="prose text-gray-600 text-lg leading-relaxed space-y-6 max-w-none">
                 <p>
-                  A <strong>ADP Desentupidora</strong> consolidou-se como a principal escolha para moradores e empresas de <strong>{locationName}</strong> devido ao nosso compromisso com a agilidade e o preço justo. 
+                  A <strong>ADP Desentupidora</strong> é a empresa mais recomendada em <strong>{locationName}</strong> pela qualidade do atendimento e garantia de solução definitiva. 
                   {content.detailText}
                 </p>
                 <p>
-                  Nossa base operacional volante em <strong>{locationName}</strong> está equipada com tecnologia de vídeo-inspeção e máquinas rotativas de diversas potências, permitindo desobstruir desde pias domésticas até galerias industriais complexas sem quebrar pisos ou azulejos.
+                  Diferente de encanadores comuns, possuímos equipamentos profissionais que permitem identificar o ponto exato da obstrução em {locationName}. Através da <strong>Vídeo Inspeção</strong>, podemos filmar o interior dos canos e mostrar o problema para o cliente, garantindo total transparência no diagnóstico.
                 </p>
              </div>
              
@@ -190,41 +193,46 @@ const LocationPage = () => {
              </div>
           </article>
 
-          {/* Vídeo com Contexto Local */}
+          {/* Vídeo CTA Dinâmico */}
           <VideoCTA location={locationName} />
 
-          {/* Serviços Populares na Região */}
+          {/* Grid de Serviços Populares na Região */}
           <section>
-            <h3 className="text-2xl font-bold mb-8 text-gray-900">O que resolvemos hoje em {locationName}:</h3>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-1 w-12 bg-adp-orange"></div>
+              <h3 className="text-2xl font-bold text-gray-900">Serviços Disponíveis em {locationName}:</h3>
+            </div>
             <div className="grid md:grid-cols-2 gap-6">
                {[
-                 { t: "Desentupimento de Esgoto", d: "Limpeza de ramais e redes principais obstruídas.", i: <Droplets /> },
-                 { t: "Caça Vazamentos", d: "Detecção eletrônica precisa para economia na conta de água.", i: <Wrench /> },
-                 { t: "Limpeza de Fossa", d: "Esgotamento técnico com caminhão auto-vácuo próprio.", i: <Truck /> },
-                 { t: "Vídeo Inspeção", d: "Filmagem interna para diagnóstico exato sem quebra.", i: <Building2 /> }
+                 { t: "Desentupimento de Esgoto", d: "Limpeza técnica de ramais e redes principais em residências e empresas.", i: <Droplets /> },
+                 { t: "Caça Vazamentos", d: "Localização eletrônica com geofone para reduzir a conta de água na região.", i: <Wrench /> },
+                 { t: "Limpeza de Fossa", d: "Esgotamento técnico com descarte ecológico em Curitiba e Região.", i: <Truck /> },
+                 { t: "Desentupimento de Pia e Vaso", d: "Solução imediata para bloqueios domésticos com máquinas Roto Rooter.", i: <Building2 /> }
                ].map((serv, idx) => (
-                 <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
+                 <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group border-b-4 hover:border-adp-blue">
                     <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-adp-blue mb-6 group-hover:bg-adp-blue group-hover:text-white transition-colors">
                       {serv.i}
                     </div>
                     <h4 className="text-xl font-bold mb-2">{serv.t} em {locationName}</h4>
                     <p className="text-gray-500 text-sm leading-relaxed">{serv.d}</p>
                     <a href={WHATSAPP_LINK} className="mt-6 inline-flex items-center gap-2 text-adp-blue font-bold text-sm">
-                      Orçamento via WhatsApp &rarr;
+                      Pedir Orçamento Agora &rarr;
                     </a>
                  </div>
                ))}
             </div>
           </section>
 
-          {/* FAQ Dinâmica */}
-          <section className="bg-white p-8 md:p-12 rounded-3xl shadow-sm">
-            <h3 className="text-2xl font-bold mb-8">Perguntas sobre Atendimento em {locationName}</h3>
+          {/* FAQ Localizada e Contextual */}
+          <section className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
+            <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+              <ChevronDown className="text-adp-orange" /> Tire suas Dúvidas sobre {locationName}
+            </h3>
             <div className="space-y-2">
                {[
-                 { q: `Quanto custa a visita em ${locationName}?`, a: `Zero. Nossa visita para diagnóstico e orçamento em ${locationName} é 100% gratuita. Você só paga pelo serviço se aprovar o valor na hora.` },
-                 { q: `Vocês atendem aos domingos em ${locationName}?`, a: `Sim! Mantemos o plantão 24h ativo todos os dias do ano em ${locationName}, incluindo domingos e feriados nacionais.` },
-                 { q: `O serviço tem garantia por escrito?`, a: `Sim. Ao finalizar o trabalho em ${locationName}, emitimos o certificado de garantia de até 90 dias e a nota fiscal de serviço.` }
+                 { q: `Qual o valor da taxa de visita em ${locationName}?`, a: `Nenhuma. A ADP Desentupidora não cobra taxa de visita em ${locationName}. Nosso técnico avalia o problema no local sem custo e passa o orçamento na hora.` },
+                 { q: `Vocês atendem de madrugada em ${locationName}?`, a: `Sim! Mantemos o plantão 24h ativo em ${locationName}, incluindo domingos e feriados. Emergências hidráulicas não têm hora para acontecer e nós estamos sempre prontos.` },
+                 { q: `Quanto tempo dura a garantia no ${locationName}?`, a: `Oferecemos garantia por escrito de 30 a 90 dias, dependendo do serviço executado. Se o problema voltar no período de garantia, refazemos o serviço sem custo adicional.` }
                ].map((item, i) => (
                  <div key={i} className="border-b border-gray-100 last:border-0">
                     <button 
@@ -232,10 +240,10 @@ const LocationPage = () => {
                       className="w-full text-left py-6 font-bold text-gray-800 flex justify-between items-center group"
                     >
                       <span className="group-hover:text-adp-blue transition-colors">{item.q}</span>
-                      <ChevronDown className={`text-adp-blue transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`text-adp-blue transition-transform ${openFaq === i ? 'rotate-180' : ''}`} size={20} />
                     </button>
                     {openFaq === i && (
-                      <div className="pb-6 text-gray-600 leading-relaxed animate-fade-in">
+                      <div className="pb-6 text-gray-600 leading-relaxed animate-fade-in-up">
                         {item.a}
                       </div>
                     )}
@@ -245,32 +253,34 @@ const LocationPage = () => {
           </section>
 
           <div className="pt-8 border-t border-gray-200">
-            <Link to="/cobertura" className="text-adp-blue font-bold hover:underline">
-              &larr; Ver outras cidades e bairros atendidos
+            <Link to="/cobertura" className="text-adp-blue font-bold hover:underline flex items-center gap-2">
+              &larr; Ver todos os bairros e cidades atendidas
             </Link>
           </div>
         </div>
 
-        {/* Lateral de Conversão */}
+        {/* Sidebar Lateral de Alta Conversão */}
         <aside className="lg:col-span-1">
           <div className="sticky top-24 space-y-8">
              <LeadForm />
              
+             {/* Banner Urgência */}
              <div className="bg-adp-red text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden group">
                <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:scale-110 transition-transform">
                  <Clock size={80} />
                </div>
                <h4 className="text-2xl font-black mb-2">Emergência em {locationName}?</h4>
-               <p className="text-sm mb-8 opacity-90">Temos um técnico agora mesmo na sua região. Ligue e solicite prioridade.</p>
-               <a href={PHONE_LINK} className="block w-full bg-white text-adp-red py-4 rounded-2xl font-black text-2xl text-center hover:bg-gray-100 transition shadow-lg transform active:scale-95">
+               <p className="text-sm mb-8 opacity-90">Temos técnicos agora circulando pela região. Atendimento imediato para esgoto voltando ou vazamentos.</p>
+               <a href={PHONE_LINK} className="block w-full bg-white text-adp-red py-5 rounded-2xl font-black text-2xl text-center hover:bg-gray-100 transition shadow-xl transform active:scale-95">
                  {PHONE_DISPLAY}
                </a>
              </div>
 
+             {/* Selos de Confiança */}
              <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
                 <Shield className="mx-auto text-adp-green mb-4" size={48} />
-                <h5 className="font-bold text-gray-900 mb-2">Empresa Certificada</h5>
-                <p className="text-sm text-gray-500">Operamos com todas as licenças ambientais e nota fiscal.</p>
+                <h5 className="font-bold text-gray-900 mb-2">Empresa Licenciada</h5>
+                <p className="text-sm text-gray-500 leading-relaxed">Operamos em {locationName} seguindo todas as normas ambientais da Sanepar e IAP.</p>
              </div>
           </div>
         </aside>
