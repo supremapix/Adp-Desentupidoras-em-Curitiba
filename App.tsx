@@ -8,6 +8,7 @@ import ServicePage from './pages/ServicePage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import CoveragePage from './pages/CoveragePage';
 import FaqPage from './pages/FaqPage';
+import SitemapPage from './pages/SitemapPage';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/como-funciona" element={<HowItWorksPage />} />
           <Route path="/cobertura" element={<CoveragePage />} />
           <Route path="/duvidas" element={<FaqPage />} />
+          <Route path="/mapa-do-site" element={<SitemapPage />} />
           <Route path="/suprema-sites" element={<SupremaPage />} />
           {/* Catch-all route for 404 errors */}
           <Route path="*" element={<NotFound />} />

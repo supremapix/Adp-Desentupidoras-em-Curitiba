@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Instagram, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Heart, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, CITIES, SERVICES } from '../constants';
 
@@ -46,7 +46,12 @@ const Footer = () => {
                 <li key={city}><span className="hover:text-white cursor-default">{city}</span></li>
               ))}
             </ul>
-            <Link to="/cobertura" className="text-adp-orange text-sm font-bold mt-4 inline-block hover:underline">Ver todos os locais &rarr;</Link>
+            <div className="flex flex-col gap-2 mt-4">
+              <Link to="/cobertura" className="text-adp-orange text-sm font-bold hover:underline">Ver todos os locais &rarr;</Link>
+              <Link to="/mapa-do-site" className="text-blue-400 text-sm flex items-center gap-1 hover:text-white transition">
+                <Globe size={14} /> Mapa Geral do Site
+              </Link>
+            </div>
           </div>
 
           {/* Column 4: Contact */}
@@ -62,9 +67,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:contato@adpdesentupidora.com.br" className="flex items-center gap-3 hover:text-white">
+                <a href="mailto:contato@adpservicos.app.br" className="flex items-center gap-3 hover:text-white">
                   <Mail size={18} />
-                  <span>contato@adpdesentupidora.com.br</span>
+                  <span>contato@adpservicos.app.br</span>
                 </a>
               </li>
               <li className="flex items-start gap-3">
