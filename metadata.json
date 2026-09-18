@@ -1,5 +1,6 @@
 {
   "name": "ADP Desentupidora",
   "description": "Landing page de alta conversão para serviços de desentupidora em Curitiba e Região Metropolitana.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

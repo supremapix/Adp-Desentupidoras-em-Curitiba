@@ -9,6 +9,7 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import CoveragePage from './pages/CoveragePage';
 import FaqPage from './pages/FaqPage';
 import SitemapPage from './pages/SitemapPage';
+import CuritibaSEOPage from './pages/CuritibaSEOPage';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/desentupidora-curitiba" element={<CuritibaSEOPage />} />
           <Route path="/local/:type/:slug" element={<LocationPage />} />
           <Route path="/servicos/:slug" element={<ServicePage />} />
           <Route path="/como-funciona" element={<HowItWorksPage />} />

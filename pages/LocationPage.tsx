@@ -103,30 +103,34 @@ const LocationPage = () => {
 
   const localSchema = {
     "@context": "https://schema.org",
-    "@type": "PlumbingService",
-    "name": `ADP Desentupidora ${locationName}`,
-    "description": `Melhor desentupidora em ${locationName}. Atendimento 24h para desentupimento de esgoto, pias, vasos e caça vazamentos em ${locationName}.`,
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": isCity ? locationName : "Curitiba",
-      "addressRegion": "PR",
-      "addressCountry": "BR"
+    "@type": "Service",
+    "name": `Desentupimento em ${locationName} - ADP Desentupidora`,
+    "description": `Serviços de desentupimento e manutenção hidráulica em ${locationName}. Atendimento prestado pela ADP Desentupidora (sede em Curitiba).`,
+    "provider": {
+      "@type": "PlumbingService",
+      "name": "ADP Desentupidora",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Luiz Maltaca, 36",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "postalCode": "81310-020",
+        "addressCountry": "BR"
+      },
+      "telephone": "4133451194"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -25.4284,
-      "longitude": -49.2733
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": locationName
     },
-    "telephone": "4133451194",
     "url": `https://adpservicos.app.br/local/${type}/${slug}`
   };
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
-        title={`Desentupidora em ${locationName} 24h | Chegada em 30min | ADP`}
-        description={`Precisando de Desentupidora em ${locationName}? Atendimento emergencial para esgoto, pias e vasos. Visita grátis e orçamento na hora em ${locationName}. Ligue já!`}
-        keywords={`desentupidora ${locationName}, desentupimento ${locationName}, limpa fossa ${locationName}, caça vazamentos ${locationName}, desentupidora vila ${locationName}`}
+        title={`Desentupidora em ${locationName} | ADP Desentupidora`}
+        description={`Serviços de desentupimento em ${locationName}. Atendimento para esgoto, pias, ralos e vasos conforme disponibilidade técnica a partir de nossa base em Curitiba.`}
         canonicalPath={`/local/${type}/${slug}`}
         schemaData={localSchema}
       />
@@ -137,20 +141,20 @@ const LocationPage = () => {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1 text-center md:text-left space-y-6">
               <div className="inline-flex items-center gap-2 bg-adp-orange text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                <MapPin size={14} /> Atendimento Local: {locationName}
+                <MapPin size={14} /> Atendimento em {locationName}
               </div>
               <h1 className="text-4xl md:text-6xl font-heading font-black leading-tight animate-fade-in-up">
                 Desentupidora em <span className="text-adp-orange">{locationName}</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-2xl font-light leading-relaxed">
-                {content.intro} Equipe técnica certificada com chegada prevista em até <strong>30 minutos</strong> no bairro {locationName}.
+                A ADP realiza atendimento em {locationName} para serviços de desentupimento e manutenção hidráulica, conforme disponibilidade da equipe a partir de nossa sede em Curitiba (CIC).
               </p>
               <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                 <a href={PHONE_LINK} className="bg-adp-blue hover:bg-blue-600 text-white px-8 md:px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
                   <Phone size={24} fill="currentColor" /> {PHONE_DISPLAY}
                 </a>
                 <a href={WHATSAPP_LINK} className="bg-[#25D366] hover:bg-green-600 text-white px-8 md:px-10 py-4 rounded-2xl font-black text-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
-                  <MessageCircle size={24} /> VISITA GRÁTIS
+                  <MessageCircle size={24} /> ORÇAMENTO VIA WHATSAPP
                 </a>
               </div>
             </div>
@@ -161,21 +165,18 @@ const LocationPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           <article className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
-             <div className="absolute top-10 right-10 opacity-5">
-                {React.cloneElement(content.icon as React.ReactElement<any>, { size: 140 })}
-             </div>
              <h2 className="text-3xl font-bold text-gray-900 mb-8 leading-tight border-l-8 border-adp-blue pl-6">
-               {content.headline}
+               Desentupimento e Manutenção em {locationName}
              </h2>
              <div className="prose text-gray-600 text-lg leading-relaxed space-y-6 max-w-none">
-                <p>A <strong>ADP Desentupidora</strong> é a principal escolha de confiança em <strong>{locationName}</strong>. {content.detailText}</p>
-                <p>Nossa tecnologia de <strong>Vídeo Inspeção</strong> permite diagnósticos precisos em {locationName}, identificando o ponto exato da obstrução sem quebras desnecessárias. Seja um problema na cozinha, no banheiro ou na rede de esgoto principal, resolvemos de forma limpa e segura.</p>
+                <p>A <strong>ADP Desentupidora</strong> atende a região de <strong>{locationName}</strong> prestando serviços essenciais de desbstrução de redes de esgoto, pias, ralos, vasos sanitários e caça vazamentos.</p>
+                <p>Nossa equipe técnica atua com equipamentos rotativos e hidrojateamento a partir de nossa central em Curitiba (CIC), garantindo suporte profissional para residências e comércios na área.</p>
              </div>
              <div className="mt-12 p-6 bg-slate-50 rounded-2xl border border-slate-200">
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Shield className="text-adp-green" size={20} /> Garantia ADP para {locationName}
+                  <Shield className="text-adp-green" size={20} /> Informações de Atendimento
                 </h4>
-                <p className="text-sm text-gray-500">{content.localRef}</p>
+                <p className="text-sm text-gray-500">Sede da empresa: Rua Luiz Maltaca, 36, CIC, Curitiba - PR. Atendimento prestado em {locationName} conforme agendamento e disponibilidade técnica.</p>
              </div>
           </article>
 

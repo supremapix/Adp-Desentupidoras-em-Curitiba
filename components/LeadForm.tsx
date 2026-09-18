@@ -25,8 +25,8 @@ const LeadForm = () => {
 
   return (
     <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 border-t-4 border-adp-orange max-w-lg mx-auto w-full relative overflow-hidden">
-      <div className="absolute top-0 right-0 bg-adp-red text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-        RESPOSTA EM 2 MIN
+      <div className="absolute top-0 right-0 bg-adp-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+        ATENDIMENTO RÁPIDO
       </div>
       
       <h3 className="text-2xl font-heading font-bold text-adp-blue mb-2 text-center">
@@ -116,7 +116,7 @@ const LeadForm = () => {
               className="w-full bg-adp-green text-white py-4 rounded-xl font-bold text-lg hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2"
             >
               <Send size={20} />
-              RECEBER LIGAÇÃO EM 2 MIN
+              SOLICITAR ATENDIMENTO
             </button>
             <p className="text-xs text-gray-400 text-center flex items-center justify-center gap-1">
               <CheckCircle size={12} /> Seus dados estão 100% seguros
