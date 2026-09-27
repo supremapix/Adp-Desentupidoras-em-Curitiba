@@ -5,7 +5,13 @@ import * as reactHelmetAsync from 'react-helmet-async';
 import fs from 'fs';
 import path from 'path';
 import { AppRoutes } from '../App';
-import { SERVICES, CITIES, NEIGHBORHOODS, toSlug } from '../constants';
+import { SERVICES, NEIGHBORHOODS, toSlug } from '../constants';
+import { 
+  CONFIRMED_METROPOLITAN_CITIES, 
+  CONSOLIDATED_BAIRROS, 
+  CONSOLIDATED_CITIES,
+  getAllRedirectRules 
+} from '../consolidations';
 
 const HelmetProvider = (reactHelmetAsync as any).HelmetProvider || (reactHelmetAsync as any).default?.HelmetProvider;
 
@@ -30,7 +36,7 @@ function getAllRoutes(): RouteInfo[] {
     { path: '/suprema-sites', isIndexable: false, priority: '0.1', changefreq: 'yearly' }
   ];
 
-  // 6 Services
+  // 6 Serviços Especializados
   for (const s of SERVICES) {
     routes.push({
       path: `/servicos/${s.slug}`,
@@ -40,8 +46,8 @@ function getAllRoutes(): RouteInfo[] {
     });
   }
 
-  // 29 Cities
-  for (const city of CITIES) {
+  // 11 Cidades Confirmadas na Região Metropolitana
+  for (const city of CONFIRMED_METROPOLITAN_CITIES) {
     routes.push({
       path: `/local/cidade/${toSlug(city)}`,
       isIndexable: true,
@@ -50,13 +56,34 @@ function getAllRoutes(): RouteInfo[] {
     });
   }
 
-  // 90 Neighborhoods & Vilas
-  for (const n of NEIGHBORHOODS) {
+  // 74 Bairros Oficiais de Curitiba
+  const officialBairros = NEIGHBORHOODS.filter(n => !CONSOLIDATED_BAIRROS[toSlug(n)]);
+  for (const b of officialBairros) {
     routes.push({
-      path: `/local/bairro/${toSlug(n)}`,
+      path: `/local/bairro/${toSlug(b)}`,
       isIndexable: true,
       priority: '0.8',
       changefreq: 'monthly'
+    });
+  }
+
+  // 71 Bairros Consolidados (Não indexáveis, apenas para fallback com noindex e meta refresh)
+  for (const slug of Object.keys(CONSOLIDATED_BAIRROS)) {
+    routes.push({
+      path: `/local/bairro/${slug}`,
+      isIndexable: false,
+      priority: '0.1',
+      changefreq: 'yearly'
+    });
+  }
+
+  // 18 Cidades Consolidadas (Não indexáveis)
+  for (const slug of Object.keys(CONSOLIDATED_CITIES)) {
+    routes.push({
+      path: `/local/cidade/${slug}`,
+      isIndexable: false,
+      priority: '0.1',
+      changefreq: 'yearly'
     });
   }
 
@@ -84,8 +111,45 @@ ${xmlEntries}
 `;
 }
 
+function updateRedirectConfigFiles() {
+  const redirectRules = getAllRedirectRules();
+
+  // 1. Gera _redirects para Netlify / Cloudflare Pages
+  const redirectsFile = path.resolve(process.cwd(), '_redirects');
+  const distRedirectsFile = path.join(DIST_DIR, '_redirects');
+  
+  let redirectsContent = '# Redirecionamentos 301 permanentes de URLs consolidadas\n';
+  for (const rule of redirectRules) {
+    redirectsContent += `${rule.fromPath} ${rule.targetPath} 301!\n`;
+  }
+  redirectsContent += '\n# Rota 404 para URLs inexistentes\n/* /404.html 404\n';
+
+  fs.writeFileSync(redirectsFile, redirectsContent, 'utf-8');
+  fs.writeFileSync(distRedirectsFile, redirectsContent, 'utf-8');
+  console.log(`✓ Atualizado: _redirects com ${redirectRules.length} regras de 301 permanente`);
+
+  // 2. Gera vercel.json para hospedagem na Vercel
+  const vercelFile = path.resolve(process.cwd(), 'vercel.json');
+  const vercelConfig = {
+    cleanUrls: true,
+    trailingSlash: false,
+    redirects: redirectRules.map(r => ({
+      source: r.fromPath,
+      destination: r.targetPath,
+      permanent: true
+    })),
+    routes: [
+      { handle: "filesystem" },
+      { src: "/(.*)", status: 404, dest: "/404.html" }
+    ]
+  };
+
+  fs.writeFileSync(vercelFile, JSON.stringify(vercelConfig, null, 2), 'utf-8');
+  console.log(`✓ Atualizado: vercel.json com ${redirectRules.length} regras de redirect permanente`);
+}
+
 async function prerender() {
-  console.log('🚀 Iniciando pré-renderização estática (SSG)...');
+  console.log('🚀 Iniciando auditoria e pré-renderização estática (SSG)...');
 
   const templatePath = path.join(DIST_DIR, 'index.html');
   if (!fs.existsSync(templatePath)) {
@@ -94,7 +158,6 @@ async function prerender() {
   }
 
   const rawTemplate = fs.readFileSync(templatePath, 'utf-8');
-  // Strip default fallback tags to prevent duplicate meta descriptions and og tags
   const cleanTemplate = rawTemplate
     .replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, '')
     .replace(/<meta\s+property=["']og:title["'][^>]*>\s*/gi, '')
@@ -103,13 +166,13 @@ async function prerender() {
 
   const allRoutes = getAllRoutes();
 
-  // Also include 404 route for generating dist/404.html
+  // Inclui rota 404 para gerar dist/404.html
   const renderTargets = [
     ...allRoutes.map(r => ({ route: r.path, is404: false })),
     { route: '/404-not-found-page', is404: true }
   ];
 
-  console.log(`Renderizando ${renderTargets.length} páginas para HTML estático...`);
+  console.log(`Renderizando ${renderTargets.length} rotas para HTML estático...`);
 
   for (const target of renderTargets) {
     const helmetContext: { helmet?: any } = {};
@@ -130,7 +193,7 @@ async function prerender() {
 
     let html = cleanTemplate;
 
-    // Replace title
+    // Atualiza title
     if (helmet && helmet.title) {
       const titleTag = helmet.title.toString();
       if (titleTag) {
@@ -138,7 +201,7 @@ async function prerender() {
       }
     }
 
-    // In head, insert meta, link, script
+    // Injeta meta, links e JSON-LD no head
     if (helmet) {
       const metaTags = helmet.meta ? helmet.meta.toString() : '';
       const linkTags = helmet.link ? helmet.link.toString() : '';
@@ -148,39 +211,40 @@ async function prerender() {
       html = html.replace('</head>', `${tagsToInsert}</head>`);
     }
 
-    // Insert body html
+    // Injeta corpo da aplicação
     html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
 
-    // Determine destination file
+    // Gravação dos arquivos
     if (target.is404) {
       const out404 = path.join(DIST_DIR, '404.html');
       fs.writeFileSync(out404, html, 'utf-8');
-      console.log(`✓ Gerado: dist/404.html (Página de Erro 404 Estática)`);
     } else if (target.route === '/') {
       fs.writeFileSync(templatePath, html, 'utf-8');
-      console.log(`✓ Gerado: dist/index.html (Página Inicial)`);
     } else {
       const routeFolder = path.join(DIST_DIR, target.route);
       fs.mkdirSync(routeFolder, { recursive: true });
       fs.writeFileSync(path.join(routeFolder, 'index.html'), html, 'utf-8');
 
-      // Also create dist${route}.html for hosting providers that prefer file.html
       const flatHtmlPath = `${path.join(DIST_DIR, target.route)}.html`;
       fs.mkdirSync(path.dirname(flatHtmlPath), { recursive: true });
       fs.writeFileSync(flatHtmlPath, html, 'utf-8');
     }
   }
 
-  // Update sitemaps
+  // Gera sitemap.xml estritamente com URLs canônicas indexáveis
+  const indexableCount = allRoutes.filter(r => r.isIndexable).length;
   const sitemapXml = generateSitemap(allRoutes);
   const publicSitemap = path.resolve(process.cwd(), 'public/sitemap.xml');
   const distSitemap = path.join(DIST_DIR, 'sitemap.xml');
 
   fs.writeFileSync(publicSitemap, sitemapXml, 'utf-8');
   fs.writeFileSync(distSitemap, sitemapXml, 'utf-8');
-  console.log(`✓ Gerado: sitemap.xml com ${allRoutes.filter(r => r.isIndexable).length} URLs canônicas indexáveis`);
+  console.log(`✓ Gerado: sitemap.xml estritamente com ${indexableCount} URLs canônicas indexáveis (Status 200)`);
 
-  console.log('✅ Pré-renderização concluída com sucesso!');
+  // Atualiza _redirects e vercel.json
+  updateRedirectConfigFiles();
+
+  console.log('✅ Auditoria e pré-renderização concluídas com sucesso!');
 }
 
 prerender().catch(err => {

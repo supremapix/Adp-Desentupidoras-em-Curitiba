@@ -21,6 +21,7 @@ interface EnhancedSEOProps {
   keywords?: string;
   schemaData?: object | object[];
   noindex?: boolean;
+  includeLocalBusiness?: boolean;
 }
 
 const EnhancedSEO: React.FC<EnhancedSEOProps> = ({ 
@@ -29,7 +30,8 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   canonicalPath = "", 
   keywords, 
   schemaData, 
-  noindex = false 
+  noindex = false,
+  includeLocalBusiness = false
 }) => {
   const location = useLocation();
   const baseUrl = "https://adpservicos.app.br"; 
@@ -37,6 +39,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   const currentUrl = normalizedPath === '/' ? baseUrl : `${baseUrl}${normalizedPath}`;
 
+  // Organization / LocalBusiness oficial da sede única em Curitiba (CIC)
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "PlumbingService",
@@ -90,7 +93,15 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     ]
   };
 
-  const schemaList: object[] = [localBusinessSchema, breadcrumbSchema];
+  const schemaList: object[] = [];
+  
+  // Inclui LocalBusiness com endereço físico unicamente na Home, na landing de Curitiba ou se expressamente habilitado
+  if (includeLocalBusiness || normalizedPath === '/' || normalizedPath === '/desentupidora-curitiba') {
+    schemaList.push(localBusinessSchema);
+  }
+  
+  schemaList.push(breadcrumbSchema);
+
   if (schemaData) {
     if (Array.isArray(schemaData)) {
       schemaList.push(...schemaData);

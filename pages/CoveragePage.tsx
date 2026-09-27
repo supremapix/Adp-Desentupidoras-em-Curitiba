@@ -1,23 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Search, ArrowRight, Navigation } from 'lucide-react';
+import { MapPin, Search, ArrowRight, Navigation, Phone, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CITIES, NEIGHBORHOODS, toSlug, COMPANY_ADDRESS, COMPANY_NEIGHBORHOOD, COMPANY_CITY, COMPANY_STATE } from '../constants';
+import { 
+  toSlug, 
+  COMPANY_ADDRESS, 
+  COMPANY_NEIGHBORHOOD, 
+  COMPANY_CITY, 
+  COMPANY_STATE,
+  PHONE_DISPLAY,
+  PHONE_LINK,
+  WHATSAPP_LINK
+} from '../constants';
+import { CONFIRMED_METROPOLITAN_CITIES, CONSOLIDATED_BAIRROS, CONSOLIDATED_CITIES } from '../consolidations';
+import { NEIGHBORHOODS } from '../constants';
 import LeadForm from '../components/LeadForm';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
 
-const CoveragePage = () => {
+const CoveragePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const filteredCities = CITIES.filter(city => 
+  // 11 Cidades Metropolitanas Principais
+  const confirmedCities = CONFIRMED_METROPOLITAN_CITIES;
+
+  // 74 Bairros Oficiais de Curitiba (excluindo os 71 consolidados)
+  const officialBairros = NEIGHBORHOODS.filter(n => !CONSOLIDATED_BAIRROS[toSlug(n)]);
+
+  // 17 Municípios sob Consulta (excluindo Curitiba que tem landing própria)
+  const peripheralCities = Object.entries(CONSOLIDATED_CITIES)
+    .filter(([slug]) => slug !== 'curitiba')
+    .map(([slug, data]) => ({ slug, name: data.targetName, originalSlug: slug }));
+
+  const filteredCities = confirmedCities.filter(city => 
     city.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const filteredNeighborhoods = NEIGHBORHOODS.filter(neighborhood => 
+  const filteredNeighborhoods = officialBairros.filter(neighborhood => 
     neighborhood.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -39,13 +61,13 @@ const CoveragePage = () => {
             Área de Cobertura: Curitiba e Região Metropolitana
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
-            Atendimento técnico prestado a partir de nossa central em Curitiba ({COMPANY_NEIGHBORHOOD}) para toda a capital e municípios da RMC.
+            Atendimento técnico prestado a partir de nossa central em Curitiba ({COMPANY_NEIGHBORHOOD}) para a capital e municípios metropolitanos com equipes volantes.
           </p>
           
           <div className="max-w-xl mx-auto relative">
             <input 
               type="text"
-              placeholder="Buscar cidade, bairro ou vila..."
+              placeholder="Buscar cidade ou bairro..."
               className="w-full p-4 pl-12 rounded-2xl text-gray-900 outline-none focus:ring-4 focus:ring-adp-blue/50 shadow-lg text-base"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -67,7 +89,7 @@ const CoveragePage = () => {
               </span>
               <h2 className="text-2xl font-black">Desentupidora em Curitiba</h2>
               <p className="text-sm text-blue-100 mt-1 max-w-lg">
-                Consulte nossa página detalhada sobre a operação na capital, incluindo bairros com atendimento volante direto.
+                Consulte nossa página principal sobre a operação em Curitiba, com atendimento volante direto nos bairros e diagnóstico presencial.
               </p>
             </div>
             <Link 
@@ -80,9 +102,12 @@ const CoveragePage = () => {
 
           {/* Cities Section */}
           <section className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
-            <div className="flex items-center gap-3 mb-6 border-b pb-4">
+            <div className="flex items-center gap-3 mb-4 border-b pb-4">
               <Navigation className="text-adp-blue" size={24} />
-              <h2 className="text-2xl font-bold text-gray-900">Municípios Atendidos na RMC</h2>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Municípios Atendidos na RMC</h2>
+                <p className="text-xs text-gray-500">Cidades metropolitanas com rotas regulares de atendimento volante</p>
+              </div>
             </div>
             
             {filteredCities.length > 0 ? (
@@ -99,15 +124,44 @@ const CoveragePage = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 italic text-sm">Nenhum município encontrado com este nome.</p>
+              <p className="text-gray-500 italic text-sm">Nenhum município principal encontrado com este nome.</p>
             )}
+
+            {/* Demais Municípios RMC sob Consulta */}
+            <div className="mt-8 pt-6 border-t border-gray-100 bg-slate-50 p-6 rounded-2xl">
+              <h3 className="text-sm font-bold text-gray-900 mb-2">
+                Demais Municípios da Região Metropolitana (Atendimento sob Consulta de Rota)
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed mb-4">
+                Para municípios com maior distância da capital (como Lapa, Rio Negro, Mandirituba, Campo do Tenente, Cerro Azul, Doutor Ulysses, Adrianópolis, Bocaiúva do Sul e outros), o deslocamento é programado mediante avaliação prévia de viabilidade técnica da rota.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a 
+                  href={PHONE_LINK} 
+                  className="inline-flex items-center gap-2 bg-white text-adp-blue border border-adp-blue/30 px-4 py-2 rounded-xl text-xs font-bold hover:bg-adp-blue hover:text-white transition"
+                >
+                  <Phone size={14} /> Consultar por Telefone ({PHONE_DISPLAY})
+                </a>
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-green-600 transition"
+                >
+                  <MessageCircle size={14} /> Consultar via WhatsApp
+                </a>
+              </div>
+            </div>
           </section>
 
           {/* Neighborhoods Section */}
           <section className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
-            <div className="flex items-center gap-3 mb-6 border-b pb-4">
+            <div className="flex items-center gap-3 mb-4 border-b pb-4">
               <MapPin className="text-adp-orange" size={24} />
-              <h2 className="text-2xl font-bold text-gray-900">Bairros e Vilas de Curitiba</h2>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Bairros de Curitiba</h2>
+                <p className="text-xs text-gray-500">74 bairros oficiais com atendimento técnico volante</p>
+              </div>
             </div>
             
             {filteredNeighborhoods.length > 0 ? (
@@ -126,8 +180,12 @@ const CoveragePage = () => {
                 </div>
               </div>
             ) : (
-              <p className="text-gray-500 italic text-sm">Nenhum bairro ou vila encontrado com este nome.</p>
+              <p className="text-gray-500 italic text-sm">Nenhum bairro oficial encontrado com este nome.</p>
             )}
+
+            <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-100 text-xs text-gray-500 leading-relaxed">
+              <strong>Nota sobre vilas e conjuntos:</strong> Todas as vilas, núcleos habitacionais e conjuntos residenciais de Curitiba (como Vila Sabará, Caiuá, Vila Verde, Vila Parolin, Vila Torres, etc.) são plenamente atendidos através da equipe técnica responsável pelo seu respectivo bairro oficial.
+            </div>
           </section>
 
           <VideoCTA location="Curitiba e Região Metropolitana" />

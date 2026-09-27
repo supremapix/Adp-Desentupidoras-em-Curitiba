@@ -1,21 +1,20 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { 
   Phone, 
   MapPin, 
   Shield, 
   ChevronDown, 
-  Wrench, 
-  Droplets, 
-  Truck, 
   Building2, 
   Home as HomeIcon, 
   Factory, 
-  AlertCircle, 
-  MessageCircle, 
+  Truck, 
+  UtensilsCrossed,
+  History,
   Clock, 
   HelpCircle,
-  Search 
+  Wrench,
+  AlertTriangle
 } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { 
@@ -29,125 +28,346 @@ import {
   COMPANY_STATE,
   SERVICES 
 } from '../constants';
+import { getConsolidation } from '../consolidations';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
 import NotFound from './NotFound';
 
-const LocationPage = () => {
+const ClientRedirect: React.FC<{ to: string }> = ({ to }) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.location.replace(to);
+    }
+  }, [to]);
+  return null;
+};
+
+type LocalProfile = 
+  | 'HEADQUARTERS_CIC'
+  | 'VERTICAL_CONDO'
+  | 'GASTRONOMIC_COMMERCIAL'
+  | 'INDUSTRIAL_LOGISTIC'
+  | 'HISTORICAL_OLD_PIPES'
+  | 'SUBURBAN_RURAL_FOSSA'
+  | 'METROPOLITAN_RMC'
+  | 'RESIDENTIAL_FAMILY_SOBRADOS';
+
+const LocationPage: React.FC = () => {
   const { type, slug } = useParams<{ type: string; slug: string }>();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Validate location existence
+  // 1. Verificar se a URL é uma página consolidada com destino canônico
+  const consolidation = useMemo(() => {
+    if (!type || !slug) return null;
+    return getConsolidation(type, slug);
+  }, [type, slug]);
+
+  // 2. Localização válida
   const locationItem = useMemo(() => {
     if (!type || !slug) return null;
     return ALL_LOCATIONS.find(loc => loc.type === type && loc.slug === slug);
   }, [type, slug]);
 
-  const locationName = locationItem ? locationItem.name : '';
-  const isCity = type === 'cidade';
-
-  const context = useMemo(() => {
-    if (!locationName) return 'GENERAL_LOCAL';
-    const verticalDensity = ['Batel', 'Bigorrilho', 'Champagnat', 'Ecoville', 'Água Verde', 'Cabral', 'Juvevê', 'Centro Cívico', 'Centro', 'Cristo Rei'];
-    const industrialZones = ['CIC', 'Tatuquara', 'Pinheirinho', 'Cidade Industrial', 'Fazenda Rio Grande', 'Araucária', 'São José dos Pinhais'];
-    const familyResidential = ['Santa Felicidade', 'Jardim das Américas', 'Uberaba', 'Xaxim', 'Boqueirão', 'Bacacheri', 'Boa Vista', 'Mercês', 'Vila Izabel', 'São Braz'];
-    const vilasAndConjuntos = ['Vila', 'Conjunto', 'Habitacional', 'Torres', 'Sabará', 'Parolin', 'Nossa Senhora', 'Zumbi'];
-
-    const normalizedName = locationName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
-    if (vilasAndConjuntos.some(v => normalizedName.includes(v))) return 'VILA';
-    if (industrialZones.some(i => normalizedName.includes(i))) return 'INDUSTRIAL';
-    if (verticalDensity.some(b => normalizedName.includes(b))) return 'VERTICAL';
-    if (familyResidential.some(r => normalizedName.includes(r))) return 'RESIDENTIAL';
-    return isCity ? 'CITY_RMC' : 'GENERAL_LOCAL';
-  }, [locationName, isCity]);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  // Se a URL estiver consolidada, entrega canonical para o destino e redireciona
+  if (consolidation) {
+    return (
+      <div className="bg-gray-50 min-h-screen py-24 text-center px-4">
+        <EnhancedSEO 
+          title={`Redirecionando para ${consolidation.targetName} | ADP Desentupidora`}
+          description={`Esta página foi consolidada com ${consolidation.targetName}. Você está sendo redirecionado.`}
+          canonicalPath={consolidation.targetPath}
+          noindex={true}
+        />
+        <div className="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="w-12 h-12 bg-blue-50 text-adp-blue rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+            &rarr;
+          </div>
+          <h1 className="text-xl font-bold text-gray-900 mb-2">Redirecionando...</h1>
+          <p className="text-gray-600 text-sm mb-6">
+            O conteúdo de atendimento desta região foi consolidado na página de <strong>{consolidation.targetName}</strong> ({consolidation.reason}).
+          </p>
+          <Link 
+            to={consolidation.targetPath} 
+            className="inline-block bg-adp-blue text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-blue-600 transition"
+          >
+            Acessar {consolidation.targetName}
+          </Link>
+          <ClientRedirect to={consolidation.targetPath} />
+        </div>
+      </div>
+    );
+  }
+
+  // Se não existir nas localizações cadastradas
   if (!locationItem) {
     return <NotFound />;
   }
 
-  const getDynamicContent = () => {
-    switch (context) {
-      case 'VILA':
+  const locationName = locationItem.name;
+  const isCity = type === 'cidade';
+
+  // 3. Determinação do Perfil Técnico e Arquitetônico Local
+  const profile: LocalProfile = useMemo(() => {
+    const slugLower = slug?.toLowerCase() || '';
+
+    // Sede Oficial da Empresa
+    if (slugLower === 'cic') return 'HEADQUARTERS_CIC';
+
+    // Municípios Metropolitanos
+    if (isCity) {
+      if (['araucaria', 'fazenda-rio-grande', 'sao-jose-dos-pinhais', 'quatro-barras'].includes(slugLower)) {
+        return 'INDUSTRIAL_LOGISTIC';
+      }
+      return 'METROPOLITAN_RMC';
+    }
+
+    // Regiões de Edifícios e Condomínios Verticais
+    const verticalCondos = ['batel', 'bigorrilho', 'agua-verde', 'cabral', 'juveve', 'centro-civico', 'cristo-rei', 'mossungue', 'vila-izabel'];
+    if (verticalCondos.includes(slugLower)) return 'VERTICAL_CONDO';
+
+    // Polos Gastronômicos e Comerciais
+    const gastronomic = ['santa-felicidade', 'merces', 'vista-alegre'];
+    if (gastronomic.includes(slugLower)) return 'GASTRONOMIC_COMMERCIAL';
+
+    // Regiões Centrais Históricas e Canos Centenários
+    const historical = ['centro', 'sao-francisco', 'reboucas', 'prado-velho', 'alto-da-gloria', 'alto-da-xv'];
+    if (historical.includes(slugLower)) return 'HISTORICAL_OLD_PIPES';
+
+    // Polos Industriais de Curitiba
+    const industrialCuritiba = ['tatuquara', 'hauer', 'pinheirinho'];
+    if (industrialCuritiba.includes(slugLower)) return 'INDUSTRIAL_LOGISTIC';
+
+    // Regiões Semi-rurais / Fossa Séptica
+    const septicFossa = ['umbara', 'campo-de-santana', 'caximba', 'ganchinho', 'lamenha-pequena', 'butiatuvinha', 'riviera', 'augusta', 'sao-miguel'];
+    if (septicFossa.includes(slugLower)) return 'SUBURBAN_RURAL_FOSSA';
+
+    // Bairros Residenciais de Casas e Sobrados
+    return 'RESIDENTIAL_FAMILY_SOBRADOS';
+  }, [slug, isCity]);
+
+  // 4. Conteúdo Editorial Especializado por Perfil
+  const getEditorialData = () => {
+    switch (profile) {
+      case 'HEADQUARTERS_CIC':
         return {
-          typeLabel: "Atendimento Comunitário e Residencial",
-          subheadline: `Suporte técnico para desentupimento de esgotos, pias, ralos e vasos na região da ${locationName}.`,
-          editorial: `A ADP Desentupidora atende moradores da ${locationName} com suporte técnico direto. Entupimentos em áreas residenciais densas exigem desobstrução rápida com sondas rotativas mecânicas que removem gordura e detritos sem quebrar pisos ou danificar as ligações domiciliares.`,
-          highlight: `Atendimento ágil para residências, sobrados e comércio local na região de ${locationName}.`,
-          icon: <HomeIcon className="text-adp-blue" size={32} />
+          typeLabel: "Sede Operacional e Atendimento Imediato",
+          subheadline: `Base operacional da ADP Desentupidora na Rua Luiz Maltaca, 36. Atendimento prioritário no CIC com hidrojateamento e maquinário mecânico.`,
+          editorial: `A sede física e matriz operacional da ADP Desentupidora está instalada no bairro CIC (Cidade Industrial de Curitiba), na Rua Luiz Maltaca, 36. Essa localização estratégica permite atendimento prioritário com caminhões de hidrojateamento de alta pressão, bombas de auto-vácuo e equipes volantes que atendem prontamente empresas, plantas fabris na Avenida Juscelino Kubitschek de Oliveira e residências da região.`,
+          highlight: `Base própria no CIC: despacho ágil de equipamentos para desentupimento de esgotos industriais, comerciais e residenciais.`,
+          icon: <Factory className="text-adp-orange" size={32} />,
+          faqs: [
+            {
+              q: "Por que o atendimento no CIC é mais ágil pela ADP?",
+              a: "A base técnica da empresa está instalada no próprio bairro CIC, na Rua Luiz Maltaca, 36. Isso possibilita deslocamento imediato de caminhões combinados e viaturas de apoio para atendimento de residências e indústrias locais."
+            },
+            {
+              q: "A ADP realiza desobstrução de tubulações industriais e caixas separadoras no CIC?",
+              a: "Sim. Atendemos indústrias e galpões da CIC com caminhões de hidrojateamento de alta vazão e sucção auto-vácuo, efetuando a limpeza técnica de redes de efluentes, caixas de decantação e galerias pluviais."
+            },
+            {
+              q: "Como solicitar uma avaliação técnica no bairro CIC?",
+              a: "Basta entrar em contato pelo telefone (41) 3345-1194 ou WhatsApp. Por estarmos sediados no bairro, direcionamos os técnicos com prontidão para inspeção no local e apresentação de orçamento claro."
+            }
+          ]
         };
-      case 'VERTICAL':
+
+      case 'VERTICAL_CONDO':
         return {
-          typeLabel: "Especialista em Edifícios e Condomínios",
-          subheadline: `Desentupimento de colunas prediais, prumadas e ramais de apartamentos em ${locationName}.`,
-          editorial: `Em condomínios e edifícios verticais de ${locationName}, problemas hidráulicos em colunas de esgoto podem afetar múltiplos apartamentos simultaneamente. Nossos técnicos utilizam máquinas desobstrutoras rotativas de alta precisão que operam com nível de ruído controlado, raspando as paredes internas dos tubos e preservando as conexões prediais.`,
-          highlight: `Atendimento técnico programado ou emergencial para condomínios residenciais e comerciais em ${locationName}.`,
-          icon: <Building2 className="text-adp-blue" size={32} />
+          typeLabel: "Especialista em Condomínios e Prumadas Verticais",
+          subheadline: `Desentupimento de colunas prediais, ramais de apartamentos e prumadas de esgoto em ${locationName}.`,
+          editorial: `Em condomínios e edifícios verticais de ${locationName}, entupimentos em colunas de esgoto ou de águas servidas afetam múltiplos apartamentos simultaneamente. A ADP Desentupidora atua com máquinas desobstrutoras rotativas de cabos espirais flexíveis de precisão, que realizam a raspagem interna das paredes dos canos através das caixas sifonadas ou pontos de inspeção, sem necessidade de quebra de alvenaria e com baixo nível de ruído para os moradores.`,
+          highlight: `Atendimento programado ou emergencial para condomínios residenciais e comerciais em ${locationName}, com emissão de laudo e nota fiscal.`,
+          icon: <Building2 className="text-adp-blue" size={32} />,
+          faqs: [
+            {
+              q: `Como é feito o desentupimento em edifícios de ${locationName} sem quebrar pisos ou paredes?`,
+              a: `Utilizamos sondas rotativas mecânicas com cabos de aço flexíveis encapados. O equipamento é introduzido por ralos, caixas sifonadas ou visitas da prumada, triturando gordura e detritos diretamente no interior do cano sem danificar conexões prediais.`
+            },
+            {
+              q: `A ADP emite laudo técnico e nota fiscal para condomínios em ${locationName}?`,
+              a: `Sim. Emitimos nota fiscal detalhada e laudo descritivo do procedimento executado para prestação de contas junto a síndicos, conselhos fiscais e administradoras de condomínio.`
+            },
+            {
+              q: `O que fazer em caso de refluxo de esgoto em apartamento em ${locationName}?`,
+              a: `Recomenda-se fechar o registro local e avisar imediatamente o condomínio para suspender o uso de água nos pavimentos superiores da mesma prumada, contatando nossa equipe para desobstrução técnica da coluna coletora.`
+            }
+          ]
         };
-      case 'INDUSTRIAL':
+
+      case 'GASTRONOMIC_COMMERCIAL':
         return {
-          typeLabel: "Soluções Industriais e Comerciais",
-          subheadline: `Hidrojateamento de alta pressão e desentupimento de redes coletoras em ${locationName}.`,
-          editorial: `Plantas fabris, galpões logísticos e grandes estabelecimentos comerciais em ${locationName} demandam equipamentos de alta vazão para desobstrução de caixas de decantação, galerias de águas pluviais e redes de efluentes. A ADP opera com hidrojateamento pressurizado e caminhões auto-vácuo para serviços de grande porte.`,
-          highlight: `Equipamentos de alta capacidade para redes coletoras e galerias industriais em ${locationName}.`,
-          icon: <Factory className="text-adp-blue" size={32} />
+          typeLabel: "Soluções para Redes Comerciais e Caixas de Gordura",
+          subheadline: `Desobstrução de caixas de gordura, redes de esgoto e ramais de pias para restaurantes e comércios em ${locationName}.`,
+          editorial: `Polo reconhecido por seus estabelecimentos gastronômicos e comerciais, ${locationName} apresenta alta demanda por manutenção preventiva em caixas de gordura e ramais de descarte de cozinha. O acúmulo contínuo de óleos vegetais saponificados reduz drasticamente o diâmetro das tubulações. A ADP executa hidrojateamento com bicos rotativos desincrustantes e aspiração técnica, restabelecendo a vazão sem paralisar as atividades comerciais.`,
+          highlight: `Atendimento com horários programados para não interromper a operação de restaurantes e comércios em ${locationName}.`,
+          icon: <UtensilsCrossed className="text-adp-orange" size={32} />,
+          faqs: [
+            {
+              q: `Como é realizada a limpeza de caixas de gordura em estabelecimentos de ${locationName}?`,
+              a: `Realizamos a remoção mecânica e aspiração dos resíduos sólidos e gordurosos acumulados, seguida da raspagem das tubulações afluentes e efluentes para prevenir transbordamentos e mau cheiro.`
+            },
+            {
+              q: `O serviço pode ser executado fora do horário de atendimento ao público?`,
+              a: `Sim. Para restaurantes e comércios em ${locationName}, disponibilizamos horários especiais de agendamento antes da abertura ou após o encerramento do expediente.`
+            },
+            {
+              q: `Qual a frequência indicada para manutenção preventiva de caixas de gordura comerciais?`,
+              a: `Recomenda-se a limpeza técnica a cada 30 a 60 dias para cozinhas comerciais de médio e grande porte, garantindo conformidade sanitária e evitando entupimentos súbitos.`
+            }
+          ]
         };
-      case 'CITY_RMC':
+
+      case 'HISTORICAL_OLD_PIPES':
         return {
-          typeLabel: "Atendimento na Região Metropolitana",
-          subheadline: `Serviços especializados de desentupidora e limpa fossa no município de ${locationName}.`,
-          editorial: `A ADP Desentupidora atende residências, comércios e chácaras em ${locationName} a partir de sua base operacional em Curitiba. Disponibilizamos equipes volantes equipadas com máquinas desobstrutoras rotativas e caminhões auto-vácuo para esgotamento técnico de fossas sépticas e limpeza de redes de esgoto.`,
-          highlight: `Deslocamento planejado e atendimento volante para residências, empresas e chácaras em ${locationName}.`,
-          icon: <Truck className="text-adp-blue" size={32} />
+          typeLabel: "Tubulações Antigas e Diagnóstico Técnico Cuidadoso",
+          subheadline: `Desentupimento técnico em imóveis tradicionais e canalizações antigas no bairro ${locationName}.`,
+          editorial: `O bairro ${locationName} abriga construções tradicionais que frequentemente contam com tubulações originais de ferro fundido, cerâmica vitrificada ou PVC de espessuras antigas. Nessas redes, o uso indiscriminado de métodos agressivos pode provocar fraturas em conexões ressecadas. A ADP atua com sondas rotativas mecânicas de torque controlado e inspeção técnica prévia, desobstruindo com total segurança estrutural.`,
+          highlight: `Diagnóstico cuidadoso para redes antigas de esgoto e águas pluviais em ${locationName}.`,
+          icon: <History className="text-adp-blue" size={32} />,
+          faqs: [
+            {
+              q: `É seguro realizar desentupimento em canos antigos de ferro fundido ou manilhas em ${locationName}?`,
+              a: `Sim. Nossos operadores utilizam ponteiras especiais e regulam a velocidade das sondas rotativas para evitar impactos que possam comprometer conexões ou tubulações antigas.`
+            },
+            {
+              q: `Como a ADP remove raízes que invadem encanamentos em ${locationName}?`,
+              a: `Em bairros arborizados como ${locationName}, as raízes entram pelas juntas das manilhas. Aplicamos ponteiras cortadoras rotativas de aço que trituram as raízes internamente, devolvendo o escoamento normal.`
+            },
+            {
+              q: `Por que não utilizar produtos químicos cáusticos em canos antigos?`,
+              a: `Produtos à base de soda cáustica geram reações térmicas que podem corroer ferro fundido, ressecar plásticos e empedrar a gordura na tubulação. A desobstrução mecânica profissional é o método seguro.`
+            }
+          ]
         };
-      default:
+
+      case 'INDUSTRIAL_LOGISTIC':
         return {
-          typeLabel: "Atendimento Residencial e Comercial",
-          subheadline: `Desobstrução de esgotos, pias, ralos e caça vazamentos no bairro ${locationName}.`,
-          editorial: `No bairro ${locationName}, a ADP Desentupidora presta atendimento técnico para solucionar entupimentos domésticos e prediais. Nossa equipe realiza a inspeção no local para definir o maquinário mais adequado, fornecendo orçamento transparente e garantia técnica do serviço.`,
-          highlight: `Equipes volantes com atendimento prioritário em todos os endereços de ${locationName}.`,
-          icon: <MapPin className="text-adp-blue" size={32} />
+          typeLabel: "Hidrojateamento de Alta Pressão e Galerias Industriais",
+          subheadline: `Desentupimento e limpeza técnica de redes coletoras industriais, caixas de decantação e galerias em ${locationName}.`,
+          editorial: `Com galpões logísticos e plantas industriais expressivas em ${locationName}, a manutenção de redes coletoras de efluentes e águas pluviais de grande diâmetro (150 mm a 400 mm+) requer equipamentos robustos. A ADP Desentupidora opera com caminhões de hidrojateamento de alta pressão e bombas auto-vácuo, realizando a desincrustação de resíduos pesados, areia e efluentes industriais com rapidez.`,
+          highlight: `Equipamentos combinados de alta capacidade para galpões, fábricas e pátios logísticos em ${locationName}.`,
+          icon: <Factory className="text-adp-orange" size={32} />,
+          faqs: [
+            {
+              q: `Quais equipamentos são empregados em redes industriais em ${locationName}?`,
+              a: `Empregamos caminhões de hidrojateamento pressurizado com torpedos de arrasto para galerias de grande vazão, além de caminhões auto-vácuo para esgotamento de caixas separadoras e de decantação.`
+            },
+            {
+              q: `A ADP realiza contratos ou agendamentos periódicos para indústrias em ${locationName}?`,
+              a: `Sim. Atendemos indústrias e condomínios logísticos com vistorias programadas preventivas para manter canalizações desobstruídas antes do período de chuvas intensas.`
+            },
+            {
+              q: `Como é feita a limpeza de galerias de águas pluviais obstruídas por terra e brita?`,
+              a: `A pressão controlada da água pulverizada pelo bico torpedo desagrega o sedimento compactado e o empurra até a caixa de visita mais próxima, onde os resíduos são aspirados.`
+            }
+          ]
+        };
+
+      case 'SUBURBAN_RURAL_FOSSA':
+        return {
+          typeLabel: "Limpa Fossa e Desobstrução Residencial",
+          subheadline: `Esgotamento técnico de fossas sépticas, sumidouros e desentupimento de redes em ${locationName}.`,
+          editorial: `Em áreas com menor adensamento e presença de chácaras ou residências que utilizam sistemas individuais de tratamento de esgoto em ${locationName}, a limpeza periódica de fossas sépticas e caixas de decantação é fundamental para evitar transbordamento e contaminação do solo. A ADP Desentupidora atende a região com caminhões auto-vácuo equipados com mangotes de longo alcance para sucção completa de lodo e efluentes.`,
+          highlight: `Caminhão auto-vácuo para esgotamento e transporte técnico de fossas sépticas em ${locationName}.`,
+          icon: <Truck className="text-adp-green" size={32} />,
+          faqs: [
+            {
+              q: `Como funciona o serviço de limpa fossa em ${locationName}?`,
+              a: `O caminhão auto-vácuo conecta mangotes à tampa de inspeção da fossa, aspirando todo o lodo do fundo e as crostas superficiais, restabelecendo a capacidade de absorção do sumidouro.`
+            },
+            {
+              q: `Com que frequência se deve esgotar uma fossa séptica em ${locationName}?`,
+              a: `A recomendação geral é realizar a limpeza a cada 1 a 3 anos, dependendo do volume do reservatório e do número de habitantes no imóvel.`
+            },
+            {
+              q: `Para onde são levados os dejetos recolhidos da fossa?`,
+              a: `Os efluentes coletados são encaminhados a estações regulamentadas de tratamento de efluentes, com descarte ecológico certificado.`
+            }
+          ]
+        };
+
+      case 'METROPOLITAN_RMC':
+        return {
+          typeLabel: "Atendimento Volante na Região Metropolitana",
+          subheadline: `Serviços especializados de desentupidora, caça vazamentos e hidrojateamento no município de ${locationName}.`,
+          editorial: `A partir de sua sede em Curitiba, a ADP Desentupidora atende o município de ${locationName} com equipes técnicas volantes preparadas para solucionar entupimentos em residências, condomínios e empresas. As viaturas contam com maquinário mecânico rotativo e suporte de caminhões combinados para esgotamento e desobstrução profunda, com deslocamento planejado pelas principais rodovias de ligação.`,
+          highlight: `Atendimento técnico programado e emergencial para o município de ${locationName}.`,
+          icon: <Truck className="text-adp-blue" size={32} />,
+          faqs: [
+            {
+              q: `Como funciona o atendimento da ADP no município de ${locationName}?`,
+              a: `Você entra em contato informando o endereço em ${locationName} e o sintoma da obstrução. Nossa central agenda o deslocamento da equipe técnica volante mais próxima para diagnóstico presencial.`
+            },
+            {
+              q: `Há cobrança de valores ocultos para deslocamento até ${locationName}?`,
+              a: `Não. Toda a condição de atendimento e valores são informados de forma transparente antes do início de qualquer serviço pelo técnico no local.`
+            },
+            {
+              q: `Quais serviços da ADP estão disponíveis em ${locationName}?`,
+              a: `Todos os serviços: desentupimento de esgotos, pias, ralos, vasos sanitários, caça vazamentos eletrônico com geofone, hidrojateamento e limpeza técnica de fossas.`
+            }
+          ]
+        };
+
+      default: // RESIDENTIAL_FAMILY_SOBRADOS
+        return {
+          typeLabel: "Atendimento Residencial e Comercial Especializado",
+          subheadline: `Desentupimento de pias, ralos, vasos sanitários e redes de esgoto no bairro ${locationName}.`,
+          editorial: `No bairro ${locationName}, a ADP Desentupidora atende sobrados, residências térreas e comércios locais que enfrentam bloqueios em ramais de esgoto, caixas de passagem no quintal ou sifões de banheiros e cozinhas. Nossos técnicos utilizam máquinas elétricas rotativas de cabos flexíveis que removem gordura, cabelos e detritos sem danificar os encanamentos nem quebrar pisos.`,
+          highlight: `Equipes volantes com atendimento técnico e orçamento transparente em todo o bairro ${locationName}.`,
+          icon: <HomeIcon className="text-adp-blue" size={32} />,
+          faqs: [
+            {
+              q: `Como é feita a desobstrução de vasos sanitários e ralos em ${locationName}?`,
+              a: `Utilizamos sondas flexíveis de rotação mecânica que transpassam as curvas do encanamento e trituram a obstrução diretamente, sem riscar a louça sanitária nem exigir a retirada desnecessária do vaso.`
+            },
+            {
+              q: `Quanto tempo leva um atendimento de desentupimento residencial em ${locationName}?`,
+              a: `A maioria das desobstruções domésticas (pias, ralos ou vasos) é concluída entre 30 e 60 minutos após o diagnóstico técnico inicial do local de bloqueio.`
+            },
+            {
+              q: `Como prevenir o retorno de entupimentos no esgoto doméstico em ${locationName}?`,
+              a: `Evite descartar óleo de cozinha na pia, utilize grelhas protetoras nos ralos para reter cabelos e nunca jogue lenços umedecidos ou objetos no vaso sanitário.`
+            }
+          ]
         };
     }
   };
 
-  const dynamic = getDynamicContent();
+  const dynamic = getEditorialData();
 
-  const localFaqs = [
-    {
-      q: `Como solicitar atendimento da ADP em ${locationName}?`,
-      a: `Basta entrar em contato pelo telefone ou WhatsApp informando o endereço em ${locationName} e o tipo de problema hidráulico. Nossos atendentes direcionam a equipe técnica para avaliação no local.`
-    },
-    {
-      q: `Quais serviços são prestados em ${locationName}?`,
-      a: `Atendemos ${locationName} com serviços de desentupimento de esgotos, pias, ralos, vasos sanitários, caixas de gordura, caça vazamentos com geofone, hidrojateamento e limpeza de fossas.`
-    },
-    {
-      q: `Como é feito o diagnóstico no imóvel em ${locationName}?`,
-      a: `O técnico inspeciona as caixas de passagem e ralos do imóvel para identificar a localização exata do bloqueio e apresentar o orçamento antes de iniciar o trabalho.`
-    }
-  ];
-
+  // 5. Schema.org JSON-LD Específico (Service + WebPage + FAQPage)
+  // Nota: Não declara múltiplos LocalBusinesses físicos para evitar falsas filiais
   const localSchema = [
     {
       "@context": "https://schema.org",
-      "@type": "Service",
+      "@type": "WebPage",
+      "@id": `https://adpservicos.app.br/local/${type}/${slug}#webpage`,
+      "url": `https://adpservicos.app.br/local/${type}/${slug}`,
       "name": `Desentupidora em ${locationName} - ADP Serviços`,
-      "description": `Serviços técnicos de desentupimento de esgoto, pias, ralos e manutenção hidráulica em ${locationName}.`,
+      "description": `Serviços técnicos de desentupimento de esgotos, pias, ralos e manutenção hidráulica em ${locationName}.`,
+      "inLanguage": "pt-BR",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://adpservicos.app.br" },
+          { "@type": "ListItem", "position": 2, "name": "Área de Cobertura", "item": "https://adpservicos.app.br/cobertura" },
+          { "@type": "ListItem", "position": 3, "name": locationName, "item": `https://adpservicos.app.br/local/${type}/${slug}` }
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": `Desentupimento em ${locationName}`,
+      "serviceType": "Desentupimento e Manutenção Hidráulica",
+      "description": `Atendimento técnico de desentupimento de redes coletoras de esgoto, pias, ralos e colunas prediais em ${locationName}.`,
       "provider": {
-        "@type": "PlumbingService",
-        "name": "ADP Desentupidora",
-        "telephone": "+554133451194",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": COMPANY_ADDRESS,
-          "addressLocality": COMPANY_CITY,
-          "addressRegion": COMPANY_STATE
-        }
+        "@id": "https://adpservicos.app.br/#organization"
       },
       "areaServed": {
         "@type": isCity ? "City" : "AdministrativeArea",
@@ -157,7 +377,7 @@ const LocationPage = () => {
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": localFaqs.map(faq => ({
+      "mainEntity": dynamic.faqs.map(faq => ({
         "@type": "Question",
         "name": faq.q,
         "acceptedAnswer": {
@@ -172,14 +392,15 @@ const LocationPage = () => {
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
         title={`Desentupidora em ${locationName} | ADP Serviços`}
-        description={`Serviços de desentupimento em ${locationName}. Desobstrução de esgoto, pias, ralos, vasos sanitários e caça vazamentos com equipe técnica especializada.`}
+        description={`Serviços de desentupimento em ${locationName}. Desobstrução técnica de esgoto, pias, ralos e vasos sanitários com máquinas rotativas e hidrojateamento.`}
         canonicalPath={`/local/${type}/${slug}`}
         schemaData={localSchema}
+        includeLocalBusiness={false}
       />
 
       {/* Header Local Hero */}
       <section className="bg-slate-900 text-white py-16 md:py-24 relative overflow-hidden border-b-4 border-adp-orange">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 skew-x-12 translate-x-1/2"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 skew-x-12 translate-x-1/2 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1 text-center md:text-left space-y-6">
@@ -205,7 +426,7 @@ const LocationPage = () => {
                   rel="noopener noreferrer" 
                   className="bg-[#25D366] hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3"
                 >
-                  <MessageCircle size={20} /> ORÇAMENTO VIA WHATSAPP
+                  SOLICITAR ORÇAMENTO VIA WHATSAPP
                 </a>
               </div>
             </div>
@@ -218,22 +439,31 @@ const LocationPage = () => {
         <div className="lg:col-span-2 space-y-12">
           
           <article className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
-             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight border-l-8 border-adp-blue pl-4">
-               Atendimento Técnico de Desentupimento em {locationName}
-             </h2>
+             <div className="flex items-center gap-4 mb-6">
+               <div className="p-3 bg-blue-50 rounded-2xl">
+                 {dynamic.icon}
+               </div>
+               <div>
+                 <span className="text-xs font-bold uppercase text-adp-blue tracking-wider block">Diagnóstico no Local</span>
+                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                   Atendimento Técnico de Desentupimento em {locationName}
+                 </h2>
+               </div>
+             </div>
+             
              <div className="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
                 <p>{dynamic.editorial}</p>
                 <p>
-                  A <strong>ADP Desentupidora</strong> conta com equipes técnicas volantes preparadas para atender residências, edifícios e estabelecimentos em <strong>{locationName}</strong>, garantindo desobstrução limpa com máquinas rotativas de cabos flexíveis e hidrojateamento.
+                  A <strong>ADP Desentupidora</strong> atende residências, edifícios e comércios em <strong>{locationName}</strong> com foco em diagnóstico não invasivo. As desobstruções são realizadas com maquinário mecânico rotativo e hidrojateamento de alta pressão, eliminando incrustações sem danos à alvenaria.
                 </p>
              </div>
 
              <div className="mt-8 p-6 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-4">
                 <Shield className="text-adp-green flex-shrink-0 mt-1" size={24} />
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Informações Operacionais</h4>
+                  <h4 className="font-bold text-gray-900 mb-1">Transparência Operacional</h4>
                   <p className="text-sm text-gray-600">
-                    Sede da empresa: {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}, {COMPANY_CITY} - {COMPANY_STATE}. Atendimento prestado em {locationName} conforme agendamento e disponibilidade das equipes técnicas volantes.
+                    Sede da empresa: {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}, {COMPANY_CITY} - {COMPANY_STATE}. Atendimento prestado em {locationName} por equipes técnicas volantes com avaliação no local antes de iniciar qualquer serviço.
                   </p>
                 </div>
              </div>
@@ -265,13 +495,13 @@ const LocationPage = () => {
             </div>
           </section>
 
-          {/* FAQs Locais */}
+          {/* FAQs Locais Diferenciadas */}
           <section className="bg-gray-50 p-8 rounded-3xl border border-gray-200">
             <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2">
               <HelpCircle className="text-adp-blue" /> Dúvidas Frequentes: {locationName}
             </h3>
             <div className="space-y-3">
-              {localFaqs.map((faq, idx) => (
+              {dynamic.faqs.map((faq, idx) => (
                 <div key={idx} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
                   <button
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
@@ -305,9 +535,9 @@ const LocationPage = () => {
         <aside className="lg:col-span-1">
           <div className="sticky top-24 space-y-8">
             <div className="bg-adp-blue text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-black mb-3">Equipe em {locationName}</h3>
+              <h3 className="text-2xl font-black mb-3">Atendimento em {locationName}</h3>
               <p className="text-sm opacity-90 mb-6 leading-relaxed">
-                Suporte técnico especializado em desentupimentos residenciais, comerciais e industriais.
+                Equipes técnicas preparadas para desentupimentos residenciais, comerciais e industriais com máquinas rotativas e hidrojateamento.
               </p>
               <a 
                 href={PHONE_LINK} 
@@ -316,7 +546,7 @@ const LocationPage = () => {
                 {PHONE_DISPLAY}
               </a>
               <div className="flex items-center justify-center gap-2 text-xs opacity-90">
-                <Clock size={14} /> Atendimento de Emergência
+                <Clock size={14} /> Atendimento sob consulta de rota
               </div>
             </div>
             <LeadForm />

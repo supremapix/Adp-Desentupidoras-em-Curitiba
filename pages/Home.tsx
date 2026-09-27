@@ -263,7 +263,7 @@ const Home = () => {
               },
               {
                 step: "02",
-                title: "Visita e Diagnóstico",
+                title: "Avaliação e Diagnóstico",
                 desc: "Deslocamento da equipe técnica volante até o local para inspecionar o ponto de obstrução."
               },
               {

@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { getAllRedirectRules } from './consolidations';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,9 +12,26 @@ const PORT = 3000;
 const distDir = path.resolve(__dirname, 'dist');
 const isProd = process.env.NODE_ENV === 'production' || fs.existsSync(distDir);
 
+// Carrega as regras de redirecionamento 301 consolidadas
+const redirectRules = getAllRedirectRules();
+const redirectMap = new Map<string, string>();
+for (const rule of redirectRules) {
+  redirectMap.set(rule.fromPath, rule.targetPath);
+}
+
 async function startServer() {
+  // 1. Middleware global de redirecionamentos 301 permanentes
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    const rawPath = req.path.replace(/\/+$/, '') || '/';
+    const target = redirectMap.get(rawPath);
+    if (target) {
+      return res.redirect(301, target);
+    }
+    next();
+  });
+
   if (!isProd) {
-    // Development mode with Vite middleware
+    // Modo Desenvolvimento com Vite
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true, port: PORT, host: '0.0.0.0' },
@@ -22,7 +40,6 @@ async function startServer() {
 
     app.use(vite.middlewares);
 
-    // List of known static routes
     const knownStaticRoutes = [
       '/',
       '/desentupidora-curitiba',
@@ -36,7 +53,6 @@ async function startServer() {
     app.use(async (req: Request, res: Response, next: NextFunction) => {
       const url = req.originalUrl.split('?')[0];
 
-      // Ignore assets / static files with dots
       if (url.includes('.') && !url.endsWith('.html')) {
         return next();
       }
@@ -51,7 +67,6 @@ async function startServer() {
         template = await vite.transformIndexHtml(url, template);
 
         if (!isValidRoute) {
-          // Send 404 status with rendered template in dev
           res.status(404).set({ 'Content-Type': 'text/html' }).end(template);
           return;
         }
@@ -63,29 +78,29 @@ async function startServer() {
       }
     });
   } else {
-    // Production mode: serve pre-rendered static files from dist with clean URLs
+    // Modo Produção: entrega de arquivos pré-renderizados estáticos
     const html404Path = path.join(distDir, '404.html');
 
-    // 1. Static assets
+    // Ativos estáticos (JS, CSS, imagens)
     if (fs.existsSync(path.join(distDir, 'assets'))) {
       app.use('/assets', express.static(path.join(distDir, 'assets')));
     }
 
-    // 2. Clean URLs resolver (serves exact HTML files without 301 trailing-slash redirects)
+    // Resolvedor de URLs limpas (sem 301 de trailing slash)
     app.use((req: Request, res: Response, next: NextFunction) => {
-      const url = req.path;
+      const url = req.path.replace(/\/+$/, '') || '/';
 
       if (url === '/') {
         return res.status(200).sendFile(path.join(distDir, 'index.html'));
       }
 
-      // Check flat file: dist/servicos/desentupimento-de-esgoto.html
+      // Arquivo direto flat: dist/servicos/desentupimento-de-esgoto.html
       const directHtml = path.join(distDir, `${url}.html`);
       if (fs.existsSync(directHtml)) {
         return res.status(200).sendFile(directHtml);
       }
 
-      // Check nested index: dist/servicos/desentupimento-de-esgoto/index.html
+      // Arquivo aninhado: dist/servicos/desentupimento-de-esgoto/index.html
       const nestedIndex = path.join(distDir, url, 'index.html');
       if (fs.existsSync(nestedIndex)) {
         return res.status(200).sendFile(nestedIndex);
@@ -94,10 +109,10 @@ async function startServer() {
       next();
     });
 
-    // 3. Regular static files (robots.txt, sitemap.xml, images, etc.)
+    // Arquivos estáticos na raiz (robots.txt, sitemap.xml, etc.)
     app.use(express.static(distDir, { redirect: false }));
 
-    // 4. Unknown routes: return HTTP 404 real with 404.html
+    // Qualquer rota inexistente retorna 404 real com 404.html
     app.use((req: Request, res: Response) => {
       if (fs.existsSync(html404Path)) {
         res.status(404).sendFile(html404Path);

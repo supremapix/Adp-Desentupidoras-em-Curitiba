@@ -37,7 +37,7 @@ const CuritibaSEOPage = () => {
   const curitibaFaqs = [
     {
       q: "Como solicitar um orçamento de desentupimento em Curitiba?",
-      a: "Você pode entrar em contato diretamente com nossa central pelo telefone ou WhatsApp. Nossos técnicos realizam a triagem inicial e agendam a visita presencial para avaliação técnica da tubulação e apresentação do orçamento."
+      a: "Você pode entrar em contato diretamente com nossa central pelo telefone ou WhatsApp. Nossos técnicos realizam a triagem inicial e agendam a avaliação técnica presencial da tubulação para diagnóstico e apresentação de orçamento claro."
     },
     {
       q: "Quais tipos de desentupimento são realizados em Curitiba?",

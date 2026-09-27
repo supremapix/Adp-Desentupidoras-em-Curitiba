@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Wrench, Navigation, Globe, Phone, Home, Layers, Star } from 'lucide-react';
-import { CITIES, NEIGHBORHOODS, SERVICES, PHONE_DISPLAY, PHONE_LINK, toSlug } from '../constants';
+import { Wrench, Navigation, Globe, Home, Star, ShieldCheck } from 'lucide-react';
+import { SERVICES, PHONE_DISPLAY, PHONE_LINK, toSlug, NEIGHBORHOODS } from '../constants';
+import { CONFIRMED_METROPOLITAN_CITIES, CONSOLIDATED_BAIRROS } from '../consolidations';
 import EnhancedSEO from '../components/EnhancedSEO';
 
-const SitemapPage = () => {
+const SitemapPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const vilas = NEIGHBORHOODS.filter(n => n.includes('Vila') || n.includes('Conjunto') || n.includes('Loteamento'));
-  const mainNeighborhoods = NEIGHBORHOODS.filter(n => !vilas.includes(n));
+  // 74 Bairros Oficiais de Curitiba
+  const officialBairros = NEIGHBORHOODS
+    .filter(n => !CONSOLIDATED_BAIRROS[toSlug(n)])
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+  // 11 Cidades da RMC
+  const confirmedCities = [...CONFIRMED_METROPOLITAN_CITIES].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
         title="Mapa do Site Completo | ADP Desentupidora Curitiba"
-        description="Acesse o índice completo de páginas, serviços especializados, bairros e municípios atendidos pela ADP Desentupidora em Curitiba e Região Metropolitana."
+        description="Acesse o índice de páginas canônicas, serviços especializados, bairros e municípios atendidos pela ADP Desentupidora em Curitiba e Região Metropolitana."
         canonicalPath="/mapa-do-site"
       />
 
@@ -27,14 +33,14 @@ const SitemapPage = () => {
             Mapa Geral do Site
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base font-light">
-            Índice de navegação de todas as páginas institucionais, serviços e localidades atendidas.
+            Índice de navegação de todas as páginas canônicas indexáveis da ADP Desentupidora.
           </p>
         </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 py-16 space-y-16">
         
-        {/* Institucional e Serviços */}
+        {/* Institucional, Serviços e Cidades Principais */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
@@ -70,25 +76,28 @@ const SitemapPage = () => {
             <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue border-b pb-3">
               <Navigation size={20} /> Municípios da Região Metropolitana
             </h2>
-            <div className="max-h-60 overflow-y-auto custom-scrollbar pr-1 space-y-1">
-              {CITIES.map(city => (
-                <div key={city}>
-                  <Link to={`/local/cidade/${toSlug(city)}`} className="text-gray-600 hover:text-adp-blue text-xs block py-0.5">
+            <ul className="space-y-1.5 text-xs">
+              {confirmedCities.map(city => (
+                <li key={city}>
+                  <Link to={`/local/cidade/${toSlug(city)}`} className="text-gray-700 hover:text-adp-blue font-medium block py-0.5">
                     Desentupidora em {city}
                   </Link>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
 
-        {/* Bairros de Curitiba */}
+        {/* Bairros Oficiais de Curitiba */}
         <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm">
-          <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue border-b pb-3 mb-6">
-            <Star size={20} /> Bairros de Curitiba
-          </h2>
+          <div className="flex flex-col md:flex-row md:items-center justify-between border-b pb-3 mb-6 gap-2">
+            <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue">
+              <Star size={20} /> Bairros Oficiais de Curitiba ({officialBairros.length})
+            </h2>
+            <span className="text-xs text-gray-500">Páginas técnicas especializadas por bairro</span>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-            {mainNeighborhoods.sort().map(neighborhood => (
+            {officialBairros.map(neighborhood => (
               <Link 
                 key={neighborhood} 
                 to={`/local/bairro/${toSlug(neighborhood)}`} 
@@ -100,23 +109,17 @@ const SitemapPage = () => {
           </div>
         </div>
 
-        {/* Vilas e Conjuntos */}
-        <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm">
-          <h2 className="text-xl font-bold flex items-center gap-2 text-adp-orange border-b pb-3 mb-6">
-            <Layers size={20} /> Vilas e Conjuntos Habitacionais
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-            {vilas.sort().map(vila => (
-              <Link 
-                key={vila} 
-                to={`/local/bairro/${toSlug(vila)}`} 
-                className="text-gray-600 hover:text-adp-orange text-xs bg-gray-50 p-2 rounded border border-orange-100 truncate hover:bg-orange-50 transition"
-              >
-                {vila}
-              </Link>
-            ))}
+        {/* Nota de Governança Técnica de URLs */}
+        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 flex items-start gap-4">
+          <ShieldCheck className="text-adp-blue flex-shrink-0 mt-1" size={24} />
+          <div className="text-xs text-gray-700 space-y-1">
+            <h3 className="font-bold text-gray-900 text-sm">Estrutura Canônica do Site</h3>
+            <p>
+              Este mapa do site e o arquivo <code>sitemap.xml</code> listam exclusivamente páginas canônicas com status HTTP 200 e conteúdo único verificado. Subdivisões, vilas e loteamentos habitacionais são atendidos de forma integrada através de suas respectivas páginas de bairros oficiais, mantendo a integridade da arquitetura de informação e prevenindo duplicação técnica de conteúdo.
+            </p>
           </div>
         </div>
+
       </div>
     </div>
   );
