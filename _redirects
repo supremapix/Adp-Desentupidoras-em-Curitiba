@@ -1,0 +1,2 @@
+# Regra de fallback para Netlify / Cloudflare Pages: rotas não encontradas retornam 404 real com 404.html
+/* /404.html 404

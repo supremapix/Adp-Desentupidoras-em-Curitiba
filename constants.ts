@@ -1,17 +1,69 @@
 import { LocationData } from './types';
 
+export const COMPANY_NAME = "ADP Desentupidora";
+export const COMPANY_LEGAL_NAME = "ADP Serviços de Desentupimento";
+export const COMPANY_ADDRESS = "Rua Luiz Maltaca, 36";
+export const COMPANY_NEIGHBORHOOD = "CIC";
+export const COMPANY_CITY = "Curitiba";
+export const COMPANY_STATE = "PR";
+export const COMPANY_POSTAL_CODE = "81310-020";
+export const COMPANY_COUNTRY = "BR";
+export const COMPANY_GEO = {
+  latitude: -25.4950,
+  longitude: -49.3300
+};
+
 export const PHONE_DISPLAY = "(41) 3345-1194";
 export const PHONE_LINK = "tel:4133451194";
 export const WHATSAPP_DISPLAY = "(41) 98517-1966";
 export const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5541985171966&text=Ol%C3%A1%20achei%20seu%20site%20no%20Google%20gostaria%20de%20saber%20sobre%3A%20%E2%9E%A1%EF%B8%8F";
 
-export const SERVICES = [
-  { title: "Desentupimento de Esgoto", slug: "desentupimento-de-esgoto" },
-  { title: "Limpeza de Fossa", slug: "limpeza-de-fossa" },
-  { title: "Caça Vazamentos", slug: "caca-vazamentos" },
-  { title: "Hidrojateamento", slug: "hidrojateamento" },
-  { title: "Limpeza de Caixa d'Água", slug: "limpeza-de-caixa-dagua" },
-  { title: "Vídeo Inspeção", slug: "video-inspecao" }
+export function toSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export interface ServiceItem {
+  title: string;
+  slug: string;
+  shortDesc: string;
+}
+
+export const SERVICES: ServiceItem[] = [
+  { 
+    title: "Desentupimento de Esgoto", 
+    slug: "desentupimento-de-esgoto",
+    shortDesc: "Desobstrução técnica de redes coletoras, ramais e tubulações de esgoto residencial e comercial."
+  },
+  { 
+    title: "Limpeza de Fossa", 
+    slug: "limpeza-de-fossa",
+    shortDesc: "Esgotamento e limpeza técnica de fossas sépticas, sumidouros e caixas de decantação com caminhão auto-vácuo."
+  },
+  { 
+    title: "Caça Vazamentos", 
+    slug: "caca-vazamentos",
+    shortDesc: "Localização precisa de vazamentos não visíveis em tubulações pressurizadas através de geofone eletrônico."
+  },
+  { 
+    title: "Hidrojateamento", 
+    slug: "hidrojateamento",
+    shortDesc: "Limpeza profunda e desincrustação de redes com jatos de água em alta pressão."
+  },
+  { 
+    title: "Limpeza de Caixa d'Água", 
+    slug: "limpeza-de-caixa-dagua",
+    shortDesc: "Higienização e desinfecção periódica de reservatórios de água conforme padrões sanitários."
+  },
+  { 
+    title: "Vídeo Inspeção", 
+    slug: "video-inspecao",
+    shortDesc: "Diagnóstico por câmera robotizada interna para verificação estrutural e localização de obstruções."
+  }
 ];
 
 export const CITIES: string[] = [
@@ -23,9 +75,8 @@ export const CITIES: string[] = [
   "São José dos Pinhais", "Tijucas do Sul", "Tunas do Paraná"
 ];
 
-// Lista Expandida conforme solicitação do usuário
 export const NEIGHBORHOODS: string[] = [
-  // Bairros Oficiais e Regiões
+  // Bairros Oficiais e Regiões de Curitiba
   "Água Verde", "Ahú", "Alto Boqueirão", "Alto da Glória", "Alto da Rua XV", "Alto da XV", 
   "Atuba", "Augusta", "Bacacheri", "Bairro Alto", "Barreirinha", "Batel", "Batel Soho", 
   "Bigorrilho", "Boa Vista", "Bom Retiro", "Boqueirão", "Boqueirão de Baixo", "Boqueirão de Cima",
@@ -41,7 +92,7 @@ export const NEIGHBORHOODS: string[] = [
   "Seminário", "Sítio Cercado", "Taboão", "Tanguá", "Tarumã", "Tatuquara", "Tingui", 
   "Uberaba", "Umbará", "Vila Izabel", "Vila Oficinas", "Vista Alegre", "Xaxim",
   
-  // Vilas e Conjuntos (Solicitação Específica)
+  // Vilas e Conjuntos Específicos
   "Vila Parolin", "Vila Torres", "Vila Sabará", "Vila Zumbi", "Abranches de Baixo", 
   "Abranches de Cima", "Vila Nossa Senhora da Luz", "Vila Tecnológica", "Vila Verde", 
   "Vila São José", "Vila Santa Helena", "Vila Industrial", "Vila Conquista", "Vila União", 
@@ -60,6 +111,14 @@ export const NEIGHBORHOODS: string[] = [
 ];
 
 export const ALL_LOCATIONS: LocationData[] = [
-  ...CITIES.map(c => ({ type: 'cidade' as const, name: c, slug: c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-').replace(/ç/g, 'c') })),
-  ...NEIGHBORHOODS.map(n => ({ type: 'bairro' as const, name: n, slug: n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-').replace(/ç/g, 'c') }))
+  ...CITIES.map(c => ({ 
+    type: 'cidade' as const, 
+    name: c, 
+    slug: toSlug(c) 
+  })),
+  ...NEIGHBORHOODS.map(n => ({ 
+    type: 'bairro' as const, 
+    name: n, 
+    slug: toSlug(n) 
+  }))
 ];

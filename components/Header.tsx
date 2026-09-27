@@ -9,8 +9,8 @@ const Header = () => {
   return (
     <>
       {/* Top Bar Emergency */}
-      <div className="bg-adp-red text-white py-2 px-4 text-center text-sm font-bold animate-pulse">
-        🚨 EMERGÊNCIA 24H: Atendimento Prioritário em Toda Curitiba e Região
+      <div className="bg-adp-red text-white py-2 px-4 text-center text-sm font-bold">
+        🚨 ATENDIMENTO DE EMERGÊNCIA: Suporte Técnico em Curitiba e Região Metropolitana
       </div>
 
       {/* Main Header */}
@@ -47,6 +47,7 @@ const Header = () => {
                 </div>
               </div>
 
+              <Link to="/desentupidora-curitiba" className="text-gray-600 hover:text-adp-blue font-medium">Curitiba</Link>
               <Link to="/como-funciona" className="text-gray-600 hover:text-adp-blue font-medium">Como Funciona</Link>
               <Link to="/cobertura" className="text-gray-600 hover:text-adp-blue font-medium">Cobertura</Link>
               <Link to="/duvidas" className="text-gray-600 hover:text-adp-blue font-medium">Dúvidas</Link>
@@ -66,6 +67,7 @@ const Header = () => {
               <button 
                 className="md:hidden p-2 text-gray-600"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Abrir menu"
               >
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -89,6 +91,7 @@ const Header = () => {
                 </Link>
               ))}
               <div className="border-t my-2"></div>
+              <Link to="/desentupidora-curitiba" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Curitiba</Link>
               <Link to="/como-funciona" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Como Funciona</Link>
               <Link to="/cobertura" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Área de Atendimento</Link>
               <Link to="/duvidas" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Dúvidas</Link>

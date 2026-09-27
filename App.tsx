@@ -12,24 +12,30 @@ import SitemapPage from './pages/SitemapPage';
 import CuritibaSEOPage from './pages/CuritibaSEOPage';
 import NotFound from './pages/NotFound';
 
-const App = () => {
+export const AppRoutes: React.FC = () => {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/desentupidora-curitiba" element={<CuritibaSEOPage />} />
+        <Route path="/local/:type/:slug" element={<LocationPage />} />
+        <Route path="/servicos/:slug" element={<ServicePage />} />
+        <Route path="/como-funciona" element={<HowItWorksPage />} />
+        <Route path="/cobertura" element={<CoveragePage />} />
+        <Route path="/duvidas" element={<FaqPage />} />
+        <Route path="/mapa-do-site" element={<SitemapPage />} />
+        <Route path="/suprema-sites" element={<SupremaPage />} />
+        {/* Catch-all route for 404 errors */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
+  );
+};
+
+const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/desentupidora-curitiba" element={<CuritibaSEOPage />} />
-          <Route path="/local/:type/:slug" element={<LocationPage />} />
-          <Route path="/servicos/:slug" element={<ServicePage />} />
-          <Route path="/como-funciona" element={<HowItWorksPage />} />
-          <Route path="/cobertura" element={<CoveragePage />} />
-          <Route path="/duvidas" element={<FaqPage />} />
-          <Route path="/mapa-do-site" element={<SitemapPage />} />
-          <Route path="/suprema-sites" element={<SupremaPage />} />
-          {/* Catch-all route for 404 errors */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
+      <AppRoutes />
     </BrowserRouter>
   );
 };

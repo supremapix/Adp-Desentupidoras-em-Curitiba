@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Search, ArrowRight, Navigation } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CITIES, NEIGHBORHOODS } from '../constants';
+import { CITIES, NEIGHBORHOODS, toSlug, COMPANY_ADDRESS, COMPANY_NEIGHBORHOOD, COMPANY_CITY, COMPANY_STATE } from '../constants';
 import LeadForm from '../components/LeadForm';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
@@ -24,108 +24,130 @@ const CoveragePage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
-        title="Área de Cobertura - ADP Desentupidora Curitiba e Região"
-        description="Confira nossa área de atuação em Curitiba e Região Metropolitana. Atendemos todos os bairros e cidades vizinhas com frota própria."
+        title="Área de Cobertura | ADP Desentupidora Curitiba e RMC"
+        description="Confira as cidades e bairros atendidos pela ADP Desentupidora em Curitiba e Região Metropolitana. Equipes volantes e suporte técnico presencial."
         canonicalPath="/cobertura"
       />
+
       {/* Hero */}
-      <div className="bg-gray-900 text-white py-16">
+      <section className="bg-slate-900 text-white py-16 md:py-20 border-b-4 border-adp-orange">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-black mb-6">
-            Área de <span className="text-adp-orange">Cobertura</span>
+          <span className="text-adp-orange font-bold uppercase tracking-widest text-xs mb-2 block">
+            Regiões Atendidas
+          </span>
+          <h1 className="text-3xl md:text-5xl font-heading font-black mb-4">
+            Área de Cobertura: Curitiba e Região Metropolitana
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Atendemos Curitiba e toda a Região Metropolitana com equipes volantes para chegada rápida.
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+            Atendimento técnico prestado a partir de nossa central em Curitiba ({COMPANY_NEIGHBORHOOD}) para toda a capital e municípios da RMC.
           </p>
           
           <div className="max-w-xl mx-auto relative">
             <input 
               type="text"
-              placeholder="Digite seu bairro ou cidade..."
-              className="w-full p-4 pl-12 rounded-full text-gray-900 outline-none focus:ring-4 focus:ring-adp-blue/50"
+              placeholder="Buscar cidade, bairro ou vila..."
+              className="w-full p-4 pl-12 rounded-2xl text-gray-900 outline-none focus:ring-4 focus:ring-adp-blue/50 shadow-lg text-base"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Buscar cidade ou bairro"
             />
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
+          {/* Curitiba Hub Banner */}
+          <div className="bg-adp-blue text-white p-6 md:p-8 rounded-3xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <span className="text-adp-orange font-bold text-xs uppercase tracking-wider block mb-1">
+                Central da Capital
+              </span>
+              <h2 className="text-2xl font-black">Desentupidora em Curitiba</h2>
+              <p className="text-sm text-blue-100 mt-1 max-w-lg">
+                Consulte nossa página detalhada sobre a operação na capital, incluindo bairros com atendimento volante direto.
+              </p>
+            </div>
+            <Link 
+              to="/desentupidora-curitiba" 
+              className="bg-white text-adp-blue font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition whitespace-nowrap text-sm shadow"
+            >
+              Acessar Guia de Curitiba &rarr;
+            </Link>
+          </div>
+
           {/* Cities Section */}
-          <section className="bg-white p-8 rounded-xl shadow-sm">
+          <section className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
             <div className="flex items-center gap-3 mb-6 border-b pb-4">
-              <Navigation className="text-adp-blue" size={28} />
-              <h2 className="text-2xl font-bold text-gray-800">Cidades Atendidas</h2>
+              <Navigation className="text-adp-blue" size={24} />
+              <h2 className="text-2xl font-bold text-gray-900">Municípios Atendidos na RMC</h2>
             </div>
             
             {filteredCities.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {filteredCities.map((city) => (
                   <Link 
                     key={city}
-                    to={`/local/cidade/${city.toLowerCase().replace(/ /g, '-').replace(/[áàãâ]/g, 'a').replace(/[éê]/g, 'e').replace(/[í]/g, 'i').replace(/[óõô]/g, 'o').replace(/[úü]/g, 'u').replace(/ç/g, 'c')}`}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded hover:bg-adp-blue hover:text-white transition group"
+                    to={`/local/cidade/${toSlug(city)}`}
+                    className="flex items-center justify-between p-3.5 bg-gray-50 rounded-xl hover:bg-adp-blue hover:text-white transition group border border-gray-100"
                   >
-                    <span className="text-sm font-medium">{city}</span>
+                    <span className="text-sm font-semibold">{city}</span>
                     <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 italic">Nenhuma cidade encontrada com esse nome.</p>
+              <p className="text-gray-500 italic text-sm">Nenhum município encontrado com este nome.</p>
             )}
           </section>
 
           {/* Neighborhoods Section */}
-          <section className="bg-white p-8 rounded-xl shadow-sm">
+          <section className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100">
             <div className="flex items-center gap-3 mb-6 border-b pb-4">
-              <MapPin className="text-adp-orange" size={28} />
-              <h2 className="text-2xl font-bold text-gray-800">Bairros de Curitiba</h2>
+              <MapPin className="text-adp-orange" size={24} />
+              <h2 className="text-2xl font-bold text-gray-900">Bairros e Vilas de Curitiba</h2>
             </div>
             
             {filteredNeighborhoods.length > 0 ? (
-              <div className="h-96 overflow-y-auto custom-scrollbar pr-2">
+              <div className="max-h-[32rem] overflow-y-auto custom-scrollbar pr-2">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {filteredNeighborhoods.map((neighborhood) => (
                     <Link 
                       key={neighborhood}
-                      to={`/local/bairro/${neighborhood.toLowerCase().replace(/ /g, '-').replace(/[áàãâ]/g, 'a').replace(/[éê]/g, 'e').replace(/[í]/g, 'i').replace(/[óõô]/g, 'o').replace(/[úü]/g, 'u').replace(/ç/g, 'c')}`}
-                      className="flex items-center justify-between p-3 bg-gray-50 rounded hover:bg-adp-blue hover:text-white transition group"
+                      to={`/local/bairro/${toSlug(neighborhood)}`}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-adp-blue hover:text-white transition group border border-gray-100"
                     >
-                      <span className="text-sm font-medium">{neighborhood}</span>
-                      <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="text-xs font-medium truncate">{neighborhood}</span>
+                      <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-1" />
                     </Link>
                   ))}
                 </div>
               </div>
             ) : (
-              <p className="text-gray-500 italic">Nenhum bairro encontrado com esse nome.</p>
+              <p className="text-gray-500 italic text-sm">Nenhum bairro ou vila encontrado com este nome.</p>
             )}
           </section>
 
-          <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
-            <h3 className="text-lg font-bold text-adp-blue mb-2">Não encontrou sua localização?</h3>
-            <p className="text-gray-600 mb-4">
-              Provavelmente atendemos sua região mesmo que ela não esteja listada acima. Nossa base móvel cobre um raio de 100km de Curitiba.
-            </p>
-            <Link to="/#contato" className="text-adp-orange font-bold hover:underline">
-              Entre em contato para confirmar o atendimento &rarr;
-            </Link>
-          </div>
+          <VideoCTA location="Curitiba e Região Metropolitana" />
         </div>
 
-        <div className="lg:col-span-1">
-          <div className="sticky top-24">
-             <LeadForm />
+        <aside className="lg:col-span-1">
+          <div className="sticky top-24 space-y-8">
+            <LeadForm />
+            <div className="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800">
+              <h3 className="text-lg font-bold mb-2">Base Operacional</h3>
+              <p className="text-xs text-gray-400 leading-relaxed mb-4">
+                {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}, {COMPANY_CITY} - {COMPANY_STATE}. Atendimento prestado em todas as localidades mediante disponibilidade das equipes volantes.
+              </p>
+              <Link to="/mapa-do-site" className="text-adp-orange text-xs font-bold hover:underline">
+                Acessar mapa completo do site &rarr;
+              </Link>
+            </div>
           </div>
-        </div>
+        </aside>
       </div>
-
-      {/* Video CTA */}
-      <VideoCTA location="Curitiba e Região Metropolitana" />
     </div>
   );
 };

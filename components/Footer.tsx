@@ -1,7 +1,17 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Heart, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, CITIES, SERVICES } from '../constants';
+import { 
+  PHONE_DISPLAY, 
+  PHONE_LINK, 
+  WHATSAPP_LINK, 
+  CITIES, 
+  SERVICES,
+  COMPANY_ADDRESS,
+  COMPANY_NEIGHBORHOOD,
+  COMPANY_CITY,
+  COMPANY_STATE
+} from '../constants';
 
 const Footer = () => {
   return (
@@ -15,18 +25,18 @@ const Footer = () => {
                 ADP
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Referência em desentupimento e caça vazamentos em Curitiba e Região. 
-              Tecnologia de ponta, atendimento 24 horas e garantia total de satisfação.
+              Referência em desentupimento e caça vazamentos em Curitiba e Região Metropolitana. 
+              Diagnóstico preciso, equipamentos especializados e garantia técnica de execução.
             </p>
             <div className="flex gap-4">
-              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Facebook size={20} /></a>
-              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition"><Instagram size={20} /></a>
+              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition" aria-label="WhatsApp ADP"><Facebook size={20} /></a>
+              <a href={WHATSAPP_LINK} className="bg-gray-800 p-2 rounded-full hover:bg-adp-blue transition" aria-label="Instagram ADP"><Instagram size={20} /></a>
             </div>
           </div>
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Serviços Rápidos</h4>
+            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Serviços Especializados</h4>
             <ul className="space-y-3">
               {SERVICES.map((service) => (
                 <li key={service.slug}>
@@ -40,14 +50,14 @@ const Footer = () => {
 
           {/* Column 3: Coverage */}
           <div>
-            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Atendimento</h4>
+            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Área de Atendimento</h4>
             <ul className="space-y-2 text-sm columns-2">
               {CITIES.slice(0, 14).map(city => (
                 <li key={city}><span className="hover:text-white cursor-default">{city}</span></li>
               ))}
             </ul>
             <div className="flex flex-col gap-2 mt-4">
-              <Link to="/cobertura" className="text-adp-orange text-sm font-bold hover:underline">Ver todos os locais &rarr;</Link>
+              <Link to="/cobertura" className="text-adp-orange text-sm font-bold hover:underline">Ver todas as cidades e bairros &rarr;</Link>
               <Link to="/mapa-do-site" className="text-blue-400 text-sm flex items-center gap-1 hover:text-white transition">
                 <Globe size={14} /> Mapa Geral do Site
               </Link>
@@ -56,7 +66,7 @@ const Footer = () => {
 
           {/* Column 4: Contact */}
           <div>
-            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Fale Conosco</h4>
+            <h4 className="text-white font-bold text-lg mb-6 border-b border-gray-700 pb-2">Central de Atendimento</h4>
             <ul className="space-y-4">
               <li>
                 <a href={PHONE_LINK} className="flex items-center gap-3 hover:text-white group">
@@ -73,8 +83,8 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>Base Operacional: Curitiba - PR (Atendimento Volante)</span>
+                <MapPin size={18} className="mt-1 flex-shrink-0 text-adp-orange" />
+                <span className="text-sm">Base Operacional: {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}, {COMPANY_CITY} - {COMPANY_STATE} (Atendimento Volante em Curitiba e RMC)</span>
               </li>
             </ul>
           </div>
@@ -82,7 +92,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <div className="text-gray-500">
-            &copy; 2025 ADP Desentupidora. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} ADP Desentupidora. Todos os direitos reservados.
           </div>
           <div className="flex items-center gap-2 group">
             <span className="text-gray-500">Desenvolvido com</span>

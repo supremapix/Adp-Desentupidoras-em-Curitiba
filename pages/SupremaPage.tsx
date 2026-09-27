@@ -1,40 +1,51 @@
-import React from 'react';
-import { Heart, Globe, MessageCircle } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Heart, Globe } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import VideoCTA from '../components/VideoCTA';
+import EnhancedSEO from '../components/EnhancedSEO';
 
 const SupremaPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-20">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-16">
+      <EnhancedSEO 
+        title="Suprema Sites Express | Desenvolvimento Web"
+        description="Desenvolvimento de landing pages e portais de alta performance e conversão."
+        canonicalPath="/suprema-sites"
+        noindex={true}
+      />
+
       <div className="max-w-4xl w-full px-4 text-center">
-        <Heart size={64} className="text-red-500 mx-auto mb-6 animate-pulse" fill="#ef4444" />
-        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">
+        <Heart size={48} className="text-red-500 mx-auto mb-4 animate-pulse fill-red-500" />
+        <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
           Suprema Sites Express
         </h1>
-        <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-          Especialistas em desenvolvimento de Landing Pages de Alta Conversão. 
-          Criamos máquinas de vendas para prestadores de serviços que funcionam 24h por dia.
+        <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+          Especialistas em desenvolvimento de páginas e portais otimizados para busca orgânica local, conversão e velocidade de carregamento.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12 text-left mb-16">
-          <div className="bg-white p-8 rounded-2xl shadow-xl">
-            <h2 className="text-2xl font-bold mb-6">Por que nossos sites vendem mais?</h2>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</span>
-                <span>Otimização Extrema para Mobile</span>
+        <div className="grid md:grid-cols-2 gap-8 text-left mb-12">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Diferenciais Técnicos de Desenvolvimento</h2>
+            <ul className="space-y-3 text-sm text-gray-700">
+              <li className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-xs">✓</span>
+                <span>Otimização para Dispositivos Móveis</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</span>
-                <span>Foco Total em SEO Local</span>
+              <li className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-xs">✓</span>
+                <span>Arquitetura de SEO Técnico e Estrutura Semântica</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</span>
-                <span>Gatilhos Mentais de Urgência</span>
+              <li className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-xs">✓</span>
+                <span>Geração de Dados Estruturados Schema.org</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</span>
-                <span>Velocidade de Carregamento &lt; 2s</span>
+              <li className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-xs">✓</span>
+                <span>Pré-renderização e HTML Estático para Rastreamento</span>
               </li>
             </ul>
             <div className="mt-8">
@@ -42,9 +53,9 @@ const SupremaPage = () => {
                 href="https://www.supremasite.com.br/" 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline"
+                className="inline-flex items-center gap-2 text-adp-blue font-bold text-sm hover:underline"
               >
-                <Globe size={20} /> Visite nosso site oficial
+                <Globe size={16} /> Visite o site oficial da Suprema Sites &rarr;
               </a>
             </div>
           </div>
@@ -54,9 +65,7 @@ const SupremaPage = () => {
           </div>
         </div>
         
-        {/* Video Integration */}
         <VideoCTA location="Nossos Projetos" />
-        
       </div>
     </div>
   );
