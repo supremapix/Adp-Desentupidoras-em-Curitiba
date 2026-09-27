@@ -80,36 +80,39 @@ const CuritibaSEOPage = () => {
         schemaData={curitibaSchema}
       />
 
-      {/* Hero Master SEO */}
-      <section className="relative bg-slate-900 text-white pt-20 pb-28 overflow-hidden border-b-8 border-adp-blue">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-adp-blue via-transparent to-transparent"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center space-y-6 max-w-4xl mx-auto animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 bg-adp-orange/20 text-adp-orange px-5 py-2 rounded-full border border-adp-orange/30 font-bold uppercase tracking-wider text-xs">
-              <MapPin size={16} /> Atendimento em Todos os Bairros de Curitiba
+      {/* Hero Master SEO - Design Refinado */}
+      <section className="bg-slate-900 text-white py-14 sm:py-20 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-5 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+              <span>Atendimento em Todos os Bairros de Curitiba</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-heading font-black leading-tight">
-              Desentupidora em Curitiba: <span className="text-adp-blue">Atendimento Técnico Especializado</span>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              Desentupidora em Curitiba: <span className="text-blue-400">Atendimento Técnico Especializado</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mx-auto">
+            
+            <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
               Soluções profissionais para desobstrução de esgotos, tubulações, ramais de pias e ralos em residências, condomínios e estabelecimentos comerciais de Curitiba.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            
+            <div className="flex flex-col sm:flex-row gap-3.5 justify-center pt-2">
               <a 
                 href={PHONE_LINK} 
-                className="bg-adp-blue hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xl shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-3"
+                className="bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-xl font-bold text-base sm:text-lg shadow-md transition flex items-center justify-center gap-3"
               >
-                <Phone size={24} fill="currentColor" /> {PHONE_DISPLAY}
+                <Phone size={20} fill="currentColor" />
+                <span>Ligar: {PHONE_DISPLAY}</span>
               </a>
               <a 
                 href={WHATSAPP_LINK} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-adp-green hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-black text-xl shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-3"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-4 rounded-xl font-bold text-base sm:text-lg shadow-md transition flex items-center justify-center gap-3"
               >
-                <MessageCircle size={24} /> ORÇAMENTO VIA WHATSAPP
+                <MessageCircle size={20} />
+                <span>Orçamento no WhatsApp</span>
               </a>
             </div>
           </div>
@@ -117,23 +120,23 @@ const CuritibaSEOPage = () => {
       </section>
 
       {/* Destaques Técnicos e Estrutura */}
-      <div className="bg-white py-10 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center p-4">
-            <div className="text-2xl font-black text-adp-blue mb-1">Base no CIC</div>
-            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider">Sede Própria em Curitiba</div>
+      <div className="bg-slate-50 py-8 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
+            <div className="text-lg font-bold text-slate-900 mb-0.5">Sede no CIC</div>
+            <div className="text-slate-500 text-xs font-medium">Base Própria em Curitiba</div>
           </div>
-          <div className="text-center p-4">
-            <div className="text-2xl font-black text-adp-blue mb-1">Diagnóstico</div>
-            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider">Avaliação no Local</div>
+          <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
+            <div className="text-lg font-bold text-slate-900 mb-0.5">Diagnóstico</div>
+            <div className="text-slate-500 text-xs font-medium">Avaliação no Local</div>
           </div>
-          <div className="text-center p-4">
-            <div className="text-2xl font-black text-adp-blue mb-1">Sem Quebra</div>
-            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider">Máquinas Rotativas</div>
+          <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
+            <div className="text-lg font-bold text-slate-900 mb-0.5">Sem Quebra</div>
+            <div className="text-slate-500 text-xs font-medium">Máquinas Rotativas</div>
           </div>
-          <div className="text-center p-4">
-            <div className="text-2xl font-black text-adp-blue mb-1">Garantia</div>
-            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider">Comprovante Técnico</div>
+          <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
+            <div className="text-lg font-bold text-slate-900 mb-0.5">Garantia</div>
+            <div className="text-slate-500 text-xs font-medium">Comprovante Técnico</div>
           </div>
         </div>
       </div>

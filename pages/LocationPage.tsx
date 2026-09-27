@@ -14,7 +14,8 @@ import {
   Clock, 
   HelpCircle,
   Wrench,
-  AlertTriangle
+  AlertTriangle,
+  MessageCircle
 } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { 
@@ -398,37 +399,40 @@ const LocationPage: React.FC = () => {
         includeLocalBusiness={false}
       />
 
-      {/* Header Local Hero */}
-      <section className="bg-slate-900 text-white py-16 md:py-24 relative overflow-hidden border-b-4 border-adp-orange">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-10 skew-x-12 translate-x-1/2 pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-10">
-            <div className="flex-1 text-center md:text-left space-y-6">
-              <div className="inline-flex items-center gap-2 bg-adp-orange text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-                <MapPin size={14} /> {dynamic.typeLabel}
-              </div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black leading-tight animate-fade-in-up">
-                Desentupidora em <span className="text-adp-orange">{locationName}</span>
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 max-w-2xl font-light leading-relaxed">
-                {dynamic.subheadline}
-              </p>
-              <div className="flex flex-wrap gap-4 pt-2 justify-center md:justify-start">
-                <a 
-                  href={PHONE_LINK} 
-                  className="bg-adp-blue hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3"
-                >
-                  <Phone size={20} fill="currentColor" /> {PHONE_DISPLAY}
-                </a>
-                <a 
-                  href={WHATSAPP_LINK} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="bg-[#25D366] hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3"
-                >
-                  SOLICITAR ORÇAMENTO VIA WHATSAPP
-                </a>
-              </div>
+      {/* Header Local Hero - Refinado sem AI Slop */}
+      <section className="bg-slate-900 text-white py-14 sm:py-20 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl space-y-5">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+              <span>{dynamic.typeLabel}</span>
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              Desentupidora em <span className="text-blue-400">{locationName}</span>
+            </h1>
+            
+            <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+              {dynamic.subheadline}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
+              <a 
+                href={PHONE_LINK} 
+                className="bg-blue-600 hover:bg-blue-500 text-white py-3.5 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
+              >
+                <Phone size={18} fill="currentColor" />
+                <span>Ligar: {PHONE_DISPLAY}</span>
+              </a>
+              <a 
+                href={WHATSAPP_LINK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
+              >
+                <MessageCircle size={18} />
+                <span>Solicitar Orçamento no WhatsApp</span>
+              </a>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     
     <!-- PWA & Mobile Optimization -->
-    <meta name="theme-color" content="#0066CC" />
+    <meta name="theme-color" content="#1e40af" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     
@@ -22,7 +22,7 @@
     <link rel="dns-prefetch" href="https://www.youtube.com">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
       tailwind.config = {
@@ -30,32 +30,24 @@
           extend: {
             colors: {
               adp: {
-                blue: '#0066CC',
-                orange: '#FF6600',
-                red: '#DC3545',
-                green: '#28A745',
-                gray: '#6C757D',
-                dark: '#1a1a1a'
+                navy: '#0f172a',
+                blue: '#1e40af',
+                blueHover: '#1e3a8a',
+                blueLight: '#eff6ff',
+                orange: '#c2410c',
+                orangeHover: '#9a3412',
+                red: '#b91c1c',
+                green: '#15803d',
+                greenHover: '#166534',
+                surface: '#f8fafc',
+                border: '#e2e8f0',
+                gray: '#475569',
+                dark: '#0f172a'
               }
             },
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              heading: ['Poppins', 'sans-serif'],
-            },
-            animation: {
-              'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-              'float': 'float 3s ease-in-out infinite',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              }
+              sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+              heading: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
             }
           }
         }
@@ -63,12 +55,24 @@
     </script>
     
     <style>
-      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-      body { overflow-x: hidden; font-family: 'Inter', sans-serif; }
-      .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+      html { 
+        scroll-behavior: smooth; 
+        -webkit-text-size-adjust: 100%; 
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+      body { 
+        overflow-x: hidden; 
+        color: #1e293b;
+        background-color: #ffffff;
+      }
+      /* Modo acessibilidade com texto ampliado para idosos */
+      html.senior-large-text {
+        font-size: 115%;
+      }
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-      .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #0066CC; border-radius: 10px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
     </style>
     
     <meta name="google-site-verification" content="lOD8JwSTcclXga5LF3X9UQ8RAjOsNtotuvWunA95VzM" />

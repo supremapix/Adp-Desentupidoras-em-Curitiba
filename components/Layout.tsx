@@ -9,9 +9,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="font-sans antialiased text-gray-800 bg-white min-h-screen flex flex-col">
+    <div className="font-sans antialiased text-slate-800 bg-white min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pb-20 md:pb-0">
         {children}
       </main>
       <Footer />
