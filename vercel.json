@@ -373,11 +373,6 @@
       "permanent": true
     },
     {
-      "source": "/local/cidade/balsa-nova",
-      "destination": "/cobertura",
-      "permanent": true
-    },
-    {
       "source": "/local/cidade/bocaiuva-do-sul",
       "destination": "/cobertura",
       "permanent": true
@@ -403,17 +398,7 @@
       "permanent": true
     },
     {
-      "source": "/local/cidade/itaperucu",
-      "destination": "/cobertura",
-      "permanent": true
-    },
-    {
       "source": "/local/cidade/lapa",
-      "destination": "/cobertura",
-      "permanent": true
-    },
-    {
-      "source": "/local/cidade/mandirituba",
       "destination": "/cobertura",
       "permanent": true
     },
@@ -428,17 +413,7 @@
       "permanent": true
     },
     {
-      "source": "/local/cidade/rio-branco-do-sul",
-      "destination": "/cobertura",
-      "permanent": true
-    },
-    {
       "source": "/local/cidade/rio-negro",
-      "destination": "/cobertura",
-      "permanent": true
-    },
-    {
-      "source": "/local/cidade/tijucas-do-sul",
       "destination": "/cobertura",
       "permanent": true
     },

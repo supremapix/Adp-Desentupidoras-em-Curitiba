@@ -53,6 +53,7 @@ type LocalProfile =
   | 'HISTORICAL_OLD_PIPES'
   | 'SUBURBAN_RURAL_FOSSA'
   | 'METROPOLITAN_RMC'
+  | 'METROPOLITAN_SCHEDULED'
   | 'RESIDENTIAL_FAMILY_SOBRADOS';
 
 const LocationPage: React.FC = () => {
@@ -124,6 +125,10 @@ const LocationPage: React.FC = () => {
     if (isCity) {
       if (['araucaria', 'fazenda-rio-grande', 'sao-jose-dos-pinhais', 'quatro-barras'].includes(slugLower)) {
         return 'INDUSTRIAL_LOGISTIC';
+      }
+      // Municípios reativados: atendimento programado, sem promessa de emergência
+      if (['mandirituba', 'balsa-nova', 'rio-branco-do-sul', 'itaperucu', 'tijucas-do-sul'].includes(slugLower)) {
+        return 'METROPOLITAN_SCHEDULED';
       }
       return 'METROPOLITAN_RMC';
     }
@@ -316,7 +321,33 @@ const LocationPage: React.FC = () => {
           ]
         };
 
-      default: // RESIDENTIAL_FAMILY_SOBRADOS
+      case 'METROPOLITAN_SCHEDULED':
+        return {
+          typeLabel: "Atendimento Programado na Região Metropolitana",
+          subheadline: `Desentupimento, caça-vazamento e limpeza de fossa no município de ${locationName}, com visita agendada.`,
+          editorial: `${locationName} faz parte da área de cobertura da ADP. As equipes saem da base no CIC, em Curitiba, e por causa da distância o atendimento é programado: você descreve o problema, combinamos data e horário conforme a rota, e o técnico avalia no local antes de passar o valor. Não temos filial no município.`,
+          highlight: `Atendimento agendado em ${locationName}. Disponibilidade e condições de deslocamento são confirmadas no contato.`,
+          icon: <Truck className="text-adp-blue" size={32} />,
+          faqs: [
+            {
+              q: `A ADP atende em ${locationName}?`,
+              a: `Sim, ${locationName} está na área de cobertura. O atendimento é agendado: data, horário e condições de deslocamento são confirmados no contato, conforme a rota do dia.`
+            },
+            {
+              q: `Existe atendimento de emergência em ${locationName}?`,
+              a: `Não prometemos prazo de chegada para ${locationName}. Entre em contato e informe a urgência; verificamos a agenda e a rota disponíveis naquele dia.`
+            },
+            {
+              q: `O que devo informar para agendar em ${locationName}?`,
+              a: `Endereço completo com ponto de referência (ou a localização pelo WhatsApp), o tipo de imóvel, onde está o problema, se o imóvel usa fossa ou rede de esgoto e como é o acesso para o veículo.`
+            },
+            {
+              q: `Como é definido o valor do serviço?`,
+              a: `O técnico avalia no local e informa o valor antes de começar. O serviço só é executado depois da sua aprovação.`
+            }
+          ]
+        };
+          default: // RESIDENTIAL_FAMILY_SOBRADOS
         return {
           typeLabel: "Atendimento Residencial e Comercial Especializado",
           subheadline: `Desentupimento de pias, ralos, vasos sanitários e redes de esgoto no bairro ${locationName}.`,
@@ -357,6 +388,7 @@ const LocationPage: React.FC = () => {
         return BLOG_IMAGES.HIDROJATEAMENTO;
       case 'SUBURBAN_RURAL_FOSSA':
         return BLOG_IMAGES.CHEGADA_40MIN;
+      case 'METROPOLITAN_SCHEDULED':
       case 'METROPOLITAN_RMC':
         return BLOG_IMAGES.CHEGADA_40MIN;
       case 'RESIDENTIAL_FAMILY_SOBRADOS':

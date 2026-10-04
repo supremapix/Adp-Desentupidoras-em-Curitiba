@@ -96,20 +96,15 @@ export const CONSOLIDATED_CITIES: Record<string, { targetPath: string; targetNam
   "curitiba": { targetPath: "/desentupidora-curitiba", targetName: "Curitiba", reason: "Unificação na landing page canônica e principal da capital" },
   "adrianopolis": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (130 km) - atendimento programado sob consulta" },
   "agudos-do-sul": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (65 km) - atendimento programado sob consulta" },
-  "balsa-nova": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (50 km) - atendimento programado sob consulta" },
   "bocaiuva-do-sul": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (45 km) - atendimento programado sob consulta" },
   "campo-do-tenente": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (90 km) - atendimento programado sob consulta" },
   "cerro-azul": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (95 km) - atendimento programado sob consulta" },
   "contenda": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (45 km) - atendimento programado sob consulta" },
   "doutor-ulysses": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (135 km) - atendimento programado sob consulta" },
-  "itaperucu": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (35 km) - atendimento programado sob consulta" },
   "lapa": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (70 km) - atendimento programado sob consulta" },
-  "mandirituba": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (45 km) - atendimento programado sob consulta" },
   "pien": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (85 km) - atendimento programado sob consulta" },
   "quitandinha": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (65 km) - atendimento programado sob consulta" },
-  "rio-branco-do-sul": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (35 km) - atendimento programado sob consulta" },
   "rio-negro": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (105 km) - atendimento programado sob consulta" },
-  "tijucas-do-sul": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (60 km) - atendimento programado sob consulta" },
   "tunas-do-parana": { targetPath: "/cobertura", targetName: "Área de Cobertura RMC", reason: "Município periférico (75 km) - atendimento programado sob consulta" }
 };
 
@@ -127,7 +122,13 @@ export const CONFIRMED_METROPOLITAN_CITIES = [
   "Piraquara",
   "Quatro Barras",
   "Campina Grande do Sul",
-  "Campo Magro"
+  "Campo Magro",
+  // Reativadas em 2026-10-04 (cobertura declarada pelo proprietário; atendimento programado)
+  "Mandirituba",
+  "Balsa Nova",
+  "Rio Branco do Sul",
+  "Itaperuçu",
+  "Tijucas do Sul"
 ];
 
 /**

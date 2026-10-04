@@ -144,7 +144,7 @@ const CoveragePage: React.FC = () => {
                 Demais Municípios da Região Metropolitana (Atendimento sob Consulta de Rota)
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Para municípios com maior distância da capital (como Lapa, Rio Negro, Mandirituba, Campo do Tenente, Cerro Azul, Doutor Ulysses, Adrianópolis, Bocaiúva do Sul e outros), o deslocamento é programado mediante avaliação prévia de viabilidade técnica da rota.
+                Para municípios com maior distância da capital (como Lapa, Rio Negro, Campo do Tenente, Cerro Azul, Doutor Ulysses, Adrianópolis, Bocaiúva do Sul e outros), o deslocamento é programado mediante avaliação prévia de viabilidade técnica da rota.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a 

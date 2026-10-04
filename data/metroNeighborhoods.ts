@@ -5,7 +5,7 @@
  * Ver docs/INVENTARIO-BAIRROS-CIDADES-ADP-SERVICOS.md.
  */
 
-export type LocalityClass = 'bairro' | 'bairro urbano' | 'bairro rural' | 'distrito' | 'localidade';
+export type LocalityClass = 'bairro' | 'bairro urbano' | 'bairro rural' | 'distrito' | 'localidade' | 'povoado';
 
 export interface Locality {
   name: string;
@@ -21,6 +21,7 @@ export interface CityInventory {
   sourceLabel: string;
   sourceUrl: string;
   evidence: string;
+  extraSources?: { label: string; url: string }[];
   localities: Locality[];
 }
 
@@ -221,6 +222,102 @@ export const METRO_INVENTORY: Record<string, CityInventory> = {
       L('Uvaranal', 'bairro rural'),
     ],
   },
+
+  // ===== Inventários parciais adicionados no lote 3 (distritos: IBGE — Divisão Territorial Brasileira) =====
+  'quatro-barras': {
+    city: 'Quatro Barras',
+    citySlug: 'quatro-barras',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Quatro Barras — Plano Diretor (Lei Complementar 39/2023)',
+    sourceUrl: 'https://quatrobarras.pr.gov.br/uploads/pagina/arquivos/Lei-Complementar-39-2023-Plano-Diretor.pdf',
+    evidence:
+      'O Plano Diretor cita bairros e localidades ao descrever as macrozonas (art. 66); não há lista completa de bairros. Distritos conforme IBGE: Quatro Barras (sede) e Borda do Campo.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Quatro Barras', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/quatrobarras.pdf' }],
+    localities: [
+      L('Borda do Campo', 'distrito'),
+      L('Santa Luzia', 'bairro'),
+      L('Pinheirinho', 'bairro'),
+      L('Florestal', 'bairro'),
+      L('Menino Deus', 'bairro'),
+      L('Maria José', 'bairro'),
+      L('Granja das Acácias', 'localidade'),
+      L('Bosque Mehry', 'localidade'),
+    ],
+  },
+  'balsa-nova': {
+    city: 'Balsa Nova',
+    citySlug: 'balsa-nova',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Balsa Nova — Diagnóstico do Plano Diretor (AMEP)',
+    sourceUrl: 'https://balsanova.pr.gov.br/uploads/pagina/arquivos/13-Diagnostico-comentadoAMEP.pdf',
+    evidence:
+      'O diagnóstico municipal afirma que o município possui três distritos (Balsa Nova, Bugre e São Luiz do Purunã) e cita Jardim Serrinha e São Caetano como bairros mais urbanos e Tamanduá como endereço rural. Distritos confirmados pelo IBGE.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Balsa Nova', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/balsanova.pdf' }],
+    localities: [
+      L('Bugre', 'distrito'),
+      L('São Luiz do Purunã', 'distrito'),
+      L('Jardim Serrinha', 'bairro'),
+      L('São Caetano', 'bairro'),
+      L('Tamanduá', 'localidade'),
+    ],
+  },
+  'rio-branco-do-sul': {
+    city: 'Rio Branco do Sul',
+    citySlug: 'rio-branco-do-sul',
+    completeness: 'parcial',
+    sourceLabel: 'IBGE — Divisão Territorial: Rio Branco do Sul',
+    sourceUrl: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/riobrancodosul.pdf',
+    evidence:
+      'IBGE: distritos Rio Branco do Sul (sede) e Açungui. Projeto de lei complementar municipal 02/2024 (Câmara) delimita a área urbana do distrito do Açungui. Nenhuma lista municipal de bairros localizada.',
+    extraSources: [{ label: 'Câmara de Rio Branco do Sul — PLC 02/2024 (perímetros urbanos)', url: 'https://sapl.riobrancodosul.pr.leg.br/media/sapl/public/materialegislativa/2024/2473/plc_no02-2024.pdf' }],
+    localities: [L('Açungui', 'distrito')],
+  },
+  mandirituba: {
+    city: 'Mandirituba',
+    citySlug: 'mandirituba',
+    completeness: 'parcial',
+    sourceLabel: 'IBGE — Divisão Territorial: Mandirituba',
+    sourceUrl: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/mandirituba.pdf',
+    evidence:
+      'IBGE: distritos Mandirituba (sede) e Areia Branca do Assis (Lei Estadual 5.532/1967). Localidades conforme endereços da lista municipal de unidades de saúde; a classificação dessas localidades não é informada pela fonte.',
+    extraSources: [{ label: 'Prefeitura de Mandirituba — Unidades de Saúde (endereços)', url: 'https://mandirituba.pr.gov.br/wp-content/uploads/2019/02/UNIDADES-DE-SAUDE.pdf' }],
+    localities: [
+      L('Areia Branca dos Assis', 'distrito', ['Areia Branca do Assis']),
+      L('Lagoinha', 'localidade'),
+      L('Espigão das Antas', 'localidade'),
+      L('Tronco', 'localidade'),
+      L('Campestre dos Paulas', 'localidade'),
+      L('Avencal', 'localidade'),
+    ],
+  },
+  'campo-largo': {
+    city: 'Campo Largo',
+    citySlug: 'campo-largo',
+    completeness: 'parcial',
+    sourceLabel: 'IBGE — Divisão Territorial: Campo Largo',
+    sourceUrl: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/campolargo.pdf',
+    evidence:
+      'IBGE: distritos Campo Largo (sede), Bateias, Ferraria, São Silvestre e Três Córregos. Localidades conforme a legenda "Localidades" do mapa de Macrozoneamento da Revisão do Plano Diretor (2016), anexo de documento da Câmara. Não é lista de bairros.',
+    extraSources: [{ label: 'Câmara de Campo Largo — Mapa de Macrozoneamento (Revisão do Plano Diretor)', url: 'https://sapl.campolargo.pr.leg.br/media/sapl/public/documentoacessorio/2018/20772/38-18_mapa_pag.49.pdf' }],
+    localities: [
+      L('Bateias', 'distrito'),
+      L('Ferraria', 'distrito'),
+      L('São Silvestre', 'distrito'),
+      L('Três Córregos', 'distrito'),
+      ...['Erval dos Castros', 'Erva', 'Salgadinho', 'Cahiva', 'Boa Vista', 'Batista', 'Vila Bancária', 'Rondinha', 'Jardim Lagoa', 'Rivabem', 'Jardim Guarani', 'Itaqui de Cima', 'Colônia Figueiredo', 'Colônia Dom Pedro', 'Cercadinho', 'Taquarinha', 'São Pedro', 'Santa Cruz', 'Pinheirinho', 'Pavãozinho', 'Palmital dos Pretos', 'Ouro Fino', 'Grande Lajeado', 'Jacuí', 'Felpudo', 'Vila Torres I', 'Santa Ângela', 'Partênope', 'Mons. Francisco Gorski', 'Itaqui', 'Jardim Esmeralda', 'Dona Fina', 'Colônia Rebouças', 'Colônia Mariana', 'Campina (Balbino Cunha)', 'Vargedo', 'Taquara', 'Retiro', 'Miqueleto', 'Itambézinho', 'Gramadinho', 'Floresta do Açungui'].map((n) => L(n, 'localidade')),
+    ],
+  },
+  itaperucu: {
+    city: 'Itaperuçu',
+    citySlug: 'itaperucu',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Itaperuçu — "Sobre o Município"',
+    sourceUrl: 'https://itaperucu.pr.gov.br/o-municipio/sobre-o-municipio/',
+    evidence:
+      'A página municipal informa "Bairros 38", mas não lista os nomes. Único bairro identificado na fonte: Butieirinho (endereço da Prefeitura). IBGE: município formado apenas pelo distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Itaperuçu', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/itaperucu.pdf' }],
+    localities: [L('Butieirinho', 'bairro')],
+  },
 };
 
 /** Localidade homônima em outro município/Curitiba — usada para desambiguação visível. */
@@ -233,6 +330,8 @@ export interface QualifiedPage {
   citySlug: string;
   slug: string;
   name: string;
+  /** preposição usada no H1: "no Atuba", "na Ferraria", "em São Luiz do Purunã" */
+  prep?: 'no' | 'na' | 'em';
   lastmod: string;
   title: string;
   description: string;
@@ -328,7 +427,7 @@ export const QUALIFIED_PAGES: QualifiedPage[] = [
       { label: 'Classificação', value: 'Bairro — mapa individual na página municipal', href: 'https://www.sjp.pr.gov.br/mapas-do-municipio/afonso-pena/' },
       { label: 'Atenção ao nome', value: 'Área Institucional Aeroportuária é outro bairro no mapa municipal' },
     ],
-    homonyms: [],
+    homonyms: [{ label: 'Área Institucional Aeroportuária, em São José dos Pinhais', path: '/local/cidade/sao-jose-dos-pinhais/area-institucional-aeroportuaria' }],
     faqs: [
       { q: 'A ADP atende no Afonso Pena, em São José dos Pinhais?', a: COVERAGE_A('Afonso Pena', 'São José dos Pinhais') },
       {
@@ -618,6 +717,289 @@ export const QUALIFIED_PAGES: QualifiedPage[] = [
       {
         q: 'Vocês emitem comprovante do serviço?',
         a: 'Peça no momento do contato o tipo de comprovante de que você precisa, para que isso seja combinado antes da visita.',
+      },
+    ],
+  },
+  // ===== LOTE 3 — municípios que ainda não tinham páginas de localidade =====
+  {
+    citySlug: 'quatro-barras',
+    slug: 'borda-do-campo',
+    name: 'Borda do Campo',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Borda do Campo, Quatro Barras | ADP',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa na Borda do Campo, em Quatro Barras. Saiba como diferenciar do bairro de São José dos Pinhais e o que informar.',
+    intro: [
+      'Borda do Campo é um dos dois distritos de Quatro Barras na divisão territorial do IBGE, e o Plano Diretor municipal também usa o nome ao descrever uma das macrozonas. O mesmo nome existe como bairro em São José dos Pinhais, com mapa na página da Prefeitura de lá.',
+      'Em área de distrito, o endereço nem sempre basta: envie a localização pelo WhatsApp, cite a estrada ou rua de acesso e um ponto de referência (igreja, escola, mercado). Isso evita desencontro com a equipe.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Quatro Barras (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE, Divisão Territorial Brasileira', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/quatrobarras.pdf' },
+      { label: 'Citação municipal', value: 'Plano Diretor de Quatro Barras (LC 39/2023), art. 66', href: 'https://quatrobarras.pr.gov.br/uploads/pagina/arquivos/Lei-Complementar-39-2023-Plano-Diretor.pdf' },
+      { label: 'Homônimo na região', value: 'Borda do Campo (bairro de São José dos Pinhais)' },
+    ],
+    homonyms: [{ label: 'Borda do Campo, em São José dos Pinhais', path: '/local/cidade/sao-jose-dos-pinhais/borda-do-campo' }],
+    faqs: [
+      { q: 'A ADP atende na Borda do Campo, em Quatro Barras?', a: COVERAGE_A('Borda do Campo', 'Quatro Barras') },
+      {
+        q: 'A Borda do Campo de Quatro Barras é a mesma de São José dos Pinhais?',
+        a: 'Não. Em Quatro Barras, Borda do Campo é um distrito; em São José dos Pinhais, é um bairro com o mesmo nome. Informe sempre o município ao pedir atendimento.',
+      },
+      {
+        q: 'Meu endereço não aparece direito no mapa. Como faço?',
+        a: 'Envie a localização pelo WhatsApp e descreva o acesso: nome da estrada ou rua, cor do portão e um ponto de referência próximo.',
+      },
+    ],
+  },
+  {
+    citySlug: 'balsa-nova',
+    slug: 'sao-luiz-do-puruna',
+    name: 'São Luiz do Purunã',
+    prep: 'em',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora em São Luiz do Purunã, Balsa Nova | ADP',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa em São Luiz do Purunã, distrito de Balsa Nova. Veja como agendar e o que informar sobre o acesso.',
+    intro: [
+      'São Luiz do Purunã é um dos três distritos de Balsa Nova, ao lado da sede e do Bugre, segundo o IBGE e o diagnóstico do Plano Diretor publicado pela Prefeitura.',
+      'Por ser um distrito afastado da sede municipal, o atendimento é combinado com antecedência. No contato, informe se o imóvel é casa, chácara ou comércio, se usa fossa ou rede de esgoto e como é o acesso para o veículo.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Balsa Nova (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE, Divisão Territorial Brasileira', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/balsanova.pdf' },
+      { label: 'Citação municipal', value: 'Diagnóstico do Plano Diretor de Balsa Nova: "três distritos administrativos"', href: 'https://balsanova.pr.gov.br/uploads/pagina/arquivos/13-Diagnostico-comentadoAMEP.pdf' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende em São Luiz do Purunã?', a: COVERAGE_A('São Luiz do Purunã', 'Balsa Nova') },
+      {
+        q: 'Vocês cobram deslocamento até o distrito?',
+        a: 'As condições de deslocamento são informadas no contato, antes de agendar. O valor do serviço é passado pelo técnico depois da avaliação no local e antes de começar.',
+      },
+      {
+        q: 'Minha chácara usa fossa. O que devo informar?',
+        a: 'Diga onde fica a tampa da fossa, se ela está acessível e se há espaço para o veículo se aproximar. Não abra a tampa nem entre na fossa: os gases podem ser perigosos.',
+      },
+    ],
+  },
+  {
+    citySlug: 'rio-branco-do-sul',
+    slug: 'acungui',
+    name: 'Açungui',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Açungui, Rio Branco do Sul | ADP',
+    description:
+      'Atendimento para entupimentos, vazamentos e fossas no distrito do Açungui, em Rio Branco do Sul. Saiba como agendar e o que informar.',
+    intro: [
+      'O Açungui é o distrito de Rio Branco do Sul além da sede, segundo a divisão territorial do IBGE. Um projeto de lei complementar enviado à Câmara em 2024 trata da delimitação da área urbana do distrito.',
+      'Em área de distrito, o endereço nem sempre basta: envie a localização pelo WhatsApp, cite a estrada ou rua de acesso e um ponto de referência (igreja, escola, mercado). Isso evita desencontro com a equipe.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Rio Branco do Sul (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE, Divisão Territorial Brasileira', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/riobrancodosul.pdf' },
+      { label: 'Citação municipal', value: 'PLC 02/2024 — perímetros urbanos da sede e do distrito do Açungui', href: 'https://sapl.riobrancodosul.pr.leg.br/media/sapl/public/materialegislativa/2024/2473/plc_no02-2024.pdf' },
+      { label: 'Atenção ao nome', value: 'Campo Largo tem uma localidade chamada Floresta do Açungui (outro município)' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no Açungui, em Rio Branco do Sul?', a: COVERAGE_A('Açungui', 'Rio Branco do Sul') },
+      {
+        q: 'O Açungui é a mesma Floresta do Açungui de Campo Largo?',
+        a: 'Não. O Açungui é um distrito de Rio Branco do Sul. Floresta do Açungui é uma localidade de Campo Largo. Informe o município ao chamar.',
+      },
+      {
+        q: 'Preciso agendar com antecedência?',
+        a: 'Sim, recomendamos. Informe o problema e o endereço completo; a data e o horário são combinados conforme a agenda e a rota do dia.',
+      },
+    ],
+  },
+  {
+    citySlug: 'mandirituba',
+    slug: 'areia-branca-dos-assis',
+    name: 'Areia Branca dos Assis',
+    prep: 'em',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora em Areia Branca dos Assis, Mandirituba | ADP',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa em Areia Branca dos Assis, distrito de Mandirituba. Veja as grafias do nome e o que informar.',
+    intro: [
+      'Areia Branca dos Assis é distrito de Mandirituba, criado pela Lei Estadual 5.532/1967 segundo o IBGE. O nome aparece com duas grafias: o IBGE registra "Areia Branca do Assis", e documentos da Prefeitura usam "Areia Branca dos Assis".',
+      'Ao pedir atendimento, qualquer uma das grafias serve, mas confirme o município (Mandirituba) e envie a localização. Em área de distrito, o endereço nem sempre basta: envie a localização pelo WhatsApp, cite a estrada ou rua de acesso e um ponto de referência (igreja, escola, mercado). Isso evita desencontro com a equipe.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Mandirituba (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE (Lei Estadual 5.532/1967)', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/mandirituba.pdf' },
+      { label: 'Grafias', value: 'Areia Branca do Assis (IBGE) · Areia Branca dos Assis (Prefeitura)', href: 'https://mandirituba.pr.gov.br/wp-content/uploads/2019/02/UNIDADES-DE-SAUDE.pdf' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende em Areia Branca dos Assis?', a: COVERAGE_A('Areia Branca dos Assis', 'Mandirituba') },
+      {
+        q: 'O certo é "do Assis" ou "dos Assis"?',
+        a: 'As duas grafias aparecem em fontes oficiais: o IBGE usa "Areia Branca do Assis" e a Prefeitura de Mandirituba usa "Areia Branca dos Assis". Qualquer uma serve para o atendimento, desde que o município seja informado.',
+      },
+      {
+        q: 'O que fazer se a água voltar pelo ralo enquanto espero?',
+        a: 'Pare de usar pias, chuveiro e máquina de lavar ligados à mesma rede, afaste crianças e animais da área e não use produtos químicos. Mantenha distância de tomadas, extensões e aparelhos ligados que estejam perto da água e avise isso no contato.',
+      },
+    ],
+  },
+  {
+    citySlug: 'campo-largo',
+    slug: 'ferraria',
+    name: 'Ferraria',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Ferraria, Campo Largo | ADP Serviços Especializados',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa na Ferraria, distrito de Campo Largo. Saiba o que informar no contato e como funciona o orçamento.',
+    intro: [
+      'A Ferraria é um dos cinco distritos de Campo Largo na divisão territorial do IBGE, criado por decreto-lei estadual em 1938. Como distrito, abrange uma área maior que um bairro, com endereços urbanos e rurais.',
+      'Em área de distrito, o endereço nem sempre basta: envie a localização pelo WhatsApp, cite a estrada ou rua de acesso e um ponto de referência (igreja, escola, mercado). Isso evita desencontro com a equipe.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Campo Largo (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE (Decreto-lei estadual 7.573/1938)', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/campolargo.pdf' },
+      { label: 'Outros distritos do município', value: 'Campo Largo (sede), Bateias, São Silvestre e Três Córregos' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende na Ferraria, em Campo Largo?', a: COVERAGE_A('Ferraria', 'Campo Largo') },
+      {
+        q: 'Qual a diferença entre distrito e bairro?',
+        a: 'Distrito é uma divisão administrativa maior, que pode reunir vários núcleos e áreas rurais. Por isso, além do nome do distrito, informe a rua ou estrada e um ponto de referência.',
+      },
+      {
+        q: 'O orçamento é feito por telefone?',
+        a: 'Pelo telefone ou WhatsApp você descreve o problema e combina a visita. O valor do serviço é informado pelo técnico depois da avaliação no local, antes de começar.',
+      },
+    ],
+  },
+  {
+    citySlug: 'campo-largo',
+    slug: 'tres-corregos',
+    name: 'Três Córregos',
+    prep: 'em',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora em Três Córregos, Campo Largo | ADP',
+    description:
+      'Atendimento para entupimentos, vazamentos e fossas em Três Córregos, distrito de Campo Largo. Veja como agendar e o que informar sobre o acesso ao imóvel.',
+    intro: [
+      'Três Córregos é distrito de Campo Largo segundo o IBGE e aparece como localidade no mapa de Macrozoneamento da Revisão do Plano Diretor do município (2016).',
+      'Em imóveis rurais, conte no contato se o problema é na casa, no banheiro externo, na fossa ou na caixa d’água, e se o acesso é por estrada de terra. Isso ajuda a planejar a visita.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Campo Largo (PR)' },
+      { label: 'Classificação', value: 'Distrito — IBGE, Divisão Territorial Brasileira', href: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/campolargo.pdf' },
+      { label: 'Citação municipal', value: 'Localidade no mapa de Macrozoneamento — Revisão do Plano Diretor (2016)', href: 'https://sapl.campolargo.pr.leg.br/media/sapl/public/documentoacessorio/2018/20772/38-18_mapa_pag.49.pdf' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende em Três Córregos, em Campo Largo?', a: COVERAGE_A('Três Córregos', 'Campo Largo') },
+      {
+        q: 'Vocês fazem limpeza de caixa d’água em área rural?',
+        a: 'O serviço de limpeza de caixa d’água pode ser avaliado. Informe o tamanho aproximado do reservatório, a altura e como é o acesso a ele.',
+      },
+      {
+        q: 'Preciso estar presente durante o serviço?',
+        a: 'Sim, alguém maior de idade precisa liberar o acesso e aprovar o orçamento antes do início do serviço.',
+      },
+    ],
+  },
+  // ===== LOTE 4 (parcial: 3 páginas com utilidade própria verificável) =====
+  {
+    citySlug: 'sao-jose-dos-pinhais',
+    slug: 'borda-do-campo',
+    name: 'Borda do Campo',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Borda do Campo, São José dos Pinhais | ADP',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa no bairro Borda do Campo, em São José dos Pinhais. Veja como não confundir com o distrito de Quatro Barras.',
+    intro: [
+      'Borda do Campo tem mapa próprio na página "Mapas do Município" da Prefeitura de São José dos Pinhais. Em Quatro Barras, o mesmo nome identifica um distrito, segundo o IBGE. São lugares diferentes, em municípios vizinhos.',
+      'Ao chamar, diga "Borda do Campo, São José dos Pinhais" e envie a localização pelo WhatsApp. Com o município certo, a visita é agendada na rota correta.',
+    ],
+    facts: [
+      { label: 'Município', value: 'São José dos Pinhais (PR)' },
+      { label: 'Classificação', value: 'Bairro — mapa individual na página municipal', href: 'https://www.sjp.pr.gov.br/mapas-do-municipio/borda-do-campo/' },
+      { label: 'Homônimo na região', value: 'Borda do Campo (distrito de Quatro Barras, IBGE)' },
+    ],
+    homonyms: [{ label: 'Borda do Campo, em Quatro Barras', path: '/local/cidade/quatro-barras/borda-do-campo' }],
+    faqs: [
+      { q: 'A ADP atende na Borda do Campo, em São José dos Pinhais?', a: COVERAGE_A('Borda do Campo', 'São José dos Pinhais') },
+      {
+        q: 'Borda do Campo fica em São José dos Pinhais ou em Quatro Barras?',
+        a: 'Nos dois, com significados diferentes: em São José dos Pinhais é um bairro; em Quatro Barras é um distrito. Informe sempre o município ao pedir atendimento.',
+      },
+      {
+        q: 'O que acontece depois que eu chamo?',
+        a: 'Combinamos data e horário conforme a agenda. No local, o técnico avalia o problema e informa o valor antes de começar; o serviço só é feito com a sua aprovação.',
+      },
+    ],
+  },
+  {
+    citySlug: 'sao-jose-dos-pinhais',
+    slug: 'area-institucional-aeroportuaria',
+    name: 'Área Institucional Aeroportuária',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Área Institucional Aeroportuária, SJP | ADP',
+    description:
+      'Atendimento para empresas e imóveis na Área Institucional Aeroportuária de São José dos Pinhais. Saiba como combinar acesso, horários e autorização.',
+    intro: [
+      'Área Institucional Aeroportuária é o nome de um bairro no mapa da Prefeitura de São José dos Pinhais, separado do bairro Afonso Pena. Quem procura "Afonso Pena" pensando no aeroporto pode estar, na verdade, nesta área.',
+      'Em áreas com controle de entrada, a visita depende de autorização prévia do responsável pelo local. No contato, informe o nome da empresa, quem vai liberar o acesso, os horários permitidos e se há exigência de cadastro da equipe.',
+    ],
+    facts: [
+      { label: 'Município', value: 'São José dos Pinhais (PR)' },
+      { label: 'Classificação', value: 'Bairro — mapa individual na página municipal', href: 'https://www.sjp.pr.gov.br/mapas-do-municipio/aeroporto/' },
+      { label: 'Atenção ao nome', value: 'Bairro diferente do Afonso Pena no mapa municipal' },
+    ],
+    homonyms: [{ label: 'Afonso Pena, em São José dos Pinhais', path: '/local/cidade/sao-jose-dos-pinhais/afonso-pena' }],
+    faqs: [
+      { q: 'A ADP atende na Área Institucional Aeroportuária?', a: COVERAGE_A('Área Institucional Aeroportuária', 'São José dos Pinhais') },
+      {
+        q: 'Como funciona o acesso em local com controle de entrada?',
+        a: 'A autorização é do responsável pelo local. Combine antes da visita quem libera a entrada, em que horário e se é preciso enviar dados da equipe com antecedência.',
+      },
+      {
+        q: 'A Área Institucional Aeroportuária é o mesmo que o bairro Afonso Pena?',
+        a: 'Não. No mapa da Prefeitura de São José dos Pinhais são dois bairros diferentes. Confira o endereço completo antes de chamar.',
+      },
+    ],
+  },
+  {
+    citySlug: 'colombo',
+    slug: 'campestre',
+    name: 'Campestre',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Campestre, Colombo | ADP Serviços Especializados',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa no Campestre, bairro rural de Colombo. Veja o que informar sobre fossa, acesso e localização.',
+    intro: [
+      'O Campestre está entre os 20 bairros rurais listados pela Prefeitura de Colombo. O nome se repete na região: Araucária lista uma localidade chamada Campestre e Mandirituba tem a localidade Campestre dos Paulas.',
+      'Em imóvel rural, avise no contato se a casa usa fossa, onde fica a tampa, se o acesso é por estrada de terra e se há portão ou animais soltos. Envie a localização pelo WhatsApp para a equipe chegar ao endereço certo.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Colombo (PR)' },
+      { label: 'Classificação', value: 'Bairro rural — página "Dados Gerais" da Prefeitura de Colombo', href: 'https://prefeitura.colombo.pr.gov.br/dados-gerais-colombo/' },
+      { label: 'Nomes parecidos na região', value: 'Campestre (localidade de Araucária) · Campestre dos Paulas (Mandirituba)' },
+    ],
+    homonyms: [{ label: 'Campestre, em Araucária' }, { label: 'Campestre dos Paulas, em Mandirituba' }],
+    faqs: [
+      { q: 'A ADP atende no Campestre, em Colombo?', a: COVERAGE_A('Campestre', 'Colombo') },
+      {
+        q: 'Existe outro Campestre na região?',
+        a: 'Sim. Araucária lista uma localidade chamada Campestre e Mandirituba tem Campestre dos Paulas. Informe sempre o município ao chamar.',
+      },
+      {
+        q: 'A fossa está transbordando. O que fazer até a equipe chegar?',
+        a: 'Reduza o uso de água na casa, mantenha pessoas e animais longe da área e não abra a tampa nem tente esvaziar a fossa por conta própria: os gases podem ser perigosos.',
       },
     ],
   },

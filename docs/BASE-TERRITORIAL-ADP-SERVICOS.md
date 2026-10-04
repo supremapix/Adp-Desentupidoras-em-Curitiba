@@ -36,8 +36,10 @@ Cópia do sitemap anterior: `docs/sitemap-antes-lote-1.xml` (97 URLs).
 
 - Lote 1: 6 páginas (Araucária ×2, São José dos Pinhais ×2, Pinhais ×2). Ver `RELATORIO-LOCALIDADES-ADP-SERVICOS-LOTE-1.md`.
 - Lote 2: 6 páginas (Colombo ×3, São José dos Pinhais, Araucária, Pinhais). Ver `RELATORIO-LOCALIDADES-ADP-SERVICOS-LOTE-2.md`.
-- Sitemap: 97 → 109 URLs únicas.
-- Expansão **não concluída**: 11 municípios com inventário pendente (ver `INVENTARIO-BAIRROS-CIDADES-ADP-SERVICOS.md`).
+- Lote 3: 5 páginas municipais reativadas (Mandirituba, Balsa Nova, Rio Branco do Sul, Itaperuçu, Tijucas do Sul — redirecionamentos 301 removidos só para elas) + 6 páginas de distrito. Ver `RELATORIO-LOCALIDADES-ADP-SERVICOS-LOTE-3.md`.
+- Lote 4 (parcial): 3 páginas. Ver `RELATORIO-LOCALIDADES-ADP-SERVICOS-LOTE-4.md`.
+- Sitemap: 97 → 109 (lotes 1–2) → 120 (lote 3) → 123 URLs únicas (lote 4).
+- Expansão **não concluída**: 6 municípios sem inventário conferível e vários parciais (ver `INVENTARIO-BAIRROS-CIDADES-ADP-SERVICOS.md`).
 
 ## 5. Arquivos criados/alterados
 

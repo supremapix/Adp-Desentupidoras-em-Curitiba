@@ -12,16 +12,28 @@ const CityNeighborhoodsHub: React.FC<{ citySlug?: string }> = ({ citySlug }) => 
   if (!inv) return null;
   const withPage = new Set(qualifiedPathsFor(inv.citySlug));
   const groups = Array.from(new Set(inv.localities.map((l) => l.classification)));
+  const order = ['distrito', 'bairro urbano', 'bairro', 'bairro rural', 'povoado', 'localidade'];
+  groups.sort((a, b) => order.indexOf(a) - order.indexOf(b));
   const label = (c: string) =>
-    c === 'bairro urbano' ? 'Bairros urbanos' : c === 'bairro rural' ? 'Bairros rurais' : c === 'localidade' ? 'Outras localidades listadas pela Prefeitura' : 'Bairros';
+    c === 'bairro urbano'
+      ? 'Bairros urbanos'
+      : c === 'bairro rural'
+      ? 'Bairros rurais'
+      : c === 'distrito'
+      ? 'Distritos (além da sede)'
+      : c === 'povoado'
+      ? 'Povoados'
+      : c === 'localidade'
+      ? 'Outras localidades citadas em fontes oficiais'
+      : 'Bairros';
 
   return (
     <section aria-labelledby="bairros-municipio" className="pt-8 border-t-2 border-slate-900">
       <h2 id="bairros-municipio" className="font-display font-extrabold uppercase text-3xl sm:text-4xl">
-        Bairros de {inv.city} atendidos
+        {inv.completeness === 'completo' ? `Bairros de ${inv.city} atendidos` : `Bairros e localidades de ${inv.city}`}
       </h2>
       <p className="mt-3 text-slate-700 leading-relaxed">
-        {inv.city} faz parte da área de cobertura da ADP. A lista abaixo segue a fonte municipal indicada. Os nomes destacados têm página própria com orientações; para os demais, o atendimento é o mesmo — basta chamar e informar o endereço.
+        {inv.city} faz parte da área de cobertura da ADP. {inv.completeness === 'completo' ? 'A lista abaixo segue a fonte municipal indicada.' : 'A lista abaixo é parcial: reúne apenas os nomes encontrados em fontes oficiais até agora. Se o seu bairro não aparece, o atendimento é o mesmo.'} Os nomes destacados têm página própria com orientações; para os demais, basta chamar e informar o endereço completo.
       </p>
       {groups.map((g) => (
         <div key={g} className="mt-6">
@@ -53,7 +65,13 @@ const CityNeighborhoodsHub: React.FC<{ citySlug?: string }> = ({ citySlug }) => 
         <a href={inv.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#c4161c]">
           {inv.sourceLabel} <ExternalLink size={12} aria-hidden="true" />
         </a>
-        {inv.completeness === 'parcial' ? ' — lista conforme publicada; a fonte não declara o total oficial.' : '.'}
+        {inv.completeness === 'parcial' ? ' — lista parcial.' : '.'}
+        {inv.extraSources?.map((src) => (
+          <span key={src.url}>
+            {' · '}
+            <a href={src.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[#c4161c]">{src.label}</a>
+          </span>
+        ))}
       </p>
     </section>
   );

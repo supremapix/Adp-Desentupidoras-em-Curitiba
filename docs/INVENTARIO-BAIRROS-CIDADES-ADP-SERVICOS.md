@@ -4,10 +4,35 @@ Data da pesquisa: 2026-10-04. Dados estruturados em `data/metroNeighborhoods.ts`
 
 Legenda de status editorial: **Página** = página própria implementada · **Hub** = listada no hub municipal sem página própria (ainda) · **Pendente** = inventário não concluído.
 
-## Resumo por município
+## Resumo por município (atualizado no lote 4)
 
-| # | Município | Página municipal no site | Inventário | Fonte principal | Localidades | Páginas de bairro |
-|---|---|---|---|---|---|---|
+| # | Município | Página municipal | Inventário | Fontes | Localidades | Com página | Só no hub |
+|---|---|---|---|---|---|---|---|
+| 1 | Pinhais | /local/cidade/pinhais | **Completo** | GeoPinhais (shapefile) | 15 | 3 | 12 |
+| 2 | Colombo | /local/cidade/colombo | **Completo** (42 nomes listados um a um) | Prefeitura — Dados Gerais | 42 | 4 | 38 |
+| 3 | São José dos Pinhais | /local/cidade/sao-jose-dos-pinhais | Parcial | Prefeitura — Mapas do Município | 41 | 5 | 36 |
+| 4 | Araucária | /local/cidade/araucaria | Parcial | Prefeitura — Qual o seu bairro? | 40 | 3 | 37 |
+| 5 | Campo Largo | /local/cidade/campo-largo | Parcial | IBGE DTB + mapa da Revisão do Plano Diretor | 46 (4 distritos + 42 localidades) | 2 | 44 |
+| 6 | Quatro Barras | /local/cidade/quatro-barras | Parcial | Plano Diretor LC 39/2023 + IBGE DTB | 8 | 1 | 7 |
+| 7 | Balsa Nova | /local/cidade/balsa-nova (reativada) | Parcial | Diagnóstico do Plano Diretor + IBGE DTB | 5 | 1 | 4 |
+| 8 | Mandirituba | /local/cidade/mandirituba (reativada) | Parcial | IBGE DTB + PDF municipal de unidades de saúde | 6 | 1 | 5 |
+| 9 | Rio Branco do Sul | /local/cidade/rio-branco-do-sul (reativada) | Parcial | IBGE DTB + PLC 02/2024 | 1 | 1 | 0 |
+| 10 | Itaperuçu | /local/cidade/itaperucu (reativada) | Parcial (1 de 38 declarados) | Prefeitura — Sobre o Município + IBGE | 1 | 0 | 1 |
+| 11 | Tijucas do Sul | /local/cidade/tijucas-do-sul (reativada) | Sem localidade verificada | Prefeitura — Localização + IBGE | 0 | 0 | 0 |
+| 12 | Almirante Tamandaré | /local/cidade/almirante-tamandare | Sem lista | IBGE (só sede) | 0 | 0 | 0 |
+| 13 | Campo Magro | /local/cidade/campo-magro | Sem lista | IBGE (só sede) | 0 | 0 | 0 |
+| 14 | Campina Grande do Sul | /local/cidade/campina-grande-do-sul | Sem lista | IBGE (só sede) | 0 | 0 | 0 |
+| 15 | Fazenda Rio Grande | /local/cidade/fazenda-rio-grande | Sem lista (fontes com 403) | IBGE (só sede) | 0 | 0 | 0 |
+
+**Total: 205 localidades verificadas, 21 páginas de localidade.** A expansão **não está concluída**.
+
+Critérios: "completo" = a fonte permite conferir todos os nomes; "parcial" = a fonte lista nomes, mas não o total ou a norma. Distritos vêm da Divisão Territorial Brasileira do IBGE (https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/{município}.pdf). "Localidade" é usada quando a fonte não classifica o nome. Bairro, distrito e localidade nunca foram tratados como equivalentes.
+
+**Dado territorial × utilidade comercial:** população do Censo, classificação ou fonte, sozinhas, não justificam página própria. Uma página só é criada quando há utilidade para quem vai pedir o serviço (desambiguação, regra de acesso, particularidade documentada do tipo de área).
+
+Detalhes das pesquisas e fontes inacessíveis dos municípios 5 a 15: ver `RELATORIO-LOCALIDADES-ADP-SERVICOS-LOTE-3.md`, seção 3.
+
+---|---|---|---|---|---|---|
 | 1 | Pinhais | `/local/cidade/pinhais` | **Completo** | GeoPinhais — shapefile "Bairros" | 15 | 3 |
 | 2 | São José dos Pinhais | `/local/cidade/sao-jose-dos-pinhais` | Parcial | Prefeitura — "Mapas do Município" | 41 | 3 |
 | 3 | Araucária | `/local/cidade/araucaria` | Parcial | Prefeitura — "Qual o seu bairro?" | 40 (18 urbanos + 22 outras) | 3 |
@@ -23,10 +48,6 @@ Legenda de status editorial: **Página** = página própria implementada · **Hu
 | 13 | Rio Branco do Sul | 301 → `/cobertura` | Pendente | — | — | 0 |
 | 14 | Itaperuçu | 301 → `/cobertura` | Pendente | — | — | 0 |
 | 15 | Tijucas do Sul | 301 → `/cobertura` | Pendente | — | — | 0 |
-
-**Total inventariado com fonte municipal: 138 localidades em 4 municípios** (2 completos, 2 parciais). 11 municípios continuam pendentes. A expansão **não está concluída**.
-
-Critério de "completo": a fonte municipal declara ou permite conferir o total (Colombo declara "42 bairros"; GeoPinhais publica a camada inteira com 15 polígonos). "Parcial": a fonte lista nomes, mas não declara o total nem cita a norma de delimitação.
 
 ---
 

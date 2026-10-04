@@ -75,7 +75,7 @@ const MetroNeighborhoodPage: React.FC = () => {
             </ol>
           </nav>
           <h1 className="mt-6 font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
-            Desentupidora {page.name === 'Cachoeira' || page.name === 'Costeira' ? 'na' : 'no'} {page.name}<span className="sr-only">,</span>{' '}
+            Desentupidora {page.prep ?? (page.name === 'Cachoeira' || page.name === 'Costeira' ? 'na' : 'no')} {page.name}<span className="sr-only">,</span>{' '}
             <span className="block text-[#ffc629]">{cityName}</span>
           </h1>
           <p className="mt-5 text-lg text-slate-300 max-w-2xl leading-relaxed">
@@ -99,7 +99,7 @@ const MetroNeighborhoodPage: React.FC = () => {
         <main className="lg:col-span-8 space-y-14">
           {/* SOBRE A LOCALIDADE */}
           <section>
-            <h2 className="font-display font-extrabold uppercase text-3xl sm:text-4xl">Sobre o atendimento {page.name === 'Cachoeira' || page.name === 'Costeira' ? 'na' : 'no'} {page.name}</h2>
+            <h2 className="font-display font-extrabold uppercase text-3xl sm:text-4xl">Sobre o atendimento {page.prep ?? (page.name === 'Cachoeira' || page.name === 'Costeira' ? 'na' : 'no')} {page.name}</h2>
             {page.intro.map((p, i) => (
               <p key={i} className="mt-4 text-lg leading-relaxed text-slate-700">{p}</p>
             ))}
