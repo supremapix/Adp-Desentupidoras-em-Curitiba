@@ -48,12 +48,12 @@ const CuritibaSEOPage = () => {
       a: `Nossa sede e base operacional estão localizadas na ${COMPANY_ADDRESS}, no bairro ${COMPANY_NEIGHBORHOOD}, em ${COMPANY_CITY} - PR. A partir dessa localização estratégica, nossas equipes volantes atendem rapidamente os diversos bairros da cidade.`
     },
     {
-      q: "Os serviços executados contam com garantia?",
-      a: "Sim. Todos os serviços prestados pela ADP contam com garantia técnica com emissão de comprovante e laudo dos procedimentos executados."
+      q: "Como é confirmada a conclusão do serviço?",
+      a: "Ao término do procedimento, o fluxo da tubulação é testado na presença do cliente para comprovação da desobstrução, com orientações técnicas e registro do serviço executado."
     },
     {
-      q: "Como é evitada a quebra de pisos e paredes durante o serviço?",
-      a: "Utilizamos máquinas desentupidoras rotativas com cabos espirais flexíveis de aço e pontas desincrustadoras que entram diretamente pelos ralos ou caixas de inspeção, sem necessidade de abertura de alvenaria na grande maioria dos casos."
+      q: "Como é preservada a estrutura de pisos e paredes durante o serviço?",
+      a: "Utilizamos máquinas desentupidoras rotativas com cabos espirais flexíveis de aço e pontas desincrustadoras que entram diretamente pelos ralos ou caixas de inspeção, preservando a alvenaria conforme a avaliação técnica no local."
     }
   ];
 
@@ -97,7 +97,7 @@ const CuritibaSEOPage = () => {
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-2xl">
-                Soluções profissionais para desobstrução de esgotos, redes pluviais, ramais de pias e ralos em residências, condomínios e estabelecimentos comerciais de Curitiba sem quebrar pisos.
+                Soluções profissionais para desobstrução de esgotos, redes pluviais, ramais de pias e ralos em residências, condomínios e estabelecimentos comerciais de Curitiba com avaliação no local.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -122,7 +122,7 @@ const CuritibaSEOPage = () => {
               <div className="pt-4 border-t border-slate-800 grid grid-cols-3 gap-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-center gap-1.5">
                   <Shield size={16} className="text-blue-400 flex-shrink-0" />
-                  <span>Garantia Escrita</span>
+                  <span>Avaliação no Local</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <FileCheck size={16} className="text-blue-400 flex-shrink-0" />

@@ -318,6 +318,114 @@ export const METRO_INVENTORY: Record<string, CityInventory> = {
     extraSources: [{ label: 'IBGE — Divisão Territorial: Itaperuçu', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/itaperucu.pdf' }],
     localities: [L('Butieirinho', 'bairro')],
   },
+  'almirante-tamandare': {
+    city: 'Almirante Tamandaré',
+    citySlug: 'almirante-tamandare',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Almirante Tamandaré / AMEP / Documentação Municipal',
+    sourceUrl: 'https://tamandare.pr.gov.br/urbanismo',
+    evidence:
+      'Página da Secretaria de Urbanismo cita Cachoeira como sede regional e terminal de transporte metropolitano. Outros bairros identificados na documentação pública: Tranqueira, Lamenha Grande, Tanguá, Centro, Vila Formosa, Belisária e Bonfim. IBGE: apenas o distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Almirante Tamandaré', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/almirantetamandare.pdf' }],
+    localities: [
+      L('Cachoeira', 'bairro'),
+      L('Tranqueira', 'bairro'),
+      L('Lamenha Grande', 'bairro'),
+      L('Tanguá', 'bairro'),
+      L('Centro', 'bairro'),
+      L('Vila Formosa', 'bairro'),
+      L('Belisária', 'bairro'),
+      L('Bonfim', 'bairro'),
+    ],
+  },
+  'campo-magro': {
+    city: 'Campo Magro',
+    citySlug: 'campo-magro',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Campo Magro / Decreto Estadual 5.063/2001 (APA Passaúna)',
+    sourceUrl: 'https://campomagro.pr.gov.br',
+    evidence:
+      'Documentação municipal e estadual da bacia hidrográfica do Passaúna identificam a região do Passaúna, Centro Administrativo, Jardim Boa Vista, Bom Pastor, Juruqui e Samambaia. IBGE: apenas o distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Campo Magro', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/campomagro.pdf' }],
+    localities: [
+      L('Passaúna', 'localidade'),
+      L('Centro Administrativo', 'bairro'),
+      L('Jardim Boa Vista', 'bairro'),
+      L('Bom Pastor', 'bairro'),
+      L('Juruqui', 'localidade'),
+      L('Samambaia', 'localidade'),
+    ],
+  },
+  piraquara: {
+    city: 'Piraquara',
+    citySlug: 'piraquara',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura Municipal de Piraquara — Estrutura Administrativa Regional',
+    sourceUrl: 'https://piraquara.pr.gov.br',
+    evidence:
+      'Portal da Prefeitura identifica a Regional do Guarituba (Rua Betonex, 2330), Centro, Planta Deodoro, Vila Militar, Vila Suíça e Recanto das Águas. IBGE: município composto pelo distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Piraquara', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/piraquara.pdf' }],
+    localities: [
+      L('Guarituba', 'bairro'),
+      L('Centro', 'bairro'),
+      L('Planta Deodoro', 'bairro'),
+      L('Vila Militar', 'bairro'),
+      L('Vila Suíça', 'bairro'),
+      L('Recanto das Águas', 'bairro'),
+    ],
+  },
+  'fazenda-rio-grande': {
+    city: 'Fazenda Rio Grande',
+    citySlug: 'fazenda-rio-grande',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Fazenda Rio Grande / Plano Diretor Municipal',
+    sourceUrl: 'https://fazendariogrande.pr.gov.br',
+    evidence:
+      'Documentação do Plano Diretor e divisões urbanas identificam os bairros Centro, Eucaliptos, Gralha Azul, Iguaçu, Nações, Santa Terezinha, Estados e Pioneiros. IBGE: distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Fazenda Rio Grande', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/fazendariogrande.pdf' }],
+    localities: [
+      L('Centro', 'bairro'),
+      L('Eucaliptos', 'bairro'),
+      L('Gralha Azul', 'bairro'),
+      L('Iguaçu', 'bairro'),
+      L('Nações', 'bairro'),
+      L('Santa Terezinha', 'bairro'),
+      L('Estados', 'bairro'),
+      L('Pioneiros', 'bairro'),
+    ],
+  },
+  'campina-grande-do-sul': {
+    city: 'Campina Grande do Sul',
+    citySlug: 'campina-grande-do-sul',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Campina Grande do Sul / IBGE DTB',
+    sourceUrl: 'https://campinagrandedosul.pr.gov.br',
+    evidence:
+      'Registros municipais e legislativos identificam o polo sede, Jardim Paulista, Recanto Verde, Terra Boa, Santa Rosa e Santa Angelina. IBGE: distrito sede.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Campina Grande do Sul', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/campinagrandedosul.pdf' }],
+    localities: [
+      L('Sede', 'distrito'),
+      L('Jardim Paulista', 'bairro'),
+      L('Recanto Verde', 'bairro'),
+      L('Terra Boa', 'bairro'),
+      L('Santa Rosa', 'bairro'),
+      L('Santa Angelina', 'bairro'),
+    ],
+  },
+  'tijucas-do-sul': {
+    city: 'Tijucas do Sul',
+    citySlug: 'tijucas-do-sul',
+    completeness: 'parcial',
+    sourceLabel: 'Prefeitura de Tijucas do Sul / IBGE DTB',
+    sourceUrl: 'https://tijucasdosul.pr.gov.br',
+    evidence:
+      'IBGE: município composto pelo distrito sede. Documentos municipais de limites citam Tabatinga e acessos rurais. Sem lei de abairramento urbano consolidada acessível.',
+    extraSources: [{ label: 'IBGE — Divisão Territorial: Tijucas do Sul', url: 'https://biblioteca.ibge.gov.br/visualizacao/dtb/parana/tijucasdosul.pdf' }],
+    localities: [
+      L('Tijucas do Sul', 'distrito'),
+      L('Tabatinga', 'localidade'),
+    ],
+  },
 };
 
 /** Localidade homônima em outro município/Curitiba — usada para desambiguação visível. */
@@ -949,26 +1057,31 @@ export const QUALIFIED_PAGES: QualifiedPage[] = [
     lastmod: '2026-10-04',
     title: 'Desentupidora na Área Institucional Aeroportuária, SJP | ADP',
     description:
-      'Atendimento para empresas e imóveis na Área Institucional Aeroportuária de São José dos Pinhais. Saiba como combinar acesso, horários e autorização.',
+      'Atendimento técnico para hangares, galpões e empresas no setor aeroportuário de São José dos Pinhais. Orientações de credenciamento e acesso autorizado.',
     intro: [
-      'Área Institucional Aeroportuária é o nome de um bairro no mapa da Prefeitura de São José dos Pinhais, separado do bairro Afonso Pena. Quem procura "Afonso Pena" pensando no aeroporto pode estar, na verdade, nesta área.',
-      'Em áreas com controle de entrada, a visita depende de autorização prévia do responsável pelo local. No contato, informe o nome da empresa, quem vai liberar o acesso, os horários permitidos e se há exigência de cadastro da equipe.',
+      'A Área Institucional Aeroportuária é uma delimitação territorial específica no mapa municipal da Prefeitura de São José dos Pinhais, compreendendo o complexo aeroportuário e setores corporativos e logísticos adjacentes. Não possui perfil de bairro residencial comum.',
+      'O atendimento técnico a instalações nesta área restringe-se a empresas, galpões e unidades acessíveis mediante autorização prévia e credenciamento na portaria. No primeiro contato, informe a documentação necessária para liberação da equipe técnica e dos equipamentos.',
     ],
     facts: [
       { label: 'Município', value: 'São José dos Pinhais (PR)' },
-      { label: 'Classificação', value: 'Bairro — mapa individual na página municipal', href: 'https://www.sjp.pr.gov.br/mapas-do-municipio/aeroporto/' },
-      { label: 'Atenção ao nome', value: 'Bairro diferente do Afonso Pena no mapa municipal' },
+      { label: 'Classificação municipal', value: 'Setor Institucional Delimitado — Mapa Municipal de SJP', href: 'https://www.sjp.pr.gov.br/mapas-do-municipio/aeroporto/' },
+      { label: 'Perfil de atendimento', value: 'Instalações corporativas/logísticas com acesso e credenciamento prévio' },
+      { label: 'Distinção territorial', value: 'Setor específico, separado do bairro residencial Afonso Pena' },
     ],
     homonyms: [{ label: 'Afonso Pena, em São José dos Pinhais', path: '/local/cidade/sao-jose-dos-pinhais/afonso-pena' }],
     faqs: [
       { q: 'A ADP atende na Área Institucional Aeroportuária?', a: COVERAGE_A('Área Institucional Aeroportuária', 'São José dos Pinhais') },
       {
-        q: 'Como funciona o acesso em local com controle de entrada?',
-        a: 'A autorização é do responsável pelo local. Combine antes da visita quem libera a entrada, em que horário e se é preciso enviar dados da equipe com antecedência.',
+        q: 'Como funciona o acesso a empresas em área com controle de portaria?',
+        a: 'O solicitante deve providenciar a liberação prévia da equipe e do veículo técnico junto à segurança ou portaria do local, informando previamente se é necessário envio de dados cadastrais dos operadores.',
+      },
+      {
+        q: 'A ADP realiza serviços dentro de áreas de segurança restrita de pista?',
+        a: 'Não atendemos áreas restritas de pista/pátio de aeronaves sem contrato operacional formal. O atendimento é direcionado a galpões logísticos, escritórios, concessionárias e instalações corporativas externas com acesso autorizado.',
       },
       {
         q: 'A Área Institucional Aeroportuária é o mesmo que o bairro Afonso Pena?',
-        a: 'Não. No mapa da Prefeitura de São José dos Pinhais são dois bairros diferentes. Confira o endereço completo antes de chamar.',
+        a: 'Não. No mapa da Prefeitura de São José dos Pinhais são duas delimitações diferentes. Afonso Pena é bairro residencial/comercial aberto, enquanto a Área Aeroportuária possui controle de acesso.',
       },
     ],
   },
@@ -1000,6 +1113,104 @@ export const QUALIFIED_PAGES: QualifiedPage[] = [
       {
         q: 'A fossa está transbordando. O que fazer até a equipe chegar?',
         a: 'Reduza o uso de água na casa, mantenha pessoas e animais longe da área e não abra a tampa nem tente esvaziar a fossa por conta própria: os gases podem ser perigosos.',
+      },
+    ],
+  },
+  // ===== LOTE 4 COMPLEMENTAR (3 novas páginas com utilidade própria) =====
+  {
+    citySlug: 'almirante-tamandare',
+    slug: 'cachoeira',
+    name: 'Cachoeira',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Cachoeira, Almirante Tamandaré | ADP',
+    description:
+      'Atendimento técnico para desentupimento de esgoto, pias, ralos e caça-vazamento no bairro Cachoeira, em Almirante Tamandaré. Saiba como não confundir com os homônimos.',
+    intro: [
+      'O bairro Cachoeira em Almirante Tamandaré abriga importantes referências municipais como o Terminal Cachoeira e a sede da Secretaria de Urbanismo. Devido ao nome comum, é frequentemente confundido com o bairro Cachoeira de Curitiba, com a Cachoeira de Araucária ou com a Cachoeira de São José dos Pinhais.',
+      'Ao solicitar atendimento, informe "Cachoeira em Almirante Tamandaré", indicando referências próximas à Rodovia dos Minérios (PR-092) ou ao Terminal. O atendimento é programado a partir de nossa base no CIC, com avaliação técnica no local antes de iniciar o serviço.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Almirante Tamandaré (PR)' },
+      { label: 'Classificação', value: 'Bairro — polo de serviços e terminal de integração', href: 'https://tamandare.pr.gov.br/urbanismo' },
+      { label: 'Homônimos na RMC', value: 'Cachoeira (Curitiba) · Cachoeira (Araucária) · Cachoeira (São José dos Pinhais)' },
+    ],
+    homonyms: [
+      { label: 'Cachoeira, em Curitiba', path: '/local/bairro/cachoeira' },
+      { label: 'Cachoeira, em Araucária', path: '/local/cidade/araucaria/cachoeira' },
+      { label: 'Cachoeira, em São José dos Pinhais', path: '/local/cidade/sao-jose-dos-pinhais/cachoeira' },
+    ],
+    faqs: [
+      { q: 'A ADP atende no bairro Cachoeira, em Almirante Tamandaré?', a: COVERAGE_A('Cachoeira', 'Almirante Tamandaré') },
+      {
+        q: 'Como diferenciar a Cachoeira de Tamandaré dos bairros homônimos?',
+        a: 'Curitiba, Araucária, São José dos Pinhais e Almirante Tamandaré possuem bairros chamados Cachoeira. Ao ligar ou mandar WhatsApp, confirme o município e envie sua localização em tempo real para agendamento na rota correta.',
+      },
+      {
+        q: 'Como funciona a visita técnica e o orçamento?',
+        a: 'Nossos técnicos se deslocam até o seu imóvel, realizam o diagnóstico com teste inicial da tubulação e apresentam o orçamento transparente para sua aprovação antes de qualquer trabalho.',
+      },
+    ],
+  },
+  {
+    citySlug: 'campo-magro',
+    slug: 'passauna',
+    name: 'Passaúna',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Passaúna, Campo Magro | ADP Serviços',
+    description:
+      'Desentupimento, caça-vazamento e limpeza de fossa na região do Passaúna em Campo Magro. Orientações para imóveis na bacia do manancial.',
+    intro: [
+      'A região do Passaúna em Campo Magro integra a Área de Proteção Ambiental (APA do Passaúna, Decreto Estadual 5.063/2001), caracterizada por chácaras residenciais e áreas de preservação de mananciais. Diferencia-se do bairro urbano Passaúna localizado no município de Araucária.',
+      'Por se tratar de área de bacia de manancial, o manejo hidráulico requer cuidados especiais: sistemas individuais de fossa séptica e sumidouro não devem receber químicos cáusticos. Ao solicitar atendimento via Estrada do Cerne (PR-090), envie a localização exata pelo WhatsApp.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Campo Magro (PR)' },
+      { label: 'Classificação', value: 'Localidade / APA do Passaúna — Decreto Estadual 5.063/2001', href: 'https://campomagro.pr.gov.br' },
+      { label: 'Homônimo na região', value: 'Passaúna (bairro urbano de Araucária)' },
+    ],
+    homonyms: [{ label: 'Passaúna, em Araucária' }],
+    faqs: [
+      { q: 'A ADP atende na região do Passaúna, em Campo Magro?', a: COVERAGE_A('Passaúna', 'Campo Magro') },
+      {
+        q: 'Qual a diferença entre o Passaúna de Campo Magro e o de Araucária?',
+        a: 'Em Araucária, o Passaúna é um bairro urbano regular; em Campo Magro, a região compreende setores rurais e chácaras na bacia da APA do Passaúna. Informe o município ao solicitar a visita técnica.',
+      },
+      {
+        q: 'Quais cuidados ter com fossa séptica em chácara?',
+        a: 'Evite abrir tampas sem equipamento de proteção devido ao acúmulo de gases tóxicos e nunca despeje produtos abrasivos na rede. Nossa equipe avalia a necessidade de esgotamento técnico ou desobstrução mecânica do ramal.',
+      },
+    ],
+  },
+  {
+    citySlug: 'piraquara',
+    slug: 'guarituba',
+    name: 'Guarituba',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Guarituba, Piraquara | ADP',
+    description:
+      'Atendimento técnico para desentupimento de esgoto, pias, ralos e caixas de gordura no Guarituba, em Piraquara. Deslocamento programado com avaliação no local.',
+    intro: [
+      'O Guarituba é a região mais populosa de Piraquara, contando com sede regional da prefeitura na Rua Betonex e ligação estratégica com a Região Leste. O nome tem sonoridade semelhante ao bairro Guaraituba, localizado no município de Colombo.',
+      'Atendemos residências, comércios e empresas no Guarituba com maquinário rotativo e hidrojato sob agendamento a partir de nossa base no CIC. O técnico avalia o encanamento no local e apresenta o valor formal antes de iniciar a intervenção.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Piraquara (PR)' },
+      { label: 'Classificação', value: 'Bairro e Polo Regional — Prefeitura de Piraquara (Regional Guarituba)', href: 'https://piraquara.pr.gov.br' },
+      { label: 'Atenção à grafia e homofonia', value: 'Guarituba (Piraquara) ≠ Guaraituba (Colombo)' },
+    ],
+    homonyms: [{ label: 'Guaraituba, em Colombo' }],
+    faqs: [
+      { q: 'A ADP atende no Guarituba, em Piraquara?', a: COVERAGE_A('Guarituba', 'Piraquara') },
+      {
+        q: 'Guarituba e Guaraituba são o mesmo lugar?',
+        a: 'Não. Guarituba fica em Piraquara (zona leste da RMC), enquanto Guaraituba é um bairro de Colombo (zona norte). Confirmar o nome correto e o município garante o direcionamento da rota certa.',
+      },
+      {
+        q: 'Como é feito o orçamento no Guarituba?',
+        a: 'Avaliamos a situação presencialmente no imóvel, verificando a extensão e o diâmetro da tubulação. O valor é informado para sua aprovação antes de qualquer trabalho.',
       },
     ],
   },

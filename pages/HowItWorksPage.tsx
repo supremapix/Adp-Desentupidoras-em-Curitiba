@@ -39,15 +39,15 @@ const HowItWorksPage = () => {
     },
     {
       icon: <Wrench size={24} className="text-blue-700" />,
-      title: "5. Execução Especializada sem Quebra",
-      desc: "Após sua aprovação, introduzimos os cabos de aço espirais flexíveis ou a mangueira de hidrojateamento diretamente pela tubulação, desobstruindo e raspando as paredes internas sem danificar pisos ou cerâmicas.",
-      detail: "Serviço limpo com maquinário específico para cada bitola."
+      title: "5. Execução Mecânica Especializada",
+      desc: "Após sua aprovação, introduzimos os cabos de aço espirais flexíveis ou a mangueira de hidrojateamento diretamente pela tubulação, desobstruindo e raspando as paredes internas com preservação da alvenaria.",
+      detail: "Serviço com maquinário específico para cada diâmetro."
     },
     {
       icon: <CheckCircle size={24} className="text-blue-700" />,
-      title: "6. Teste de Vazão e Garantia",
-      desc: "Realizamos testes de descarga e escoamento na presença do cliente para comprovar a vazão plena da rede. Ao finalizar, emitimos o comprovante do serviço com garantia técnica.",
-      detail: "Garantia do serviço executado e laudo técnico."
+      title: "6. Teste de Escoamento e Validação",
+      desc: "Realizamos testes práticos de escoamento na presença do cliente para comprovar a vazão plena da rede e entregamos o comprovante do serviço realizado.",
+      detail: "Validação presencial ao término do atendimento."
     }
   ];
 
@@ -55,7 +55,7 @@ const HowItWorksPage = () => {
     <div className="bg-slate-50 min-h-screen">
       <EnhancedSEO 
         title="Como Funciona o Atendimento | ADP Desentupidora Curitiba"
-        description="Conheça o processo passo a passo da ADP Desentupidora em Curitiba: do contato inicial ao diagnóstico no local, execução sem quebra e garantia técnica."
+        description="Conheça o processo passo a passo da ADP Desentupidora em Curitiba: do contato inicial ao diagnóstico no local, execução mecânica e validação presencial."
         canonicalPath="/como-funciona"
       />
 

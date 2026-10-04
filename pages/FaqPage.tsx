@@ -50,12 +50,12 @@ const FaqPage = () => {
       ]
     },
     {
-      category: "Garantia e Segurança Técnica",
+      category: "Validação e Segurança Técnica",
       icon: <Shield className="text-adp-orange" size={24} />,
       items: [
         { 
-          q: "Os serviços de desentupimento possuem garantia?", 
-          a: "Sim. Todos os serviços executados pela ADP Desentupidora contam com garantia técnica comprovada por escrito. Se houver reincidência de entupimento decorrente do mesmo fator no período garantido, realizamos nova vistoria técnica." 
+          q: "Como é comprovada a eficácia do serviço?", 
+          a: "Ao término do desentupimento, os técnicos realizam testes práticos de escoamento e vazão na presença do cliente para validar a desobstrução, fornecendo orientações e ordem de serviço com registro do atendimento." 
         },
         { 
           q: "A ADP emite nota fiscal para condomínios e empresas?", 
@@ -73,7 +73,7 @@ const FaqPage = () => {
         },
         { 
           q: "A ADP atende todos os bairros de Curitiba e cidades vizinhas?", 
-          a: "Sim. Atendemos todos os bairros da capital e os 28 municípios da Região Metropolitana, com base central no bairro Cidade Industrial de Curitiba (CIC)." 
+          a: "Sim. Atendemos todos os bairros da capital e os municípios da Região Metropolitana, com base central no bairro Cidade Industrial de Curitiba (CIC)." 
         }
       ]
     }
@@ -96,7 +96,7 @@ const FaqPage = () => {
     <div className="bg-gray-50 min-h-screen">
       <EnhancedSEO 
         title="Dúvidas Frequentes | ADP Desentupidora Curitiba"
-        description="Tire suas dúvidas sobre serviços de desentupimento em Curitiba: orçamento, maquinário sem quebra, garantia técnica e área de cobertura da ADP."
+        description="Tire suas dúvidas sobre serviços de desentupimento em Curitiba: orçamento, avaliação presencial, métodos mecânicos e área de cobertura da ADP."
         canonicalPath="/duvidas"
         schemaData={faqSchema}
       />

@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                 </h3>
                 
                 <p className="text-slate-300 text-base leading-relaxed font-light">
-                  Sabemos que um vazamento ou cano entupido gera preocupação. Nossos atendentes conversam com você com paciência, explicam como é feita a visita técnica e garantem que o valor seja aprovado por escrito antes de qualquer trabalho.
+                  Sabemos que um vazamento ou cano entupido gera preocupação. Nossos atendentes conversam com você com paciência, explicam como é feita a visita técnica e informam o valor para sua aprovação antes de qualquer trabalho.
                 </p>
 
                 {/* 4 Passos Claros e Objetivos */}
@@ -71,8 +71,8 @@ const Footer: React.FC = () => {
                   <div className="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 flex items-start gap-2.5">
                     <CheckCircle2 size={18} className="text-emerald-400 flex-shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-semibold">4. Serviço sem quebra</strong>
-                      Equipamentos rotativos e garantia técnica por escrito.
+                      <strong className="text-white block font-semibold">4. Execução orientada</strong>
+                      Uso de maquinário apropriado e avaliação técnica no local.
                     </div>
                   </div>
                 </div>

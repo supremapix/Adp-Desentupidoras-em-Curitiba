@@ -45,7 +45,7 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
             <div className="space-y-3 pt-1">
               <div className="flex items-start gap-3 text-sm text-slate-300">
                 <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span>Máquinas rotativas com cabos espirais flexíveis para desentupimento sem quebra</span>
+                <span>Máquinas rotativas com cabos espirais flexíveis para desobstrução mecânica da tubulação</span>
               </div>
               <div className="flex items-start gap-3 text-sm text-slate-300">
                 <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />

@@ -51,15 +51,15 @@ const Home: React.FC = () => {
     },
     {
       q: "É necessário quebrar pisos ou paredes para desentupir?",
-      a: "Na ampla maioria dos casos, não. Nossos técnicos utilizam cabos flexíveis espirais e ponteiras desincrustadoras que percorrem o interior das curvas da tubulação diretamente por ralos ou caixas de inspeção, sem danificar cerâmicas ou alvenaria."
+      a: "Na ampla maioria dos casos, não. Nossos técnicos utilizam cabos flexíveis espirais e ponteiras desincrustadoras que percorrem o interior das curvas da tubulação diretamente por ralos ou caixas de inspeção, preservando cerâmicas e alvenaria conforme a avaliação no local."
     },
     {
       q: "Qual a área de atendimento da ADP Desentupidora?",
       a: "Atendemos os 74 bairros oficiais de Curitiba e os municípios da Região Metropolitana, incluindo São José dos Pinhais, Araucária, Colombo, Pinhais, Fazenda Rio Grande e Campo Largo, com equipes técnicas volantes."
     },
     {
-      q: "Os serviços de desentupimento possuem garantia?",
-      a: "Sim. Todos os serviços executados pela ADP contam com garantia técnica por escrito, assegurando a eficácia da desobstrução realizada."
+      q: "Como é confirmada a conclusão do serviço?",
+      a: "O serviço é testado na presença do cliente ao término do procedimento para comprovar o escoamento normal da água, com orientações técnicas e registro do serviço na ordem de atendimento."
     }
   ];
 

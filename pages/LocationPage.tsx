@@ -496,11 +496,11 @@ const LocationPage: React.FC = () => {
               <div className="pt-4 border-t border-slate-800 grid grid-cols-3 gap-2 text-xs sm:text-sm text-slate-300">
                 <div className="flex items-center gap-1.5">
                   <Shield size={16} className="text-blue-400 flex-shrink-0" />
-                  <span>Garantia Escrita</span>
+                  <span>Avaliação no Local</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Wrench size={16} className="text-blue-400 flex-shrink-0" />
-                  <span>Sem Quebra</span>
+                  <span>Diagnóstico Técnico</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <MapPin size={16} className="text-blue-400 flex-shrink-0" />

@@ -106,7 +106,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     title: "Por Que Escolher a ADP? Nossos Diferenciais em Serviços Hidráulicos",
     image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg",
     alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba",
-    summary: "Sede física registrada no CIC, frota própria de caminhões combinados, técnicos treinados, garantia técnica por escrito e transparência total.",
+    summary: "Sede física no CIC, maquinário rotativo, hidrojateamento, avaliação técnica no local e transparência nas etapas do atendimento.",
     tag: "Qualidade Comprovada",
     relatedServiceSlug: "video-inspecao"
   }
