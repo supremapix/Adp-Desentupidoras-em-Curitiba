@@ -180,7 +180,7 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-3xl mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/80 text-blue-900 text-xs font-bold uppercase tracking-wider">
+          <div className="items-center gap-2 text-blue-900 kicker font-semibold">
             <BookOpen size={14} className="text-blue-700" />
             <span>Conteúdo Técnico e Esclarecimentos</span>
           </div>
@@ -246,9 +246,9 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
           ))}
         </div>
 
-        <div className="mt-14 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t-2 border-slate-900">
           <div className="space-y-1.5 text-center md:text-left">
-            <div className="flex items-center gap-2 justify-center md:justify-start text-xs font-bold uppercase tracking-wider text-emerald-700">
+            <div className="flex items-center gap-2 justify-center md:justify-start text-emerald-700 kicker font-semibold">
               <CheckCircle2 size={16} />
               <span>Atendimento Direto e Paciente</span>
             </div>

@@ -25,7 +25,7 @@ const NotFound = () => {
         <span className="text-sm font-bold text-adp-orange uppercase tracking-widest block mb-1">
           Erro 404
         </span>
-        <h1 className="text-3xl font-black text-gray-900 mb-3">
+        <h1 className="text-gray-900 mb-3 font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
           Página Não Encontrada
         </h1>
         

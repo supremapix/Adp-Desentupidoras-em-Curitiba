@@ -30,7 +30,7 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           
           <div className="space-y-5">
-            <span className="text-xs font-bold uppercase tracking-widest text-blue-400 block">
+            <span className="text-blue-400 block kicker font-semibold">
               Equipamentos e Metodologia
             </span>
 
@@ -80,7 +80,7 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
 
           {/* Visual Técnico Real Reestruturado */}
           <div className="bg-slate-800/80 p-6 sm:p-8 rounded-2xl border border-slate-700 space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block border-b border-slate-700 pb-2">
+            <span className="text-slate-400 block pb-2 kicker font-semibold">
               Padrões Técnicos de Atendimento
             </span>
 

@@ -20,7 +20,7 @@ const SupremaPage = () => {
 
       <div className="max-w-4xl w-full px-4 text-center">
         <Heart size={48} className="text-red-500 mx-auto mb-4 animate-pulse fill-red-500" />
-        <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+        <h1 className="text-gray-900 mb-4 font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
           Suprema Sites Express
         </h1>
         <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ const SupremaPage = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 text-left mb-12">
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+          <div className="pt-8 border-t-2 border-slate-900">
             <h2 className="text-xl font-bold mb-4 text-gray-900">Diferenciais Técnicos de Desenvolvimento</h2>
             <ul className="space-y-3 text-sm text-gray-700">
               <li className="flex items-center gap-2">

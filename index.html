@@ -116,6 +116,10 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #78716a; }
       h1, h2, h3, .font-display { font-family: 'Barlow Condensed', 'Barlow', system-ui, sans-serif; letter-spacing: -0.005em; }
       body { font-size: 17px; }
+      h1, h2 { text-transform: uppercase; line-height: 1; }
+      .kicker { display: inline-flex !important; align-items: center; gap: .6rem; font-size: 15px; letter-spacing: 0; text-transform: none; background: none !important; padding: 0 !important; border: 0 !important; }
+      .kicker::before { content: ''; display: inline-block; width: 28px; height: 3px; background: #c4161c; flex-shrink: 0; }
+      .kicker svg { display: none; }
       .faixa-obra { background: repeating-linear-gradient(-45deg, #1c1a17 0 14px, #ffc629 14px 28px); }
       :focus-visible { outline: 3px solid #ffc629; outline-offset: 2px; }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

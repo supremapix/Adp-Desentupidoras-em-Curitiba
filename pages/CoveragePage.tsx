@@ -50,10 +50,10 @@ const CoveragePage: React.FC = () => {
       {/* Hero */}
       <section className="bg-slate-900 text-white pt-14 pb-18 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="text-blue-300 font-bold uppercase tracking-widest text-xs">
+          <span className="text-blue-300 kicker font-semibold">
             Regiões Atendidas
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white max-w-3xl mx-auto">
+          <h1 className="text-white max-w-3xl mx-auto font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Área de Cobertura: Curitiba e Região Metropolitana
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
@@ -73,12 +73,13 @@ const CoveragePage: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
           {/* Curitiba Hub Banner com Imagem 16:9 Oficial com Logo Overlay */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-6 items-center">
               <div className="md:col-span-5">
                 <BlogCover 
@@ -89,7 +90,7 @@ const CoveragePage: React.FC = () => {
                 />
               </div>
               <div className="md:col-span-7 space-y-3">
-                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700">
+                <div className="flex items-center gap-1.5 text-blue-700 kicker font-semibold">
                   <Building2 size={16} />
                   <span>Central da Capital</span>
                 </div>
@@ -111,7 +112,7 @@ const CoveragePage: React.FC = () => {
           </div>
 
           {/* Cities Section */}
-          <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+          <section className="pt-8 border-t-2 border-slate-900">
             <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
               <Navigation className="text-blue-700" size={24} />
               <div>
@@ -167,7 +168,7 @@ const CoveragePage: React.FC = () => {
           </section>
 
           {/* Neighborhoods Section */}
-          <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+          <section className="pt-8 border-t-2 border-slate-900">
             <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
               <MapPin className="text-blue-700" size={24} />
               <div>
@@ -206,7 +207,7 @@ const CoveragePage: React.FC = () => {
         <aside className="lg:col-span-1">
           <div className="sticky top-24 space-y-6">
             <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+              <span className="text-blue-400 block kicker font-semibold">
                 Central de Atendimento
               </span>
               <h3 className="text-xl font-bold leading-tight">

@@ -341,12 +341,12 @@ const ServicePage = () => {
             
             {/* Texto e Ações */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+              <div className="flex items-center gap-2 font-semibold text-blue-300 kicker font-semibold">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
                 <span>Base no CIC · Atendimento Volante em Curitiba e RMC</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+              <h1 className="text-white font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
                 {content.title} em Curitiba
               </h1>
               
@@ -411,13 +411,14 @@ const ServicePage = () => {
           </div>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       {/* Conteúdo Principal com Barra Lateral */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
           {/* Descrição Detalhada */}
-          <article className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+          <article className="pt-8 border-t-2 border-slate-900">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">
               Como Funciona o Serviço de {content.title}
             </h2>
@@ -472,7 +473,7 @@ const ServicePage = () => {
           </article>
 
           {/* Seção de Transparência de Preço com a Imagem Canônica de Orçamento */}
-          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+          <section className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-5">
                 <BlogCover 
@@ -483,7 +484,7 @@ const ServicePage = () => {
                 />
               </div>
               <div className="md:col-span-7 space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Transparência Total</span>
+                <span className="text-blue-700 kicker font-semibold">Transparência Total</span>
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                   Como é Calculado o Preço do Desentupimento?
                 </h3>
@@ -503,9 +504,9 @@ const ServicePage = () => {
           </section>
 
           {/* Processo Passo a Passo */}
-          <section className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+          <section className="pt-8 border-t-2 border-slate-900">
             <div className="mb-6 space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Etapas Técnicas</span>
+              <span className="text-blue-700 kicker font-semibold">Etapas Técnicas</span>
               <h2 className="text-2xl font-bold text-slate-900">
                 Como Executamos o Serviço Passo a Passo
               </h2>
@@ -523,7 +524,7 @@ const ServicePage = () => {
           </section>
 
           {/* FAQ do Serviço */}
-          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+          <section className="pt-8 border-t-2 border-slate-900">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
               <HelpCircle className="text-blue-700" size={24} />
               <span>Dúvidas Frequentes sobre {content.title}</span>
@@ -575,7 +576,7 @@ const ServicePage = () => {
             
             {/* Bloco de Atendimento Imediato */}
             <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+              <span className="text-blue-400 block kicker font-semibold">
                 Atendimento Técnico no Local
               </span>
               <h3 className="text-xl font-bold leading-tight">

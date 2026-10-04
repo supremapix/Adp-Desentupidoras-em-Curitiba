@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
             <div className="grid lg:grid-cols-12 gap-8 items-center">
               
               <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/60 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-700/40">
+                <div className="items-center gap-2 text-blue-300 kicker font-semibold">
                   <HeartHandshake size={15} />
                   <span>Atendimento Humanizado · Idosos e Aposentados</span>
                 </div>
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
                 >
                   <Phone size={26} fill="currentColor" className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-xs uppercase tracking-wider text-blue-100 block font-semibold">Toque para Ligar por Telefone</span>
+                    <span className="text-blue-100 block font-semibold kicker font-semibold">Toque para Ligar por Telefone</span>
                     <span className="text-2xl sm:text-3xl font-black text-white leading-tight">{PHONE_DISPLAY}</span>
                   </div>
                 </a>
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
                 >
                   <MessageCircle size={24} className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-xs uppercase tracking-wider text-emerald-100 block font-semibold">Falar pelo WhatsApp</span>
+                    <span className="text-emerald-100 block font-semibold kicker font-semibold">Falar pelo WhatsApp</span>
                     <span className="text-lg sm:text-xl font-bold text-white leading-tight">{WHATSAPP_DISPLAY}</span>
                   </div>
                 </a>

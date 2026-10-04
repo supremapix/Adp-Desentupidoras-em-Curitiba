@@ -87,12 +87,12 @@ const CuritibaSEOPage = () => {
             
             {/* Texto e Ações */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+              <div className="flex items-center gap-2 font-semibold text-blue-300 kicker font-semibold">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
                 <span>Base Física no CIC · Cobertura em Todos os Bairros de Curitiba</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              <h1 className="text-white font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
                 Desentupidora em Curitiba com Atendimento Técnico Especializado
               </h1>
               
@@ -154,6 +154,7 @@ const CuritibaSEOPage = () => {
           </div>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       {/* Destaques Técnicos e Estrutura */}
       <div className="bg-slate-50 py-8 border-b border-slate-200">
@@ -287,7 +288,7 @@ const CuritibaSEOPage = () => {
             <VideoCTA location="Curitiba" />
 
             {/* Bairros Section */}
-            <section className="bg-white p-8 rounded-2xl border border-slate-200">
+            <section className="pt-8 border-t-2 border-slate-900">
               <h2 className="text-2xl font-bold text-slate-900 mb-3">
                 Bairros Atendidos em Curitiba
               </h2>
@@ -313,7 +314,7 @@ const CuritibaSEOPage = () => {
           <aside className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
               <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+                <span className="text-blue-400 block kicker font-semibold">
                   Central Curitiba
                 </span>
                 <h3 className="text-xl font-bold leading-tight">

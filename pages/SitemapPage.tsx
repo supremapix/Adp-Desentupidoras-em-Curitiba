@@ -29,7 +29,7 @@ const SitemapPage: React.FC = () => {
       <section className="bg-slate-900 text-white py-16 border-b-4 border-adp-orange">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <Globe className="mx-auto text-adp-orange mb-3" size={40} />
-          <h1 className="text-3xl md:text-5xl font-heading font-black mb-3">
+          <h1 className="font-heading mb-3 font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Mapa Geral do Site
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base font-light">
@@ -37,13 +37,14 @@ const SitemapPage: React.FC = () => {
           </p>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4 py-16 space-y-16">
         
         {/* Institucional, Serviços e Cidades Principais */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+          <div className="space-y-4 pt-8 border-t-2 border-slate-900">
             <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue border-b pb-3">
               <Home size={20} /> Páginas Principais
             </h2>
@@ -57,7 +58,7 @@ const SitemapPage: React.FC = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+          <div className="space-y-4 pt-8 border-t-2 border-slate-900">
             <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue border-b pb-3">
               <Wrench size={20} /> Serviços Especializados
             </h2>
@@ -72,7 +73,7 @@ const SitemapPage: React.FC = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+          <div className="space-y-4 pt-8 border-t-2 border-slate-900">
             <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue border-b pb-3">
               <Navigation size={20} /> Municípios da Região Metropolitana
             </h2>
@@ -89,7 +90,7 @@ const SitemapPage: React.FC = () => {
         </div>
 
         {/* Bairros Oficiais de Curitiba */}
-        <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm">
+        <div className="pt-8 border-t-2 border-slate-900">
           <div className="flex flex-col md:flex-row md:items-center justify-between border-b pb-3 mb-6 gap-2">
             <h2 className="text-xl font-bold flex items-center gap-2 text-adp-blue">
               <Star size={20} /> Bairros Oficiais de Curitiba ({officialBairros.length})

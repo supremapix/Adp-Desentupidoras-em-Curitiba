@@ -62,10 +62,10 @@ const HowItWorksPage = () => {
       {/* Hero */}
       <section className="bg-slate-900 text-white pt-14 pb-18 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="text-blue-300 font-bold uppercase tracking-widest text-xs">
+          <span className="text-blue-300 kicker font-semibold">
             Metodologia Transparente
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white max-w-3xl mx-auto">
+          <h1 className="text-white max-w-3xl mx-auto font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Como Funciona o Atendimento da ADP Desentupidora
           </h1>
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
@@ -73,12 +73,13 @@ const HowItWorksPage = () => {
           </p>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
           {/* Card com a Foto da Chegada Rápida e Logística */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-6 items-center">
               <div className="md:col-span-6">
                 <BlogCover 
@@ -105,7 +106,7 @@ const HowItWorksPage = () => {
             {steps.map((step, index) => (
               <article 
                 key={index} 
-                className="bg-white p-6 sm:p-7 rounded-2xl shadow-sm border border-slate-200/90 flex flex-col md:flex-row gap-5 hover:shadow-md transition-shadow"
+                className="border-slate-200/90 flex flex-col md:flex-row gap-5 hover:shadow-md transition-shadow pt-8 border-t-2 border-slate-900"
               >
                 <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
                   {step.icon}
@@ -123,7 +124,7 @@ const HowItWorksPage = () => {
           </div>
 
           {/* Card com Foto de Preço Transparente */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-6 items-center">
               <div className="md:col-span-6">
                 <BlogCover 
@@ -148,7 +149,7 @@ const HowItWorksPage = () => {
           <VideoCTA location="Curitiba e Região Metropolitana" />
 
           {/* Links para Serviços */}
-          <section className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <section className="pt-8 border-t-2 border-slate-900">
             <h3 className="text-xl font-bold text-slate-900 mb-4">Serviços que Seguem Este Processo:</h3>
             <div className="grid sm:grid-cols-2 gap-3">
               {SERVICES.map(s => (
@@ -168,7 +169,7 @@ const HowItWorksPage = () => {
         <aside className="lg:col-span-1">
           <div className="sticky top-24 space-y-6">
             <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+              <span className="text-blue-400 block kicker font-semibold">
                 Central de Atendimento
               </span>
               <h3 className="text-xl font-bold leading-tight">

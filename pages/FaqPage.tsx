@@ -105,7 +105,7 @@ const FaqPage = () => {
       <section className="bg-slate-900 text-white py-16 md:py-20 border-b-4 border-adp-orange">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <HelpCircle size={40} className="mx-auto text-adp-orange mb-3" />
-          <h1 className="text-3xl md:text-5xl font-heading font-black mb-4">
+          <h1 className="font-heading mb-4 font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-6xl leading-[0.95]">
             Perguntas Frequentes sobre Desentupimento
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
@@ -113,6 +113,7 @@ const FaqPage = () => {
           </p>
         </div>
       </section>
+      <div className="faixa-obra h-3" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-8">
