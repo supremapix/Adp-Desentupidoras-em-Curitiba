@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, HelpCircle, ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, ArrowUp } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, HelpCircle, ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, ArrowUp, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { 
   PHONE_DISPLAY, 
@@ -20,10 +20,10 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-200 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-200 border-t-[6px] border-[#c4161c] pb-32 lg:pb-8">
       
       {/* 1. Seção Especial de Navegação Acolhedora para Idosos e Aposentados */}
-      <div className="bg-slate-850 border-b border-slate-800 py-12 px-4 sm:px-6 lg:px-8 bg-[#0c1829]">
+      <div className="bg-slate-850 border-b border-slate-800 py-12 px-4 sm:px-6 lg:px-8 bg-[#24211d]">
         <div className="max-w-7xl mx-auto">
           <div className="bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-700/80 shadow-xl">
             <div className="grid lg:grid-cols-12 gap-8 items-center">
@@ -241,8 +241,46 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+      <SupremaCredit />
     </footer>
   );
 };
+
+// Crédito do desenvolvedor — exibido no rodapé de todas as páginas (paleta ADP: vermelho + amarelo)
+export function SupremaCredit() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 pt-4 border-t border-white/10 flex justify-center items-center">
+      <div className="bg-black/40 border border-white/10 rounded-full px-6 py-2.5 shadow-lg flex items-center justify-center transition-all duration-300 hover:border-red-500/40 hover:shadow-[0_0_15px_rgba(196,22,28,0.25)]">
+        <p className="text-stone-200 hover:text-white transition-colors duration-200 text-sm sm:text-base font-bold flex flex-wrap items-center justify-center gap-2">
+          <span className="opacity-90">Desenvolvido com</span>
+          <Heart
+            size={14}
+            aria-hidden="true"
+            className="text-red-500 fill-red-500 motion-safe:animate-[pulse_1.5s_infinite] shrink-0 drop-shadow-[0_0_3px_rgba(239,68,68,0.7)]"
+          />
+          <span className="opacity-90">por</span>
+          <a
+            id="developer-suprema-link"
+            href="https://supremasite.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-yellow-400 hover:text-yellow-300 transition-all font-black inline-flex items-center gap-2 cursor-pointer border-b border-dashed border-yellow-400/50 hover:border-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400 focus-visible:outline-offset-2"
+          >
+            Suprema Sites Express
+            <img
+              src="https://img.supremamidia.com/suprema-img.png"
+              alt="Suprema"
+              width="18"
+              height="18"
+              loading="lazy"
+              className="h-[18px] w-auto inline select-none shrink-0 drop-shadow-[0_0_2px_rgba(250,204,21,0.5)] transition-transform duration-300 hover:scale-110"
+              referrerPolicy="no-referrer"
+            />
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default Footer;

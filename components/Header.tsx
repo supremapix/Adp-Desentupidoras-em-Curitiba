@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Barra Superior de Utilidade e Acessibilidade (Alto Contraste) */}
-      <div className="bg-slate-900 text-slate-200 py-2 px-4 text-xs sm:text-sm border-b border-slate-800">
+      <div className="bg-[#c4161c] text-white py-2 px-4 text-xs sm:text-sm border-b-4 border-[#ffc629]">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-2 font-medium">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
@@ -63,19 +63,19 @@ const Header: React.FC = () => {
       </div>
 
       {/* Cabeçalho Principal Refinado */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+      <header className="sticky top-0 z-40 bg-[#faf6ef] border-b border-slate-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             
             {/* Logo Dignificada e Institucional */}
-            <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <img src="https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp" alt="Logomarca ADP Encanadores - Desentupidora no CIC em Curitiba" width="56" height="56" className="w-12 h-12 sm:w-14 sm:h-14 object-contain shrink-0" decoding="async" />
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 min-w-0 group focus:outline-none">
+              <img src="https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp" alt="Logomarca ADP Encanadores - Desentupidora no CIC em Curitiba" width="56" height="56" className="w-10 h-10 sm:w-14 sm:h-14 object-contain shrink-0" decoding="async" />
               <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight text-slate-900 leading-tight">
+                <span className="font-display text-[15px] leading-[1.05] sm:text-2xl font-extrabold uppercase tracking-wide text-slate-900 leading-none">
                   ADP Desentupidora
                 </span>
-                <span className="text-xs text-slate-500 font-medium tracking-wide">
-                  Serviços Técnicos e Hidráulicos no CIC
+                <span className="hidden sm:block text-[13px] text-slate-600 font-semibold mt-1">
+                  Encanadores · Base no CIC, Curitiba
                 </span>
               </div>
             </Link>

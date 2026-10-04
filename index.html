@@ -24,17 +24,21 @@
     <link rel="dns-prefetch" href="https://www.youtube.com">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
+            // Neutros quentes (substituem o azul-ardósia padrão de template)
+            slate: { 50: '#faf8f5', 100: '#f4f1ec', 200: '#e7e2da', 300: '#d6d0c6', 400: '#a8a196', 500: '#78716a', 600: '#57524b', 700: '#433f3a', 800: '#2a2724', 900: '#1c1a17', 950: '#0f0e0c' },
             // Paleta vermelha da logomarca ADP: remapeia todas as classes blue-* do projeto
             blue: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#e5383b', 600: '#d61f26', 700: '#c4161c', 800: '#a11218', 900: '#7f1d1d', 950: '#450a0a' },
               adp: {
-                navy: '#0f172a',
+                yellow: '#ffc629',
+                cream: '#faf6ef',
+                navy: '#1c1917',
                 blue: '#c4161c',
                 blueHover: '#a11218',
                 blueLight: '#fef2f2',
@@ -43,15 +47,16 @@
                 red: '#b91c1c',
                 green: '#15803d',
                 greenHover: '#166534',
-                surface: '#f8fafc',
-                border: '#e2e8f0',
-                gray: '#475569',
-                dark: '#0f172a'
+                surface: '#faf6ef',
+                border: '#e7dfd2',
+                gray: '#57534e',
+                dark: '#1c1917'
               }
             },
             fontFamily: {
-              sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-              heading: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+              sans: ['Barlow', 'system-ui', '-apple-system', 'sans-serif'],
+              display: ['"Barlow Condensed"', 'Barlow', 'system-ui', 'sans-serif'],
+              heading: ['"Barlow Condensed"', 'Barlow', 'system-ui', 'sans-serif'],
             }
           }
         }
@@ -62,11 +67,11 @@
       html { 
         scroll-behavior: smooth; 
         -webkit-text-size-adjust: 100%; 
-        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-family: 'Barlow', system-ui, -apple-system, sans-serif;
       }
       body { 
         overflow-x: hidden; 
-        color: #1e293b;
+        color: #1c1a17;
         background-color: #ffffff;
       }
       /* Blog Cover & Logo Overlay padrão 16:9 */
@@ -75,7 +80,7 @@
         overflow: hidden;
         border-radius: 1rem;
         aspect-ratio: 16 / 9;
-        background-color: #0f172a;
+        background-color: #1c1a17;
       }
       .blog-cover img:not(.logo-overlay) {
         width: 100%;
@@ -107,8 +112,13 @@
       }
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #a8a196; border-radius: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #78716a; }
+      h1, h2, h3, .font-display { font-family: 'Barlow Condensed', 'Barlow', system-ui, sans-serif; letter-spacing: -0.005em; }
+      body { font-size: 17px; }
+      .faixa-obra { background: repeating-linear-gradient(-45deg, #1c1a17 0 14px, #ffc629 14px 28px); }
+      :focus-visible { outline: 3px solid #ffc629; outline-offset: 2px; }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
     </style>
     
     <meta name="google-site-verification" content="lOD8JwSTcclXga5LF3X9UQ8RAjOsNtotuvWunA95VzM" />
