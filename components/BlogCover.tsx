@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, ArrowRight, Shield, Clock, Phone, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Phone, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { PHONE_LINK, WHATSAPP_LINK, PHONE_DISPLAY, WHATSAPP_DISPLAY } from '../constants';
 
 export interface BlogArticle {
@@ -16,7 +16,7 @@ export interface BlogArticle {
 export const ADP_LOGO_OVERLAY = "https://img.supremasite.com.br/adp/adp-logo-padrao-120x120.png";
 
 /**
- * Mapeamento canônico das 10 imagens 16:9 com SEO Local correto para Curitiba e CIC
+ * Lista oficial com os nomes exatos de arquivos confirmados pelo servidor do cliente
  */
 export const BLOG_ARTICLES: BlogArticle[] = [
   {
@@ -50,7 +50,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 4,
     title: "Manutenção Preventiva em Condomínios na RMC: Economize Evitando Emergências",
-    image: "https://img.supremasite.com.br/adp/blog-manutencao-preventiva-condominios-rmc-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/06-manutencao-hidraulica-e-preventiva-cic-curitiba.jpg",
     alt: "Manutenção preventiva hidráulica em condomínios na RMC Curitiba - ADP",
     summary: "Prumadas prediais e colunas verticais demandam rotina preventiva para evitar transbordamentos em apartamentos térreos e prejuízos coletivos.",
     tag: "Condomínios e Prédios",
@@ -59,7 +59,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 5,
     title: "A Importância do Certificado de Limpeza de Caixa d'Água em Condomínios",
-    image: "https://img.supremasite.com.br/adp/blog-certificado-limpeza-caixa-dagua-condominios-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/05-limpeza-de-caixa-dagua-e-reservatorios-cic-curitiba.jpg",
     alt: "Certificado de limpeza de caixa d'água em condomínios Curitiba - ADP Desentupidora",
     summary: "Higienização técnica e desinfecção periódica de reservatórios atendendo às exigências sanitárias com emissão de laudo técnico oficial.",
     tag: "Saúde e Sanepar",
@@ -68,7 +68,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 6,
     title: "Mau Cheiro no Esgoto em Curitiba? 5 Causas Comuns e Como Resolver",
-    image: "https://img.supremasite.com.br/adp/blog-mau-cheiro-esgoto-causas-curitiba-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/01-desentupimento-de-pias-e-ralos-cic-curitiba.jpg",
     alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP",
     summary: "Gases que retornam por ralos e pias costumam indicar sifonamento seco, ressecamento de anéis ou caixas de gordura sobrecarregadas.",
     tag: "Diagnóstico Hidráulico",
@@ -77,7 +77,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 7,
     title: "Desentupimento 24h em Curitiba: Quando Chamar a Emergência?",
-    image: "https://img.supremasite.com.br/adp/blog-desentupimento-24h-emergencia-curitiba-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/02-desentupimento-de-vasos-sanitarios-cic-curitiba.jpg",
     alt: "Desentupimento 24h emergência em Curitiba CIC - atendimento rápido ADP",
     summary: "O que fazer em casos de transbordamento de esgoto, refluxo sanitário ou retenção geral em residências e empresas fora do horário comercial.",
     tag: "Emergência Hidráulica",
@@ -86,7 +86,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 8,
     title: "3 Maneiras de Desentupir Vaso Sanitário (e Quando Chamar a ADP)",
-    image: "https://img.supremasite.com.br/adp/blog-3-maneiras-desentupir-vaso-sanitario-adp-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/adp-site2-vasos-sanitarios-1080x1080-v2.jpg",
     alt: "Como desentupir vaso sanitário - 3 maneiras e quando chamar ADP Desentupidora",
     summary: "Diferença entre métodos manuais com desentupidor de borracha e quando a obstrução mecânica profunda exige sondas rotativas industriais.",
     tag: "Dicas Práticas",
@@ -104,7 +104,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 10,
     title: "Por Que Escolher a ADP? Nossos Diferenciais em Serviços Hidráulicos",
-    image: "https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/adp-site2-hero-curitiba-2200x1000-v2.jpg",
     alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba",
     summary: "Sede física registrada no CIC, frota própria de caminhões combinados, técnicos treinados, garantia técnica por escrito e transparência total.",
     tag: "Qualidade Comprovada",
@@ -133,15 +133,6 @@ interface BlogCoverProps {
   priority?: boolean;
 }
 
-/**
- * Componente padrão de capa com logo sobreposta via CSS
- * Obedece às regras:
- * - <img> com loading="lazy" (ou "eager" se priority) e decoding="async"
- * - Proporção 16:9 (1280x720)
- * - Alt semântico obrigatório
- * - Logo adp-logo-padrao-120x120.png sobreposta no canto inferior direito (20px de margem)
- * - srcset para responsividade
- */
 export const BlogCover: React.FC<BlogCoverProps> = ({
   image,
   alt,
@@ -187,7 +178,6 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
     <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200" id="artigos-tecnicos">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Cabeçalho Editorial Refinado */}
         <div className="max-w-3xl mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/80 text-blue-900 text-xs font-bold uppercase tracking-wider">
             <BookOpen size={14} className="text-blue-700" />
@@ -201,7 +191,6 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
           </p>
         </div>
 
-        {/* Grade com os 10 Artigos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((art) => (
             <article 
@@ -209,7 +198,6 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
               className="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                {/* Capa Padrão 16:9 com Logo Sobreposta */}
                 <BlogCover 
                   image={art.image} 
                   alt={art.alt} 
@@ -232,7 +220,6 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
                 </div>
               </div>
 
-              {/* Ações Diretas */}
               <div className="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between gap-3 text-xs sm:text-sm">
                 <a 
                   href={WHATSAPP_LINK}
@@ -258,7 +245,6 @@ export const BlogArticlesSection: React.FC<{ limit?: number; title?: string; sub
           ))}
         </div>
 
-        {/* Bloco de Atendimento Humanizado (Acolhimento para Idosos) */}
         <div className="mt-14 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1.5 text-center md:text-left">
             <div className="flex items-center gap-2 justify-center md:justify-start text-xs font-bold uppercase tracking-wider text-emerald-700">
