@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
                 >
                   <Phone size={26} fill="currentColor" className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-blue-100 block font-semibold kicker font-semibold">Toque para Ligar por Telefone</span>
+                    <span className="text-blue-100 block text-sm font-semibold">Toque para Ligar por Telefone</span>
                     <span className="text-2xl sm:text-3xl font-black text-white leading-tight">{PHONE_DISPLAY}</span>
                   </div>
                 </a>
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
                 >
                   <MessageCircle size={24} className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-emerald-100 block font-semibold kicker font-semibold">Falar pelo WhatsApp</span>
+                    <span className="text-emerald-100 block text-sm font-semibold">Falar pelo WhatsApp</span>
                     <span className="text-lg sm:text-xl font-bold text-white leading-tight">{WHATSAPP_DISPLAY}</span>
                   </div>
                 </a>
