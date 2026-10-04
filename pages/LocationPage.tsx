@@ -33,6 +33,7 @@ import { getConsolidation } from '../consolidations';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
 import NotFound from './NotFound';
+import { BlogCover, BLOG_IMAGES } from '../components/BlogCover';
 
 const ClientRedirect: React.FC<{ to: string }> = ({ to }) => {
   useEffect(() => {
@@ -341,6 +342,28 @@ const LocationPage: React.FC = () => {
 
   const dynamic = getEditorialData();
 
+  const profileCover = useMemo(() => {
+    switch (profile) {
+      case 'HEADQUARTERS_CIC':
+        return BLOG_IMAGES.DIFERENCIAIS_ADP;
+      case 'VERTICAL_CONDO':
+        return BLOG_IMAGES.MANUTENCAO_PREVENTIVA;
+      case 'GASTRONOMIC_COMMERCIAL':
+        return BLOG_IMAGES.MAU_CHEIRO;
+      case 'INDUSTRIAL_LOGISTIC':
+        return BLOG_IMAGES.HIDROJATEAMENTO;
+      case 'HISTORICAL_OLD_PIPES':
+        return BLOG_IMAGES.HIDROJATEAMENTO;
+      case 'SUBURBAN_RURAL_FOSSA':
+        return BLOG_IMAGES.CHEGADA_40MIN;
+      case 'METROPOLITAN_RMC':
+        return BLOG_IMAGES.CHEGADA_40MIN;
+      case 'RESIDENTIAL_FAMILY_SOBRADOS':
+      default:
+        return BLOG_IMAGES.VASO_SANITARIO;
+    }
+  }, [profile]);
+
   // 5. Schema.org JSON-LD Específico (Service + WebPage + FAQPage)
   // Nota: Não declara múltiplos LocalBusinesses físicos para evitar falsas filiais
   const localSchema = [
@@ -390,7 +413,7 @@ const LocationPage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-slate-50 min-h-screen">
       <EnhancedSEO 
         title={`Desentupidora em ${locationName} | ADP Serviços`}
         description={`Serviços de desentupimento em ${locationName}. Desobstrução técnica de esgoto, pias, ralos e vasos sanitários com máquinas rotativas e hidrojateamento.`}
@@ -400,84 +423,150 @@ const LocationPage: React.FC = () => {
       />
 
       {/* Header Local Hero - Refinado sem AI Slop */}
-      <section className="bg-slate-900 text-white py-14 sm:py-20 border-b border-slate-800">
+      <section className="bg-slate-900 text-white pt-14 pb-18 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-5">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
-              <span>{dynamic.typeLabel}</span>
-            </div>
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-              Desentupidora em <span className="text-blue-400">{locationName}</span>
-            </h1>
-            
-            <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              {dynamic.subheadline}
-            </p>
+            <div className="lg:col-span-7 space-y-5">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                <span>{dynamic.typeLabel}</span>
+              </div>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                Desentupidora em <span className="text-blue-400">{locationName}</span>
+              </h1>
+              
+              <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-2xl">
+                {dynamic.subheadline}
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
-              <a 
-                href={PHONE_LINK} 
-                className="bg-blue-600 hover:bg-blue-500 text-white py-3.5 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
-              >
-                <Phone size={18} fill="currentColor" />
-                <span>Ligar: {PHONE_DISPLAY}</span>
-              </a>
-              <a 
-                href={WHATSAPP_LINK} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
-              >
-                <MessageCircle size={18} />
-                <span>Solicitar Orçamento no WhatsApp</span>
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <a 
+                  href={PHONE_LINK} 
+                  className="bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
+                >
+                  <Phone size={18} fill="currentColor" />
+                  <span>Ligar: {PHONE_DISPLAY}</span>
+                </a>
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white py-4 px-6 rounded-xl font-bold text-base shadow-md transition flex items-center justify-center gap-3 text-center"
+                >
+                  <MessageCircle size={18} />
+                  <span>Solicitar Orçamento no WhatsApp</span>
+                </a>
+              </div>
+
+              <div className="pt-4 border-t border-slate-800 grid grid-cols-3 gap-2 text-xs sm:text-sm text-slate-300">
+                <div className="flex items-center gap-1.5">
+                  <Shield size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Garantia Escrita</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Wrench size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Sem Quebra</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MapPin size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Base no CIC</span>
+                </div>
+              </div>
             </div>
+
+            {/* Imagem de Capa 16:9 Correspondente ao Perfil com Logo Sobreposta */}
+            <div className="lg:col-span-5">
+              <BlogCover 
+                image={profileCover.image}
+                alt={profileCover.alt}
+                titleAttr={profileCover.titleAttr}
+                priority={true}
+                className="shadow-xl border border-slate-700/80"
+              />
+              <div className="mt-2 text-right">
+                <span className="text-xs text-slate-400">
+                  {profileCover.tag} · Atendimento em {locationName}
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
-          <article className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
+          <article className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
              <div className="flex items-center gap-4 mb-6">
-               <div className="p-3 bg-blue-50 rounded-2xl">
+               <div className="p-3 bg-blue-50 rounded-xl text-blue-700">
                  {dynamic.icon}
                </div>
                <div>
-                 <span className="text-xs font-bold uppercase text-adp-blue tracking-wider block">Diagnóstico no Local</span>
-                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                 <span className="text-xs font-bold uppercase text-blue-700 tracking-wider block">Diagnóstico no Local</span>
+                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
                    Atendimento Técnico de Desentupimento em {locationName}
                  </h2>
                </div>
              </div>
              
-             <div className="text-gray-700 text-base md:text-lg leading-relaxed space-y-4">
+             <div className="text-slate-700 text-base leading-relaxed space-y-4">
                 <p>{dynamic.editorial}</p>
                 <p>
                   A <strong>ADP Desentupidora</strong> atende residências, edifícios e comércios em <strong>{locationName}</strong> com foco em diagnóstico não invasivo. As desobstruções são realizadas com maquinário mecânico rotativo e hidrojateamento de alta pressão, eliminando incrustações sem danos à alvenaria.
                 </p>
              </div>
 
-             <div className="mt-8 p-6 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-4">
-                <Shield className="text-adp-green flex-shrink-0 mt-1" size={24} />
+             <div className="mt-8 p-6 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-4">
+                <Shield className="text-emerald-600 flex-shrink-0 mt-1" size={24} />
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1">Transparência Operacional</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4 className="font-bold text-slate-900 mb-1">Transparência Operacional</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Sede da empresa: {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}, {COMPANY_CITY} - {COMPANY_STATE}. Atendimento prestado em {locationName} por equipes técnicas volantes com avaliação no local antes de iniciar qualquer serviço.
                   </p>
                 </div>
              </div>
           </article>
 
+          {/* Seção de Transparência de Preço com Foto 16:9 */}
+          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-5">
+                <BlogCover 
+                  image={BLOG_IMAGES.PRECO.image}
+                  alt={BLOG_IMAGES.PRECO.alt}
+                  titleAttr={BLOG_IMAGES.PRECO.titleAttr}
+                  className="shadow-sm"
+                />
+              </div>
+              <div className="md:col-span-7 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Valores e Condições</span>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  Como é Calculado o Serviço em {locationName}?
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {BLOG_IMAGES.PRECO.summary}
+                </p>
+                <div className="pt-1">
+                  <a 
+                    href={PHONE_LINK} 
+                    className="inline-block bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition"
+                  >
+                    Consultar Preço: {PHONE_DISPLAY}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <VideoCTA location={locationName} />
 
           {/* Serviços Disponíveis na Região */}
-          <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-8 border-adp-orange pl-4">
+          <section className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+            <h3 className="text-2xl font-bold mb-6 text-slate-900">
               Serviços Prestados em {locationName}:
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
@@ -485,13 +574,13 @@ const LocationPage: React.FC = () => {
                 <Link 
                   key={idx} 
                   to={`/servicos/${s.slug}`}
-                  className="p-5 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all group block"
+                  className="p-5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all group block"
                 >
-                  <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-adp-blue transition">
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-700 transition">
                     {s.title}
                   </h4>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-2">{s.shortDesc}</p>
-                  <span className="text-xs font-semibold text-adp-blue flex items-center gap-1">
+                  <p className="text-slate-600 text-xs leading-relaxed mb-2">{s.shortDesc}</p>
+                  <span className="text-xs font-semibold text-blue-700 flex items-center gap-1">
                     Ver detalhes &rarr;
                   </span>
                 </Link>
@@ -500,23 +589,24 @@ const LocationPage: React.FC = () => {
           </section>
 
           {/* FAQs Locais Diferenciadas */}
-          <section className="bg-gray-50 p-8 rounded-3xl border border-gray-200">
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2">
-              <HelpCircle className="text-adp-blue" /> Dúvidas Frequentes: {locationName}
+          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 className="text-2xl font-bold mb-6 text-slate-900 flex items-center gap-2">
+              <HelpCircle className="text-blue-700" size={24} />
+              <span>Dúvidas Frequentes: {locationName}</span>
             </h3>
             <div className="space-y-3">
               {dynamic.faqs.map((faq, idx) => (
-                <div key={idx} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+                <div key={idx} className="bg-slate-50 rounded-xl border border-slate-200/80 overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                    className="w-full text-left px-6 py-4 font-bold text-gray-800 flex justify-between items-center hover:bg-gray-50 transition"
+                    className="w-full text-left px-5 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-100 transition"
                     aria-expanded={openFaq === idx}
                   >
-                    <span className="pr-4">{faq.q}</span>
-                    <ChevronDown className={`transition-transform duration-300 text-adp-blue flex-shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`} />
+                    <span className="pr-4 text-base">{faq.q}</span>
+                    <ChevronDown className={`transition-transform duration-200 text-blue-700 flex-shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === idx && (
-                    <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                    <div className="px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-200/60 pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -525,11 +615,11 @@ const LocationPage: React.FC = () => {
             </div>
           </section>
 
-          <div className="pt-6 border-t border-gray-200 flex flex-wrap gap-4 justify-between items-center text-sm">
-            <Link to="/cobertura" className="text-adp-blue font-bold hover:underline">
+          <div className="pt-6 border-t border-slate-200 flex flex-wrap gap-4 justify-between items-center text-sm">
+            <Link to="/cobertura" className="text-blue-700 font-bold hover:underline">
               &larr; Ver Todas as Cidades e Bairros Atendidos
             </Link>
-            <Link to="/mapa-do-site" className="text-gray-500 hover:text-adp-blue">
+            <Link to="/mapa-do-site" className="text-slate-500 hover:text-blue-700">
               Mapa Geral do Site
             </Link>
           </div>
@@ -537,22 +627,43 @@ const LocationPage: React.FC = () => {
 
         {/* Sidebar Lateral */}
         <aside className="lg:col-span-1">
-          <div className="sticky top-24 space-y-8">
-            <div className="bg-adp-blue text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-black mb-3">Atendimento em {locationName}</h3>
-              <p className="text-sm opacity-90 mb-6 leading-relaxed">
+          <div className="sticky top-24 space-y-6">
+            <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+                Atendimento Técnico
+              </span>
+              <h3 className="text-xl font-bold leading-tight">
+                Equipe Volante em {locationName}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
                 Equipes técnicas preparadas para desentupimentos residenciais, comerciais e industriais com máquinas rotativas e hidrojateamento.
               </p>
-              <a 
-                href={PHONE_LINK} 
-                className="block w-full bg-white text-adp-blue py-4 rounded-2xl font-black text-xl text-center hover:bg-gray-100 transition shadow-lg mb-3"
-              >
-                {PHONE_DISPLAY}
-              </a>
-              <div className="flex items-center justify-center gap-2 text-xs opacity-90">
-                <Clock size={14} /> Atendimento sob consulta de rota
+              
+              <div className="space-y-2.5 pt-2">
+                <a 
+                  href={PHONE_LINK} 
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white py-3.5 px-4 rounded-xl font-bold text-base shadow transition"
+                >
+                  <Phone size={18} fill="currentColor" />
+                  <span>{PHONE_DISPLAY}</span>
+                </a>
+                
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow transition"
+                >
+                  <MessageCircle size={18} />
+                  <span>WhatsApp de Plantão</span>
+                </a>
+              </div>
+
+              <div className="pt-3 border-t border-slate-800 text-xs text-slate-400">
+                Base Operacional: {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}.
               </div>
             </div>
+
             <LeadForm />
           </div>
         </aside>

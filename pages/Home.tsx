@@ -18,22 +18,48 @@ import {
 } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import { 
-  CITIES, 
-  NEIGHBORHOODS, 
   PHONE_LINK, 
   WHATSAPP_LINK, 
   PHONE_DISPLAY, 
   SERVICES,
-  toSlug,
   COMPANY_ADDRESS,
   COMPANY_NEIGHBORHOOD
 } from '../constants';
 import { Link } from 'react-router-dom';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
+import { BlogCover, BlogArticlesSection } from '../components/BlogCover';
 
 const Home: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Mapeamento semântico dos serviços para as capas 16:9 com logo overlay
+  const serviceCovers: Record<string, { image: string; alt: string }> = {
+    "desentupimento-de-esgoto": {
+      image: "https://img.supremasite.com.br/adp/blog-mau-cheiro-esgoto-causas-curitiba-16-9.jpg",
+      alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP"
+    },
+    "limpeza-de-fossa": {
+      image: "https://img.supremasite.com.br/adp/blog-manutencao-preventiva-condominios-rmc-16-9.jpg",
+      alt: "Manutenção preventiva hidráulica em condomínios na RMC Curitiba - ADP"
+    },
+    "caca-vazamentos": {
+      image: "https://img.supremasite.com.br/adp/blog-caca-vazamento-ultrassom-curitiba-16-9.jpg",
+      alt: "Caça vazamento com ultrassom em Curitiba - detector eletrônico ADP Encanadores"
+    },
+    "hidrojateamento": {
+      image: "https://img.supremasite.com.br/adp/blog-hidrojateamento-desentupimento-sem-quebrar-16-9.jpg",
+      alt: "Desentupimento sem quebrar com hidrojateamento em Curitiba - tecnologia ADP"
+    },
+    "limpeza-de-caixa-dagua": {
+      image: "https://img.supremasite.com.br/adp/blog-certificado-limpeza-caixa-dagua-condominios-16-9.jpg",
+      alt: "Certificado de limpeza de caixa d'água em condomínios Curitiba - ADP Desentupidora"
+    },
+    "video-inspecao": {
+      image: "https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg",
+      alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba"
+    }
+  };
 
   const homeFaqs = [
     {
@@ -64,27 +90,36 @@ const Home: React.FC = () => {
         includeLocalBusiness={true}
       />
 
-      {/* HERO SECTION - REFINADO, SEM SLOP, ALTO CONTRASTE */}
-      <section className="bg-slate-900 text-white pt-16 pb-20 border-b border-slate-800">
+      {/* HERO SECTION COM IMAGEM 16:9 E SEO LOCAL */}
+      <section className="bg-slate-900 text-white pt-14 pb-20 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             
             {/* Coluna Esquerda: Texto Principal e Ações de Contato */}
             <div className="lg:col-span-7 space-y-6">
               
-              {/* Kicker tipográfico sem badge de pílula */}
               <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
-                <span>Base em Curitiba · Atendimento Volante na Capital e RMC</span>
+                <span>Base no CIC Curitiba · Atendimento Volante na Capital e RMC</span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                Desentupidora em Curitiba com Diagnóstico Preciso e Sem Quebra
+                Desentupidora em Curitiba com Diagnóstico no Local e Sem Quebra
               </h1>
               
               <p className="text-base sm:text-lg text-slate-300 font-light max-w-2xl leading-relaxed">
-                Desobstrução técnica de esgotos, pias, ralos, vasos sanitários, hidrojateamento e localização de vazamentos. Equipes volantes com avaliação no local e orçamento transparente antes da execução.
+                Desobstrução técnica de esgotos, pias, ralos, vasos sanitários, hidrojateamento e localização de vazamentos. Equipes volantes com avaliação presencial e orçamento transparente antes da execução.
               </p>
+
+              {/* Imagem de Destaque Hero em 16:9 com Logo Sobreposta */}
+              <div className="pt-2">
+                <BlogCover 
+                  image="https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg"
+                  alt="Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba"
+                  priority={true}
+                  className="shadow-xl border border-slate-700/80"
+                />
+              </div>
 
               {/* Botões de Contato Principais (Grandes, Confortáveis para Idosos) */}
               <div className="flex flex-col sm:flex-row gap-3.5 pt-2">
@@ -119,7 +154,7 @@ const Home: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin size={18} className="text-blue-400 flex-shrink-0" />
-                  <span>Sede no CIC (Curitiba)</span>
+                  <span>Sede no CIC</span>
                 </div>
               </div>
             </div>
@@ -133,29 +168,53 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* GUIA CURITIBA - BANNER DE CONEXÃO REGIONAL */}
-      <section className="bg-slate-800 text-white py-6 border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-10 h-10 rounded-xl bg-blue-700/60 border border-blue-500/40 flex items-center justify-center flex-shrink-0">
-              <Building2 size={20} className="text-blue-300" />
+      {/* GUIA CURITIBA - BANNER DE CONEXÃO REGIONAL COM IMAGEM 16:9 RÁPIDA */}
+      <section className="bg-slate-800 text-white py-8 border-b border-slate-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            
+            <div className="md:col-span-5">
+              <BlogCover 
+                image="https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-9.jpg"
+                alt="Chegada em 40 minutos - desentupidora mais rápida de Curitiba - ADP CIC"
+                className="shadow-md"
+              />
             </div>
-            <div>
-              <h2 className="font-bold text-base sm:text-lg text-white">Central Operacional da Capital: Curitiba</h2>
-              <p className="text-xs sm:text-sm text-slate-300">Confira detalhes operacionais, rotas e lista de bairros atendidos na capital.</p>
+
+            <div className="md:col-span-7 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-300">
+                <Building2 size={16} />
+                <span>Atendimento Regional Estruturado</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Central Operacional e Logística em Curitiba
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+                Com base própria instalada na Rua Luiz Maltaca no CIC, atendemos todos os bairros de Curitiba e municípios metropolitanos com equipes volantes preparadas para rápida intervenção.
+              </p>
+              <div className="pt-2 flex flex-wrap gap-4 items-center">
+                <Link 
+                  to="/desentupidora-curitiba" 
+                  className="bg-white hover:bg-slate-100 text-slate-900 px-6 py-3 rounded-xl font-bold text-sm inline-flex items-center gap-2 transition shadow-sm"
+                >
+                  <span>Ver Guia Completo de Curitiba</span>
+                  <ArrowRight size={16} />
+                </Link>
+                <Link 
+                  to="/cobertura" 
+                  className="text-blue-300 hover:text-white text-sm font-semibold inline-flex items-center gap-1 transition"
+                >
+                  <span>Ver todas as cidades e bairros</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
             </div>
+
           </div>
-          <Link 
-            to="/desentupidora-curitiba" 
-            className="bg-white hover:bg-slate-100 text-slate-900 px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition whitespace-nowrap shadow-sm"
-          >
-            <span>Ver Guia de Curitiba</span>
-            <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
 
-      {/* IDENTIFICAÇÃO DE PROBLEMAS HIDRÁULICOS COMUNS */}
+      {/* IDENTIFICAÇÃO DE PROBLEMAS HIDRÁULICOS COMUNS COM CAPAS 16:9 */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
@@ -174,46 +233,53 @@ const Home: React.FC = () => {
                 title: "Pia ou Ralo Entupido", 
                 desc: "Água acumulando na cuba, escoando devagar ou com retorno de mau cheiro. Desobstrução rápida com molas espirais.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                icon: <Droplets size={24} className="text-blue-700" /> 
+                image: "https://img.supremasite.com.br/adp/blog-mau-cheiro-esgoto-causas-curitiba-16-9.jpg",
+                alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP"
               },
               { 
                 title: "Vaso Sanitário Obstruído", 
                 desc: "Nível da água subindo ao acionar a descarga com risco de refluxo. Desobstrução técnica sem arranhar ou quebrar a louça.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                icon: <Wrench size={24} className="text-blue-700" /> 
+                image: "https://img.supremasite.com.br/adp/blog-3-maneiras-desentupir-vaso-sanitario-adp-16-9.jpg",
+                alt: "Como desentupir vaso sanitário - 3 maneiras e quando chamar ADP Desentupidora"
               },
               { 
                 title: "Rede de Esgoto Principal", 
                 desc: "Retorno de água suja nas caixas de inspeção do quintal ou ralos do piso térreo. Limpeza profunda da canalização coletora.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                icon: <Truck size={24} className="text-blue-700" /> 
+                image: "https://img.supremasite.com.br/adp/blog-desentupimento-24h-emergencia-curitiba-16-9.jpg",
+                alt: "Desentupimento 24h emergência em Curitiba CIC - atendimento rápido ADP"
               },
               { 
                 title: "Conta de Água Muito Alta", 
                 desc: "Aumento repentino na fatura sem mudança de rotina? Localizamos o ponto exato de vazamentos subterrâneos com geofone.", 
                 link: "/servicos/caca-vazamentos", 
-                icon: <Search size={24} className="text-blue-700" /> 
+                image: "https://img.supremasite.com.br/adp/blog-caca-vazamento-ultrassom-curitiba-16-9.jpg",
+                alt: "Caça vazamento com ultrassom em Curitiba - detector eletrônico ADP Encanadores"
               }
             ].map((item, idx) => (
               <Link 
                 key={idx} 
                 to={item.link} 
-                className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-400 transition-all flex flex-col justify-between group"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-400 transition-all flex flex-col justify-between overflow-hidden group"
               >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center">
-                    {item.icon}
+                <div>
+                  <BlogCover 
+                    image={item.image}
+                    alt={item.alt}
+                  />
+                  <div className="p-6 space-y-2">
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-slate-100 flex items-center gap-1 text-sm font-bold text-blue-700 group-hover:translate-x-1 transition-transform">
+                <div className="p-6 pt-0 flex items-center gap-1 text-xs sm:text-sm font-bold text-blue-700 group-hover:translate-x-1 transition-transform">
                   <span>Conhecer o serviço</span>
-                  <ArrowRight size={15} />
+                  <ArrowRight size={14} />
                 </div>
               </Link>
             ))}
@@ -221,7 +287,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* GRADE DE SERVIÇOS ESPECIALIZADOS */}
+      {/* GRADE DE SERVIÇOS ESPECIALIZADOS COM CAPAS 16:9 */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
@@ -234,41 +300,53 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {SERVICES.map((serv) => (
-              <article 
-                key={serv.slug} 
-                className="bg-slate-50/60 p-7 sm:p-8 rounded-2xl border border-slate-200/90 hover:bg-white hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="w-11 h-11 rounded-xl bg-blue-700 text-white flex items-center justify-center font-bold">
-                    <Wrench size={20} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {SERVICES.map((serv) => {
+              const cover = serviceCovers[serv.slug] || {
+                image: "https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg",
+                alt: `Serviço de ${serv.title} em Curitiba - ADP Desentupidora`
+              };
+
+              return (
+                <article 
+                  key={serv.slug} 
+                  className="bg-slate-50/70 rounded-2xl border border-slate-200/90 hover:bg-white hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between overflow-hidden group"
+                >
+                  <div>
+                    {/* Capa 16:9 Obrigatória com Logo Sobreposta */}
+                    <BlogCover 
+                      image={cover.image}
+                      alt={cover.alt}
+                    />
+
+                    <div className="p-6 space-y-3">
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight group-hover:text-blue-700 transition">
+                        {serv.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        {serv.shortDesc}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                    {serv.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {serv.shortDesc}
-                  </p>
-                </div>
-                
-                <div className="pt-6 mt-6 border-t border-slate-200 flex items-center justify-between text-sm">
-                  <Link 
-                    to={`/servicos/${serv.slug}`} 
-                    className="font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1.5"
-                  >
-                    <span>Ver detalhes</span>
-                    <ArrowRight size={15} />
-                  </Link>
-                  <a 
-                    href={PHONE_LINK} 
-                    className="text-xs text-slate-500 font-semibold hover:text-blue-700"
-                  >
-                    Ligar: {PHONE_DISPLAY}
-                  </a>
-                </div>
-              </article>
-            ))}
+                  
+                  <div className="p-6 pt-0 border-t border-slate-200/60 mt-4 flex items-center justify-between text-xs sm:text-sm">
+                    <Link 
+                      to={`/servicos/${serv.slug}`} 
+                      className="font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1.5"
+                    >
+                      <span>Ver detalhes</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                    <a 
+                      href={PHONE_LINK} 
+                      className="text-slate-500 font-semibold hover:text-blue-700"
+                    >
+                      Ligar: {PHONE_DISPLAY}
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -318,6 +396,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* TODAS AS 10 CAPAS DO BLOG COM SEO LOCAL NO CIC E CURITIBA */}
+      <BlogArticlesSection />
 
       {/* VÍDEO / ESTRUTURA TÉCNICA */}
       <VideoCTA />

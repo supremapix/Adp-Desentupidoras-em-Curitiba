@@ -5,20 +5,23 @@ import {
   Phone, 
   ArrowRight, 
   Shield, 
-  Clock, 
   Droplets, 
   Camera, 
   Truck, 
   Wrench, 
   HelpCircle, 
   ChevronDown, 
-  MessageCircle 
+  MessageCircle,
+  FileCheck,
+  MapPin,
+  Clock
 } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
-import { PHONE_LINK, WHATSAPP_LINK, PHONE_DISPLAY, SERVICES } from '../constants';
+import { PHONE_LINK, WHATSAPP_LINK, PHONE_DISPLAY, WHATSAPP_DISPLAY, SERVICES, COMPANY_ADDRESS, COMPANY_NEIGHBORHOOD } from '../constants';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
 import NotFound from './NotFound';
+import { BlogCover, BLOG_IMAGES, BlogArticle } from '../components/BlogCover';
 
 interface ServiceDetail {
   seoTitle: string;
@@ -28,6 +31,8 @@ interface ServiceDetail {
   icon: React.ReactNode;
   heroText: string;
   description: string;
+  coverImage: BlogArticle;
+  secondaryImage: BlogArticle;
   causes: string[];
   benefits: string[];
   process: { step: string; title: string; desc: string }[];
@@ -44,9 +49,11 @@ const ServicePage = () => {
       seoDesc: "Desentupimento de rede de esgoto em Curitiba e Região Metropolitana. Desobstrução com máquinas rotativas e hidrojato sem quebrar pisos. Orçamento no local.",
       seoKeywords: "desentupimento esgoto curitiba, desentupidora de esgoto, desobstrução de esgoto curitiba, cano entupido curitiba",
       title: "Desentupimento de Esgoto",
-      icon: <Droplets size={44} className="text-adp-blue" />,
+      icon: <Droplets size={36} className="text-blue-700" />,
       heroText: "Desobstrução técnica de redes coletoras, ramais de pias, ralos e vasos sanitários em Curitiba e Região Metropolitana.",
       description: "O entupimento de redes de esgoto é um problema que requer intervenção técnica para evitar o refluxo de dejetos, contaminação ambiental e odores no imóvel. A ADP Desentupidora atua com máquinas desobstrutoras rotativas dotadas de cabos espirais flexíveis de aço e hidrojateamento de alta pressão, que removem incrustações de gordura, lodo e raízes sem necessidade de quebra de pisos ou paredes.",
+      coverImage: BLOG_IMAGES.EMERGENCIA_24H,
+      secondaryImage: BLOG_IMAGES.VASO_SANITARIO,
       causes: [
         "Acúmulo de gordura e resíduos de alimentos em ramais de cozinha",
         "Descarte inadequado de papel higiênico, absorventes ou objetos no vaso",
@@ -85,9 +92,11 @@ const ServicePage = () => {
       seoDesc: "Limpeza e esgotamento de fossa séptica em Curitiba e RMC. Caminhão auto vácuo de alta sucção com transporte e destinação técnica de resíduos.",
       seoKeywords: "limpeza de fossa curitiba, limpa fossa curitiba, esgotamento de fossa septica, caminhao auto vacuo curitiba",
       title: "Limpeza de Fossa Séptica",
-      icon: <Truck size={44} className="text-adp-blue" />,
+      icon: <Truck size={36} className="text-blue-700" />,
       heroText: "Esgotamento técnico de fossas sépticas, sumidouros e caixas de gordura com caminhão auto-vácuo em Curitiba e RMC.",
       description: "Fossas sépticas e sumidouros acumulam resíduos sólidos e pastosos que diminuem a capacidade de decantação do sistema, podendo gerar transbordamentos e infiltrações no solo. A ADP Desentupidora possui caminhões equipados com potentes bombas de sucção a vácuo, realizando a retirada segura e a correta destinação dos efluentes sanitários.",
+      coverImage: BLOG_IMAGES.MANUTENCAO_PREVENTIVA,
+      secondaryImage: BLOG_IMAGES.CHEGADA_40MIN,
       causes: [
         "Atingimento da capacidade máxima de lodo sedimentado na fossa",
         "Impermeabilização do fundo do sumidouro por camada de gordura",
@@ -122,9 +131,11 @@ const ServicePage = () => {
       seoDesc: "Localização precisa de vazamentos não visíveis em Curitiba. Geofone eletrônico para detectar vazamentos em canos embutidos sem quebrar o imóvel.",
       seoKeywords: "caca vazamentos curitiba, deteccao de vazamento, geofone curitiba, conta de agua alta curitiba",
       title: "Caça Vazamentos Especializado",
-      icon: <Wrench size={44} className="text-adp-blue" />,
+      icon: <Wrench size={36} className="text-blue-700" />,
       heroText: "Detecção acústica de vazamentos não visíveis em tubulações pressurizadas para solucionar contas de água elevadas.",
       description: "Uma conta de água com aumento anormal ou o ponteiro do hidrômetro girando sem torneiras abertas é indício claro de vazamento oculto. A ADP Desentupidora utiliza geofones eletrônicos ultrassensíveis para escutar o ruído característico de escape de água sob pressão, permitindo identificar o local exato da ruptura sem quebra-quebra generalizado.",
+      coverImage: BLOG_IMAGES.CACA_VAZAMENTO,
+      secondaryImage: BLOG_IMAGES.PRECO,
       causes: [
         "Ruptura de conexões soldáveis em ramais enterrados",
         "Movimentação do solo ou acomodação estrutural de paredes",
@@ -159,9 +170,11 @@ const ServicePage = () => {
       seoDesc: "Hidrojateamento de alta pressão para redes coletoras, galerias pluviais e caixas de gordura industriais em Curitiba e RMC. Limpeza profunda.",
       seoKeywords: "hidrojateamento curitiba, limpeza alta pressao esgoto, hidrojato tubulacao curitiba, desobstrucao hidrojateamento",
       title: "Hidrojateamento de Alta Pressão",
-      icon: <Droplets size={44} className="text-adp-blue" />,
+      icon: <Droplets size={36} className="text-blue-700" />,
       heroText: "Desincrustação profunda com água em alta pressão para tubulações de grande diâmetro e redes coletoras.",
       description: "Para tubulações industriais, caixas de gordura de restaurantes e galerias de condomínios onde há acúmulo severo de graxa e resíduos endurecidos, o hidrojateamento é o método mais eficaz. A água pressurizada limpa toda a circunferência interna da tubulação, restaurando o diâmetro original do cano sem a utilização de agentes químicos abrasivos.",
+      coverImage: BLOG_IMAGES.HIDROJATEAMENTO,
+      secondaryImage: BLOG_IMAGES.DIFERENCIAIS_ADP,
       causes: [
         "Incrustações espessas de gordura animal e vegetal petrificada",
         "Assoreamento de redes pluviais por areia, terra e detritos de obras",
@@ -196,9 +209,11 @@ const ServicePage = () => {
       seoDesc: "Limpeza e desinfecção de caixas d'água e reservatórios em Curitiba. Serviço especializado para residências, condomínios e empresas.",
       seoKeywords: "limpeza de caixa de agua curitiba, higienizacao reservatorio curitiba, limpar caixa dagua curitiba",
       title: "Limpeza de Caixa d'Água",
-      icon: <Shield size={44} className="text-adp-blue" />,
+      icon: <Shield size={36} className="text-blue-700" />,
       heroText: "Higienização técnica e desinfecção de caixas e reservatórios de água potável em Curitiba e Região Metropolitana.",
       description: "A potabilidade da água que abastece residências e condomínios depende diretamente da manutenção dos reservatórios. Com o tempo, acumulam-se biofilmes, lodo e poeira no fundo e nas laterais da caixa d'água. A ADP Desentupidora realiza a higienização física e química com desinfecção apropriada, preservando a saúde dos consumidores.",
+      coverImage: BLOG_IMAGES.CERTIFICADO_CAIXA_DAGUA,
+      secondaryImage: BLOG_IMAGES.MANUTENCAO_PREVENTIVA,
       causes: [
         "Sedimentação natural de partículas minerais trazidas pela rede de abastecimento",
         "Formação de biofilme bacteriano nas paredes do reservatório",
@@ -233,9 +248,11 @@ const ServicePage = () => {
       seoDesc: "Vídeo inspeção robotizada de tubulações em Curitiba. Câmera de alta resolução para filmagem interna de redes de esgoto sem quebrar nada.",
       seoKeywords: "video inspecao esgoto curitiba, filmagem tubulacao curitiba, inspecao camera esgoto curitiba",
       title: "Vídeo Inspeção de Tubulações",
-      icon: <Camera size={44} className="text-adp-blue" />,
+      icon: <Camera size={36} className="text-blue-700" />,
       heroText: "Filmagem interna com câmera de alta resolução para diagnóstico visual preciso de redes de esgoto e canalizações.",
       description: "Quando uma tubulação sofre entupimentos frequentes ou há suspeita de rompimento estrutural sob lajes e pisos, a vídeo inspeção é o método mais avançado de diagnóstico. Uma microcâmera com iluminação LED percorre o interior do encanamento, transmitindo imagens em alta definição que revelam rachaduras, ligações irregulares ou desabamento do cano.",
+      coverImage: BLOG_IMAGES.DIFERENCIAIS_ADP,
+      secondaryImage: BLOG_IMAGES.HIDROJATEAMENTO,
       causes: [
         "Entupimentos crônicos e repetitivos na mesma tubulação",
         "Suspeita de esmagamento ou quebra de tubulação sob garagens ou calçadas",
@@ -273,7 +290,6 @@ const ServicePage = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  // If slug is not recognized, return 404
   if (!content || !slug) {
     return <NotFound />;
   }
@@ -309,7 +325,7 @@ const ServicePage = () => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-slate-50 min-h-screen">
       <EnhancedSEO 
         title={content.seoTitle}
         description={content.seoDesc}
@@ -318,112 +334,213 @@ const ServicePage = () => {
         schemaData={serviceSchema}
       />
 
-      {/* Service Hero */}
-      <section className="bg-slate-900 text-white py-16 md:py-24 relative overflow-hidden border-b-4 border-adp-orange">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-adp-blue opacity-15 skew-x-12 translate-x-1/2"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-white/10 rounded-2xl border border-white/20">
-               {content.icon}
+      {/* Hero do Serviço - Refinado, sem AI Slop */}
+      <section className="bg-slate-900 text-white pt-12 pb-16 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Texto e Ações */}
+            <div className="lg:col-span-7 space-y-5">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-300 uppercase tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                <span>Base no CIC · Atendimento Volante em Curitiba e RMC</span>
+              </div>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+                {content.title} em Curitiba
+              </h1>
+              
+              <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-2xl">
+                {content.heroText}
+              </p>
+
+              {/* Ações de Contato em Destaque (Acessíveis para Idosos) */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <a 
+                  href={PHONE_LINK} 
+                  className="bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-xl font-bold text-base sm:text-lg shadow-md transition flex items-center justify-center gap-3 text-center"
+                >
+                  <Phone size={20} fill="currentColor" />
+                  <span>Ligar: {PHONE_DISPLAY}</span>
+                </a>
+                
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white py-4 px-6 rounded-xl font-bold text-base sm:text-lg shadow-md transition flex items-center justify-center gap-3 text-center"
+                >
+                  <MessageCircle size={20} />
+                  <span>Orçamento no WhatsApp</span>
+                </a>
+              </div>
+
+              {/* Indicadores de Credibilidade */}
+              <div className="pt-4 border-t border-slate-800 grid grid-cols-3 gap-2 text-xs sm:text-sm text-slate-300">
+                <div className="flex items-center gap-1.5">
+                  <Shield size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Garantia Escrita</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <FileCheck size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Orçamento Claro</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MapPin size={16} className="text-blue-400 flex-shrink-0" />
+                  <span>Sede no CIC</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black mb-6">
-            {content.title} em Curitiba
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-light leading-relaxed">
-            {content.heroText}
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a 
-              href={PHONE_LINK} 
-              className="bg-adp-blue hover:bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-            >
-              <Phone size={20} fill="currentColor" /> Ligar: {PHONE_DISPLAY}
-            </a>
-            <a 
-              href={WHATSAPP_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-[#25D366] hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-            >
-              <MessageCircle size={20} /> Orçamento via WhatsApp
-            </a>
+
+            {/* Imagem de Capa do Serviço em 16:9 com Logo Sobreposta */}
+            <div className="lg:col-span-5">
+              <BlogCover 
+                image={content.coverImage.image}
+                alt={content.coverImage.alt}
+                titleAttr={content.coverImage.titleAttr}
+                priority={true}
+                className="shadow-xl border border-slate-700/80"
+              />
+              <div className="mt-2 text-right">
+                <span className="text-xs text-slate-400">
+                  {content.coverImage.tag} · ADP Curitiba
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Main Content Layout */}
-      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-3 gap-12">
+      {/* Conteúdo Principal com Barra Lateral */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-12">
           
           {/* Descrição Detalhada */}
-          <article className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 border-l-8 border-adp-blue pl-4">
-              O que é o serviço de {content.title}?
+          <article className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">
+              Como Funciona o Serviço de {content.title}
             </h2>
-            <p className="text-gray-700 leading-relaxed text-lg mb-6">
+            <p className="text-slate-700 leading-relaxed text-base sm:text-lg mb-8">
               {content.description}
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-              Causas Mais Comuns Deste Problema
-            </h3>
-            <ul className="space-y-3 mb-8">
-              {content.causes.map((cause, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <div className="w-5 h-5 rounded-full bg-red-100 text-adp-red flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✕</div>
-                  <span>{cause}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Segunda Capa 16:9 Dentro do Artigo com Alt Semântico e Logo Sobreposta */}
+            <div className="my-8">
+              <BlogCover 
+                image={content.secondaryImage.image}
+                alt={content.secondaryImage.alt}
+                titleAttr={content.secondaryImage.titleAttr}
+                className="shadow-sm border border-slate-200"
+              />
+              <p className="text-xs text-slate-500 mt-2 text-center italic">
+                {content.secondaryImage.summary}
+              </p>
+            </div>
 
-            <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-              Vantagens do Atendimento ADP
-            </h3>
-            <ul className="space-y-3 mb-8">
-              {content.benefits.map((benefit, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <CheckCircle size={20} className="text-adp-green flex-shrink-0 mt-0.5" />
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="grid md:grid-cols-2 gap-8 pt-4">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <span>Causas Frequentes do Problema</span>
+                </h3>
+                <ul className="space-y-3">
+                  {content.causes.map((cause, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                      <span className="text-amber-700 font-bold mt-0.5">•</span>
+                      <span>{cause}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                  <span>Diferenciais ADP no Atendimento</span>
+                </h3>
+                <ul className="space-y-3">
+                  {content.benefits.map((benefit, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700">
+                      <CheckCircle size={17} className="text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </article>
 
+          {/* Seção de Transparência de Preço com a Imagem Canônica de Orçamento */}
+          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-5">
+                <BlogCover 
+                  image={BLOG_IMAGES.PRECO.image}
+                  alt={BLOG_IMAGES.PRECO.alt}
+                  titleAttr={BLOG_IMAGES.PRECO.titleAttr}
+                  className="shadow-sm"
+                />
+              </div>
+              <div className="md:col-span-7 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Transparência Total</span>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  Como é Calculado o Preço do Desentupimento?
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {BLOG_IMAGES.PRECO.summary} Nossos técnicos avaliam a situação no local e apresentam a proposta formal antes de iniciar qualquer serviço.
+                </p>
+                <div className="pt-2 flex items-center gap-3">
+                  <a 
+                    href={PHONE_LINK} 
+                    className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition"
+                  >
+                    Consultar Valores: {PHONE_DISPLAY}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Processo Passo a Passo */}
-          <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 border-l-8 border-adp-orange pl-4">
-              Metodologia de Execução: Passo a Passo
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-6">
+          <section className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+            <div className="mb-6 space-y-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Etapas Técnicas</span>
+              <h2 className="text-2xl font-bold text-slate-900">
+                Como Executamos o Serviço Passo a Passo
+              </h2>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-5">
               {content.process.map((p, idx) => (
-                <div key={idx} className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                  <span className="text-3xl font-black text-adp-blue/40 block mb-2">{p.step}</span>
-                  <h4 className="font-bold text-gray-900 text-lg mb-2">{p.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{p.desc}</p>
+                <div key={idx} className="bg-slate-50 p-5 rounded-xl border border-slate-200/80">
+                  <span className="text-2xl font-bold text-blue-700 font-mono block mb-1">{p.step}</span>
+                  <h4 className="font-bold text-slate-900 text-base mb-1">{p.title}</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">{p.desc}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* FAQ do Serviço */}
-          <section className="bg-gray-50 p-8 rounded-3xl border border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <HelpCircle className="text-adp-blue" /> Dúvidas Frequentes sobre {content.title}
+          <section className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <HelpCircle className="text-blue-700" size={24} />
+              <span>Dúvidas Frequentes sobre {content.title}</span>
             </h2>
             <div className="space-y-3">
               {content.faqs.map((faq, idx) => (
-                <div key={idx} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+                <div key={idx} className="bg-slate-50 rounded-xl border border-slate-200/80 overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                    className="w-full text-left px-6 py-4 font-bold text-gray-800 flex justify-between items-center hover:bg-gray-50 transition"
+                    className="w-full text-left px-5 py-4 font-bold text-slate-800 flex justify-between items-center hover:bg-slate-100 transition"
                     aria-expanded={openFaq === idx}
                   >
-                    <span className="pr-4">{faq.q}</span>
-                    <ChevronDown className={`transition-transform duration-300 text-adp-blue flex-shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`} />
+                    <span className="pr-4 text-base">{faq.q}</span>
+                    <ChevronDown className={`transition-transform duration-200 text-blue-700 flex-shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === idx && (
-                    <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                    <div className="px-5 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-200/60 pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -434,47 +551,66 @@ const ServicePage = () => {
 
           <VideoCTA service={content.title} />
 
-          {/* Outros Serviços */}
-          <section className="pt-6 border-t border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Outros Serviços Prestados pela ADP:</h3>
+          {/* Outros Serviços Especializados */}
+          <section className="pt-4 border-t border-slate-200">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">Outras Especialidades ADP:</h3>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
               {SERVICES.filter(s => s.slug !== slug).map(other => (
                 <Link
                   key={other.slug}
                   to={`/servicos/${other.slug}`}
-                  className="p-3 bg-white rounded-xl border border-gray-200 text-sm font-medium text-adp-blue hover:border-adp-blue transition flex items-center justify-between"
+                  className="p-3 bg-white rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:text-blue-700 hover:border-blue-300 transition flex items-center justify-between"
                 >
                   <span>{other.title}</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={14} className="text-blue-600" />
                 </Link>
               ))}
             </div>
           </section>
         </div>
 
-        {/* Sidebar Lateral */}
+        {/* Sidebar Lateral com Contato Direto e Acessível */}
         <aside className="lg:col-span-1">
-          <div className="sticky top-24 space-y-8">
-            <div className="bg-adp-blue text-white p-8 rounded-3xl shadow-xl">
-              <h3 className="text-2xl font-black mb-3">Solicitar {content.title}</h3>
-              <p className="text-sm opacity-90 mb-6 leading-relaxed">
-                Atendimento técnico em Curitiba e Região Metropolitana. Diagnóstico presencial e orçamento transparente.
+          <div className="sticky top-24 space-y-6">
+            
+            {/* Bloco de Atendimento Imediato */}
+            <div className="bg-slate-900 text-white p-7 rounded-2xl shadow-md border border-slate-800 space-y-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 block">
+                Atendimento Técnico no Local
+              </span>
+              <h3 className="text-xl font-bold leading-tight">
+                Solicitar {content.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                Atendemos Curitiba e todos os municípios metropolitanos com viaturas volantes e equipamentos adequados.
               </p>
-              <a 
-                href={PHONE_LINK} 
-                className="block w-full bg-white text-adp-blue py-4 rounded-2xl font-black text-xl text-center hover:bg-gray-100 transition shadow-lg mb-3"
-              >
-                {PHONE_DISPLAY}
-              </a>
-              <a 
-                href={WHATSAPP_LINK} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="block w-full bg-adp-green text-white py-3.5 rounded-2xl font-bold text-center hover:bg-green-600 transition"
-              >
-                Chamar no WhatsApp
-              </a>
+              
+              <div className="space-y-2.5 pt-2">
+                <a 
+                  href={PHONE_LINK} 
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white py-3.5 px-4 rounded-xl font-bold text-base shadow transition"
+                >
+                  <Phone size={18} fill="currentColor" />
+                  <span>{PHONE_DISPLAY}</span>
+                </a>
+                
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow transition"
+                >
+                  <MessageCircle size={18} />
+                  <span>Chamar no WhatsApp</span>
+                </a>
+              </div>
+
+              <div className="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
+                <div><strong>Base:</strong> {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}</div>
+                <div>Garantia técnica comprovada em ordem de serviço.</div>
+              </div>
             </div>
+
             <LeadForm />
           </div>
         </aside>

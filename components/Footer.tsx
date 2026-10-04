@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, HelpCircle, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, HelpCircle, ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { 
   PHONE_DISPLAY, 
@@ -15,53 +15,80 @@ import {
 } from '../constants';
 
 const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-slate-900 text-slate-200 border-t border-slate-800">
       
-      {/* 1. Seção Especial para Idosos e Atendimento Rápido */}
-      <div className="bg-blue-900/60 border-b border-blue-800/80 py-10 px-4 sm:px-6 lg:px-8">
+      {/* 1. Seção Especial de Navegação Acolhedora para Idosos e Aposentados */}
+      <div className="bg-slate-850 border-b border-slate-800 py-12 px-4 sm:px-6 lg:px-8 bg-[#0c1829]">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-slate-900/90 rounded-3xl p-6 sm:p-10 border border-blue-700/50 shadow-xl">
-            <div className="grid lg:grid-cols-3 gap-8 items-center">
+          <div className="bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-700/80 shadow-xl">
+            <div className="grid lg:grid-cols-12 gap-8 items-center">
               
-              <div className="lg:col-span-2 space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-300 flex items-center gap-1.5">
-                  <ShieldCheck size={16} /> Atendimento Humanizado e Transparente
-                </span>
+              <div className="lg:col-span-7 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/60 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-700/40">
+                  <HeartHandshake size={15} />
+                  <span>Atendimento Humanizado · Idosos e Aposentados</span>
+                </div>
+                
                 <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Precisa de ajuda com um entupimento? Fale com a gente
+                  Precisa de ajuda com encanamento? Fale com nossa equipe com calma
                 </h3>
-                <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-                  Nosso atendente conversa com você com calma, entende a situação da sua residência e explica todo o procedimento antes de qualquer agendamento.
+                
+                <p className="text-slate-300 text-base leading-relaxed font-light">
+                  Sabemos que um vazamento ou cano entupido gera preocupação. Nossos atendentes conversam com você com paciência, explicam como é feita a visita técnica e garantem que o valor seja aprovado por escrito antes de qualquer trabalho.
                 </p>
 
-                {/* Passo a Passo Simples para Idosos */}
-                <div className="grid sm:grid-cols-3 gap-3 pt-3 text-xs sm:text-sm text-slate-300">
-                  <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                    <strong className="text-white block mb-0.5">1. Você liga ou escreve</strong>
-                    Sem burocracia nem robôs complicados.
+                {/* 4 Passos Claros e Objetivos */}
+                <div className="grid sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-slate-300">
+                  <div className="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                    <CheckCircle2 size={18} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block font-semibold">1. Você liga sem pressa</strong>
+                      Atendentes reais, sem menus eletrônicos confusos.
+                    </div>
                   </div>
-                  <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                    <strong className="text-white block mb-0.5">2. Informa o problema</strong>
-                    Pia, ralo, vaso sanitário ou rede de esgoto.
+                  
+                  <div className="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                    <CheckCircle2 size={18} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block font-semibold">2. Explica o problema</strong>
+                      Pia de cozinha, ralo do banheiro, vaso ou esgoto.
+                    </div>
                   </div>
-                  <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                    <strong className="text-white block mb-0.5">3. Avaliação no local</strong>
-                    O técnico avalia e informa o valor antes de iniciar.
+
+                  <div className="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                    <CheckCircle2 size={18} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block font-semibold">3. Orçamento no local</strong>
+                      O técnico avalia e informa o valor antes de começar.
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                    <CheckCircle2 size={18} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block font-semibold">4. Serviço sem quebra</strong>
+                      Equipamentos rotativos e garantia técnica por escrito.
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Botões de Ação Imediata com Letra Grande */}
-              <div className="flex flex-col gap-3.5">
+              {/* Botões de Ação Imediata com Letra Grande para Idosos */}
+              <div className="lg:col-span-5 flex flex-col gap-3.5">
                 <a 
                   href={PHONE_LINK}
-                  className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white p-4 sm:p-5 rounded-2xl shadow-lg transition active:scale-98 text-center group"
+                  className="flex items-center justify-center gap-3.5 bg-blue-600 hover:bg-blue-500 text-white p-5 rounded-2xl shadow-lg transition active:scale-98 text-center group"
+                  title={`Ligar agora para ${PHONE_DISPLAY}`}
                 >
-                  <Phone size={24} fill="currentColor" className="text-white flex-shrink-0" />
+                  <Phone size={26} fill="currentColor" className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-xs uppercase tracking-wider text-blue-100 block font-semibold">Ligar por Telefone</span>
-                    <span className="text-xl sm:text-2xl font-black text-white leading-tight">{PHONE_DISPLAY}</span>
+                    <span className="text-xs uppercase tracking-wider text-blue-100 block font-semibold">Toque para Ligar por Telefone</span>
+                    <span className="text-2xl sm:text-3xl font-black text-white leading-tight">{PHONE_DISPLAY}</span>
                   </div>
                 </a>
 
@@ -69,14 +96,19 @@ const Footer: React.FC = () => {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl shadow-lg transition active:scale-98 text-center"
+                  className="flex items-center justify-center gap-3.5 bg-emerald-600 hover:bg-emerald-500 text-white p-4.5 rounded-2xl shadow-lg transition active:scale-98 text-center"
+                  title={`Mandar mensagem no WhatsApp: ${WHATSAPP_DISPLAY}`}
                 >
-                  <MessageCircle size={22} className="text-white flex-shrink-0" />
+                  <MessageCircle size={24} className="text-white flex-shrink-0" />
                   <div className="text-left">
-                    <span className="text-xs uppercase tracking-wider text-emerald-100 block font-semibold">Mandar Mensagem no WhatsApp</span>
-                    <span className="text-base sm:text-lg font-bold text-white">{WHATSAPP_DISPLAY}</span>
+                    <span className="text-xs uppercase tracking-wider text-emerald-100 block font-semibold">Falar pelo WhatsApp</span>
+                    <span className="text-lg sm:text-xl font-bold text-white leading-tight">{WHATSAPP_DISPLAY}</span>
                   </div>
                 </a>
+
+                <div className="text-center text-xs text-slate-400 pt-1">
+                  Atendimento direto no CIC com equipes volantes para toda Curitiba e RMC.
+                </div>
               </div>
 
             </div>
@@ -84,14 +116,14 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Conteúdo Institucional e Links Confortáveis */}
+      {/* 2. Navegação Completa e Dados Corporativos */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Coluna 1: Empresa e Base Física */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold text-lg border border-slate-700">
                 ADP
               </div>
               <span className="font-bold text-xl text-white">ADP Desentupidora</span>
@@ -115,7 +147,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Coluna 2: Serviços Principais */}
+          {/* Coluna 2: Serviços Especializados */}
           <div className="space-y-4">
             <h4 className="text-white font-bold text-base border-b border-slate-800 pb-2">
               Serviços Especializados
@@ -135,7 +167,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Coluna 3: Navegação do Site e Regiões */}
+          {/* Coluna 3: Navegação e Regiões */}
           <div className="space-y-4">
             <h4 className="text-white font-bold text-base border-b border-slate-800 pb-2">
               Navegação e Locais
@@ -162,7 +194,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link to="/duvidas" className="text-slate-300 hover:text-white transition flex items-center gap-1.5 py-1">
                   <ArrowRight size={13} className="text-blue-400" />
-                  <span>Perguntas Frequentes</span>
+                  <span>Perguntas Frequentes (FAQ)</span>
                 </Link>
               </li>
               <li>
@@ -174,17 +206,28 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Coluna 4: Informações Úteis para Idosos */}
+          {/* Coluna 4: Segurança, Garantia e Acesso Rápido */}
           <div className="space-y-4">
             <h4 className="text-white font-bold text-base border-b border-slate-800 pb-2">
-              Segurança e Garantia
+              Garantia e Segurança
             </h4>
             <p className="text-slate-400 text-xs leading-relaxed">
               Todos os atendimentos contam com equipe identificada, equipamentos mecânicos não destrutivos e emissão de comprovante e garantia técnica do serviço executado.
             </p>
             <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
               <span className="font-bold text-white block">Atendimento por Equipes Volantes</span>
-              <p>Deslocamento sob agendamento e triagem técnica para toda a capital e municípios da RMC.</p>
+              <p>Deslocamento ágil sob consulta prévia de rota para toda a capital e municípios da RMC.</p>
+            </div>
+            
+            {/* Botão de Retornar ao Topo para Idosos */}
+            <div className="pt-2">
+              <button
+                onClick={scrollToTop}
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition border border-slate-700"
+              >
+                <ArrowUp size={15} />
+                <span>Voltar ao Topo da Página</span>
+              </button>
             </div>
           </div>
 
