@@ -1214,6 +1214,173 @@ export const QUALIFIED_PAGES: QualifiedPage[] = [
       },
     ],
   },
+  // ===== LOTE 5 =====
+  {
+    citySlug: 'fazenda-rio-grande',
+    slug: 'eucaliptos',
+    name: 'Eucaliptos',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora nos Eucaliptos, Fazenda Rio Grande | ADP',
+    description:
+      'Atendimento para desentupimento de esgoto, pias, ralos e caça-vazamento no bairro Eucaliptos em Fazenda Rio Grande. Orçamento com avaliação no local.',
+    intro: [
+      'O bairro Eucaliptos é o maior e mais populoso setor urbano de Fazenda Rio Grande, localizado ao longo do eixo da BR-116. Concentra intenso comércio, unidades de saúde e loteamentos residenciais.',
+      'A ADP realiza atendimentos sob agendamento no bairro Eucaliptos com equipes volantes saindo da base no CIC (Curitiba). A avaliação técnica é realizada no local para identificação do problema e apresentação do orçamento antes da execução.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Fazenda Rio Grande (PR)' },
+      { label: 'Classificação', value: 'Bairro oficial — Lei Municipal de Zoneamento / Prefeitura de Fazenda Rio Grande', href: 'https://fazendariogrande.pr.gov.br' },
+      { label: 'Acesso Principal', value: 'Eixo da Rodovia BR-116 e Av. das Américas' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no bairro Eucaliptos, em Fazenda Rio Grande?', a: COVERAGE_A('Eucaliptos', 'Fazenda Rio Grande') },
+      {
+        q: 'Como é feito o agendamento para Fazenda Rio Grande?',
+        a: 'Você entra em contato pelo telefone ou WhatsApp, descreve o problema e seleciona o melhor horário. A equipe se desloca da base no CIC até o imóvel no bairro Eucaliptos.',
+      },
+      {
+        q: 'É cobrada taxa de orçamento?',
+        a: 'O orçamento é apresentado no local após o diagnóstico do técnico. O trabalho só é iniciado mediante sua aprovação do valor informado.',
+      },
+    ],
+  },
+  {
+    citySlug: 'fazenda-rio-grande',
+    slug: 'estados',
+    name: 'Estados',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Bairro Estados, Fazenda Rio Grande | ADP',
+    description:
+      'Atendimento técnico para desentupimento de esgoto, pias, caixas de gordura e fossas no bairro Estados, em Fazenda Rio Grande. Avaliação no local.',
+    intro: [
+      'O bairro Estados é uma tradicional área residencial de Fazenda Rio Grande, abrigando o Parque Verde municipal e ligações viárias com os bairros Nações e Eucaliptos.',
+      'As equipes da ADP atendem residências e comércios no bairro Estados com máquinas rotativas e hidrojateamento. O valor é informado ao cliente após avaliação presencial da tubulação.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Fazenda Rio Grande (PR)' },
+      { label: 'Classificação', value: 'Bairro oficial urbano — Lei Municipal de Zoneamento', href: 'https://fazendariogrande.pr.gov.br' },
+      { label: 'Referência', value: 'Entorno do Parque Verde de Fazenda Rio Grande' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no bairro Estados, em Fazenda Rio Grande?', a: COVERAGE_A('Estados', 'Fazenda Rio Grande') },
+      {
+        q: 'Atendem emergências em residências no bairro Estados?',
+        a: 'Atendemos mediante disponibilidade de viaturas no dia. A confirmação de horário é feita no primeiro contato telefônico ou por WhatsApp.',
+      },
+    ],
+  },
+  {
+    citySlug: 'campina-grande-do-sul',
+    slug: 'jardim-paulista',
+    name: 'Jardim Paulista',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Jardim Paulista, Campina Grande do Sul | ADP',
+    description:
+      'Desentupimento de esgoto, pias, caça-vazamento e fossas no Jardim Paulista, principal bairro urbano e distrito de Campina Grande do Sul. Avaliação presencial.',
+    intro: [
+      'O Jardim Paulista é o principal polo urbano, comercial e residencial de Campina Grande do Sul, abrigando o Serviço Distrital e concentrando a maior densidade populacional do município.',
+      'Devido à distância e acessos pela Rodovia Régis Bittencourt (BR-116), o atendimento da ADP no Jardim Paulista é programado com saída da base no CIC, garantindo chegada com equipamento rotativo ou hidrojato adequado.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Campina Grande do Sul (PR)' },
+      { label: 'Classificação', value: 'Bairro oficial e Distrito Administrativo — Prefeitura / Serviço Distrital de Jardim Paulista', href: 'https://campinagrandedosul.pr.gov.br' },
+      { label: 'Acesso Principal', value: 'Rodovia Régis Bittencourt (BR-116) / Av. Juscelino Kubitschek' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no Jardim Paulista, em Campina Grande do Sul?', a: COVERAGE_A('Jardim Paulista', 'Campina Grande do Sul') },
+      {
+        q: 'Como solicitar orçamento no Jardim Paulista?',
+        a: 'Fale com nossa central via telefone ou WhatsApp. Agendamos o deslocamento e o técnico avalia a tubulação no local antes de apresentar o orçamento.',
+      },
+    ],
+  },
+  {
+    citySlug: 'piraquara',
+    slug: 'centro',
+    name: 'Centro',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Centro de Piraquara | ADP Serviços',
+    description:
+      'Desentupimento de esgoto, pias, ralos, caixas de gordura e caça-vazamento no Centro de Piraquara. Avaliação técnica no local com transparência.',
+    intro: [
+      'O Centro de Piraquara concentra a sede administrativa municipal, comércio tradicional e ligações com a Rodovia João Leopoldo Jacomel (PR-415).',
+      'A ADP atende estabelecimentos comerciais e imóveis residenciais na região central de Piraquara com máquinas de desobstrução mecânica e diagnóstico presencial.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Piraquara (PR)' },
+      { label: 'Classificação', value: 'Bairro sede — Prefeitura Municipal de Piraquara', href: 'https://piraquara.pr.gov.br' },
+      { label: 'Ligação Viária', value: 'PR-415 (Rodovia João Leopoldo Jacomel)' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no Centro de Piraquara?', a: COVERAGE_A('Centro', 'Piraquara') },
+      {
+        q: 'Como é feita a desobstrução sem quebrar pisos?',
+        a: 'Utilizamos cabos espirais flexíveis de aço movidos por máquinas rotativas que acompanham o traçado das curvas da tubulação, triturando a obstrução sem romper o cano.',
+      },
+    ],
+  },
+  {
+    citySlug: 'campo-largo',
+    slug: 'centro',
+    name: 'Centro',
+    prep: 'no',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora no Centro de Campo Largo | ADP Serviços',
+    description:
+      'Atendimento para desentupimento, caça-vazamento e limpeza de caixa d\'água no Centro de Campo Largo. Avaliação no local e orçamento antes de começar.',
+    intro: [
+      'O Centro de Campo Largo é o polo comercial e histórico do município, com acesso direto pela BR-277. Reúne comércios, clínicas, prédios residenciais e residências tradicionais.',
+      'Nossas equipes prestam atendimento no Centro de Campo Largo sob agendamento. O técnico examina a tubulação no local, identifica a causa da retenção e apresenta o valor formal ao cliente.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Campo Largo (PR)' },
+      { label: 'Classificação', value: 'Bairro sede comercial — Prefeitura Municipal de Campo Largo', href: 'https://campolargo.pr.gov.br' },
+      { label: 'Acesso Principal', value: 'BR-277 / Calçadão da Rua XV de Novembro' },
+    ],
+    homonyms: [],
+    faqs: [
+      { q: 'A ADP atende no Centro de Campo Largo?', a: COVERAGE_A('Centro', 'Campo Largo') },
+      {
+        q: 'Atendem comércios e restaurantes no Centro?',
+        a: 'Sim. Atendemos redes de esgoto, caixas de gordura e caça-vazamento para estabelecimentos comerciais com emissão de relatório técnico.',
+      },
+    ],
+  },
+  {
+    citySlug: 'almirante-tamandare',
+    slug: 'lamenha-grande',
+    name: 'Lamenha Grande',
+    prep: 'na',
+    lastmod: '2026-10-04',
+    title: 'Desentupidora na Lamenha Grande, Almirante Tamandaré | ADP',
+    description:
+      'Desentupimento e caça-vazamento na Lamenha Grande, Almirante Tamandaré. Saiba a diferença em relação ao bairro Lamenha Pequena de Curitiba.',
+    intro: [
+      'A Lamenha Grande é um populoso bairro de Almirante Tamandaré situado ao longo do Contorno Norte (PR-418), fazendo divisa com a zona norte de Curitiba. Não deve ser confundida com o bairro Lamenha Pequena de Curitiba.',
+      'Ao solicitar atendimento, especifique "Lamenha Grande em Almirante Tamandaré". A visita técnica é agendada a partir de nossa base no CIC com orçamento informado no local antes da execução.',
+    ],
+    facts: [
+      { label: 'Município', value: 'Almirante Tamandaré (PR)' },
+      { label: 'Classificação', value: 'Bairro urbano oficial — Secretaria de Urbanismo de Almirante Tamandaré', href: 'https://tamandare.pr.gov.br' },
+      { label: 'Atenção ao Homônimo', value: 'Lamenha Grande (Tamandaré) ≠ Lamenha Pequena (Curitiba)' },
+    ],
+    homonyms: [{ label: 'Lamenha Pequena, em Curitiba', path: '/local/bairro/lamenha-pequena' }],
+    faqs: [
+      { q: 'A ADP atende na Lamenha Grande, em Almirante Tamandaré?', a: COVERAGE_A('Lamenha Grande', 'Almirante Tamandaré') },
+      {
+        q: 'Qual a diferença entre Lamenha Grande e Lamenha Pequena?',
+        a: 'Lamenha Grande pertence ao município de Almirante Tamandaré, enquanto Lamenha Pequena é um bairro da cidade de Curitiba. Confirmar o município garante o agendamento correto.',
+      },
+    ],
+  },
 ];
 
 export const getQualifiedPage = (citySlug?: string, slug?: string) =>

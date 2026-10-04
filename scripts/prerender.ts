@@ -149,7 +149,7 @@ function updateRedirectConfigFiles() {
     redirects: redirectRules.map(r => ({
       source: r.fromPath,
       destination: r.targetPath,
-      permanent: true
+      statusCode: 301
     })),
     routes: [
       { handle: "filesystem" },

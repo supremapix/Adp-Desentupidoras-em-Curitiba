@@ -301,7 +301,7 @@ const ServicePage = () => {
       "name": `${content.title} - ADP Desentupidora Curitiba`,
       "description": content.description,
       "provider": {
-        "@type": "PlumbingService",
+        "@type": "Plumber",
         "name": "ADP Desentupidora Curitiba",
         "telephone": "+554133451194"
       },

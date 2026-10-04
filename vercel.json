@@ -5,422 +5,422 @@
     {
       "source": "/local/bairro/alto-da-rua-xv",
       "destination": "/local/bairro/alto-da-xv",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/batel-soho",
       "destination": "/local/bairro/batel",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/boqueirao-de-baixo",
       "destination": "/local/bairro/boqueirao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/boqueirao-de-cima",
       "destination": "/local/bairro/boqueirao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/centro-historico",
       "destination": "/local/bairro/centro",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/cic-norte",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/cic-central",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/cic-sul",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/cidade-industrial",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/ecoville",
       "destination": "/local/bairro/mossungue",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/jardim-schaffer",
       "destination": "/local/bairro/bom-retiro",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/tangua",
       "destination": "/local/bairro/taboao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-oficinas",
       "destination": "/local/bairro/cajuru",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-parolin",
       "destination": "/local/bairro/parolin",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-torres",
       "destination": "/local/bairro/prado-velho",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sabara",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-zumbi",
       "destination": "/local/cidade/colombo",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/abranches-de-baixo",
       "destination": "/local/bairro/barreirinha",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/abranches-de-cima",
       "destination": "/local/bairro/barreirinha",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-nossa-senhora-da-luz",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-tecnologica",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-verde",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-jose",
       "destination": "/local/bairro/cajuru",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-santa-helena",
       "destination": "/local/bairro/cajuru",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-industrial",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-conquista",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-uniao",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-nova-esperanca",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-osternack",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-nova",
       "destination": "/local/bairro/novo-mundo",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-domingos",
       "destination": "/local/bairro/cajuru",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-audi-uniao",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-becker",
       "destination": "/local/bairro/tatuquara",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-copel",
       "destination": "/local/bairro/pinheirinho",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-eletrosul",
       "destination": "/local/bairro/pinheirinho",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-trabalhador",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-joao",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-miguel",
       "destination": "/local/bairro/sao-miguel",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-santo-antonio",
       "destination": "/local/bairro/boqueirao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-nova-primavera",
       "destination": "/local/bairro/tatuquara",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-araucaria",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-concordia",
       "destination": "/local/bairro/pinheirinho",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-judas-tadeu",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-mateus",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-pedro",
       "destination": "/local/bairro/xaxim",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-marcos",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sao-paulo",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-industrial-oeste",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-industrial-norte",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-sabara",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-caiua",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-vitoria-regia",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-nova-esperanca",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-industrial",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-uniao",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-osternack",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-parigot-de-souza",
       "destination": "/local/bairro/sitio-cercado",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/conjunto-habitacional-vila-verde",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-reno",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-audi",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-barigui",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-pantanal",
       "destination": "/local/bairro/boqueirao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-sandra",
       "destination": "/local/bairro/campo-comprido",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/vila-formosa",
       "destination": "/local/bairro/novo-mundo",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/caiua",
       "destination": "/local/bairro/cic",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/carmo",
       "destination": "/local/bairro/boqueirao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/portao-velho",
       "destination": "/local/bairro/portao",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/guaira-velho",
       "destination": "/local/bairro/guaira",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/uberaba-de-cima",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/uberaba-de-baixo",
       "destination": "/local/bairro/uberaba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/bairro/sao-braz-velho",
       "destination": "/local/bairro/sao-braz",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/curitiba",
       "destination": "/desentupidora-curitiba",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/adrianopolis",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/agudos-do-sul",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/bocaiuva-do-sul",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/campo-do-tenente",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/cerro-azul",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/contenda",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/doutor-ulysses",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/lapa",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/pien",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/quitandinha",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/rio-negro",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/local/cidade/tunas-do-parana",
       "destination": "/cobertura",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "routes": [

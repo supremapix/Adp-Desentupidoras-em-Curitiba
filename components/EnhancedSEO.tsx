@@ -51,7 +51,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
     },
     {
       "@context": "https://schema.org",
-      "@type": "PlumbingService",
+      "@type": "Plumber",
       "@id": `${baseUrl}/#organization`,
       "name": COMPANY_LEGAL_NAME,
       "alternateName": siteName,
