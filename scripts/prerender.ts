@@ -12,6 +12,7 @@ import {
   CONSOLIDATED_CITIES,
   getAllRedirectRules 
 } from '../consolidations';
+import { QUALIFIED_PAGES } from '../data/metroNeighborhoods';
 
 const HelmetProvider = (reactHelmetAsync as any).HelmetProvider || (reactHelmetAsync as any).default?.HelmetProvider;
 
@@ -23,6 +24,7 @@ interface RouteInfo {
   isIndexable: boolean;
   priority: string;
   changefreq: string;
+  lastmod?: string;
 }
 
 function getAllRoutes(): RouteInfo[] {
@@ -87,6 +89,17 @@ function getAllRoutes(): RouteInfo[] {
     });
   }
 
+  // Bairros de cidades da RMC com página própria qualificada (data/metroNeighborhoods.ts)
+  for (const p of QUALIFIED_PAGES) {
+    routes.push({
+      path: `/local/cidade/${p.citySlug}/${p.slug}`,
+      isIndexable: true,
+      priority: '0.6',
+      changefreq: 'monthly',
+      lastmod: p.lastmod
+    });
+  }
+
   return routes;
 }
 
@@ -98,7 +111,7 @@ function generateSitemap(routes: RouteInfo[]): string {
     const loc = r.path === '/' ? BASE_URL : `${BASE_URL}${r.path}`;
     return `  <url>
     <loc>${loc}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${r.lastmod || now}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`;

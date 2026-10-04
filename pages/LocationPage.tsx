@@ -33,6 +33,7 @@ import { getConsolidation } from '../consolidations';
 import EnhancedSEO from '../components/EnhancedSEO';
 import VideoCTA from '../components/VideoCTA';
 import NotFound from './NotFound';
+import CityNeighborhoodsHub from '../components/CityNeighborhoodsHub';
 import { BlogCover, BLOG_IMAGES } from '../components/BlogCover';
 
 const ClientRedirect: React.FC<{ to: string }> = ({ to }) => {
@@ -564,6 +565,9 @@ const LocationPage: React.FC = () => {
           </section>
 
           <VideoCTA location={locationName} />
+
+          {/* Bairros do município (inventário territorial) */}
+          {isCity && <CityNeighborhoodsHub citySlug={slug} />}
 
           {/* Serviços Disponíveis na Região */}
           <section className="pt-8 border-t-2 border-slate-900">

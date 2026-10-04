@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import LocationPage from './pages/LocationPage';
+import MetroNeighborhoodPage from './pages/MetroNeighborhoodPage';
 import SupremaPage from './pages/SupremaPage';
 import ServicePage from './pages/ServicePage';
 import HowItWorksPage from './pages/HowItWorksPage';
@@ -18,6 +19,7 @@ export const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/desentupidora-curitiba" element={<CuritibaSEOPage />} />
+        <Route path="/local/cidade/:city/:bairro" element={<MetroNeighborhoodPage />} />
         <Route path="/local/:type/:slug" element={<LocationPage />} />
         <Route path="/servicos/:slug" element={<ServicePage />} />
         <Route path="/como-funciona" element={<HowItWorksPage />} />
