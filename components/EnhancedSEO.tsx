@@ -12,7 +12,7 @@ import {
   COMPANY_GEO
 } from '../constants';
 
-const Helmet = (reactHelmetAsync as any).Helmet || (reactHelmetAsync as any).default?.Helmet;
+const Helmet = (reactHelmetAsync as any).Helmet || (reactHelmetAsync as any).default?.Helmet || (reactHelmetAsync as any);
 
 interface EnhancedSEOProps {
   title: string;
@@ -28,91 +28,75 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   title, 
   description, 
   canonicalPath = "", 
-  keywords, 
-  schemaData, 
+  keywords = "",
+  schemaData,
   noindex = false,
   includeLocalBusiness = false
 }) => {
   const location = useLocation();
-  const baseUrl = "https://adpservicos.app.br"; 
-  const path = canonicalPath || location.pathname || "/";
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  const currentUrl = normalizedPath === '/' ? baseUrl : `${baseUrl}${normalizedPath}`;
+  const baseUrl = "https://adpservicos.app.br";
+  const currentUrl = `${baseUrl}${canonicalPath || location.pathname}`;
+  const siteName = COMPANY_NAME;
+  const logoUrl = 'https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp';
 
-  // Organization / LocalBusiness oficial da sede única em Curitiba (CIC)
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "PlumbingService",
-    "@id": `${baseUrl}/#organization`,
-    "name": COMPANY_NAME,
-    "alternateName": COMPANY_LEGAL_NAME,
-    "image": `${baseUrl}/logo-social.jpg`,
-    "telephone": "+554133451194",
-    "url": baseUrl,
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": COMPANY_ADDRESS,
-      "addressLocality": COMPANY_CITY,
-      "addressRegion": COMPANY_STATE,
-      "postalCode": COMPANY_POSTAL_CODE,
-      "addressCountry": COMPANY_COUNTRY
+  const defaultSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      "url": baseUrl,
+      "name": siteName,
+      "description": description,
+      "inLanguage": "pt-BR"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": COMPANY_GEO.latitude,
-      "longitude": COMPANY_GEO.longitude
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Curitiba" },
-      { "@type": "City", "name": "São José dos Pinhais" },
-      { "@type": "City", "name": "Pinhais" },
-      { "@type": "City", "name": "Araucária" },
-      { "@type": "City", "name": "Colombo" },
-      { "@type": "City", "name": "Campo Largo" },
-      { "@type": "City", "name": "Fazenda Rio Grande" }
-    ]
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Início",
-        "item": baseUrl
+    {
+      "@context": "https://schema.org",
+      "@type": "PlumbingService",
+      "@id": `${baseUrl}/#organization`,
+      "name": COMPANY_LEGAL_NAME,
+      "alternateName": siteName,
+      "url": baseUrl,
+      "telephone": "+554133451194",
+      "email": "contato@adpservicos.app.br",
+      "priceRange": "$$",
+      "image": logoUrl,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": COMPANY_ADDRESS,
+        "addressLocality": COMPANY_CITY,
+        "addressRegion": COMPANY_STATE,
+        "postalCode": COMPANY_POSTAL_CODE,
+        "addressCountry": COMPANY_COUNTRY
       },
-      ...(normalizedPath !== '/' ? [{
-        "@type": "ListItem",
-        "position": 2,
-        "name": title.split('|')[0].trim(),
-        "item": currentUrl
-      }] : [])
-    ]
-  };
-
-  const schemaList: object[] = [];
-  
-  // Inclui LocalBusiness com endereço físico unicamente na Home, na landing de Curitiba ou se expressamente habilitado
-  if (includeLocalBusiness || normalizedPath === '/' || normalizedPath === '/desentupidora-curitiba') {
-    schemaList.push(localBusinessSchema);
-  }
-  
-  schemaList.push(breadcrumbSchema);
-
-  if (schemaData) {
-    if (Array.isArray(schemaData)) {
-      schemaList.push(...schemaData);
-    } else {
-      schemaList.push(schemaData);
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": COMPANY_GEO.latitude,
+        "longitude": COMPANY_GEO.longitude
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Curitiba" },
+        { "@type": "AdministrativeArea", "name": "Região Metropolitana de Curitiba" }
+      ]
     }
-  }
+  ];
 
-  const robotsContent = noindex 
-    ? "noindex, nofollow" 
-    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+  const combinedSchema = schemaData 
+    ? (Array.isArray(schemaData) ? [...defaultSchema, ...schemaData] : [...defaultSchema, schemaData])
+    : defaultSchema;
 
   return (
     <Helmet>
@@ -120,24 +104,31 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={currentUrl} />
-      <meta name="robots" content={robotsContent} />
       
-      {/* Open Graph */}
+      {noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      )}
+
+      {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:site_name" content={COMPANY_NAME} />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="pt_BR" />
+      <meta property="og:image" content={logoUrl} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      
-      {/* JSON-LD Schema */}
+      <meta name="twitter:image" content={logoUrl} />
+
+      {/* Structured Data JSON-LD */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaList)}
+        {JSON.stringify(combinedSchema)}
       </script>
     </Helmet>
   );

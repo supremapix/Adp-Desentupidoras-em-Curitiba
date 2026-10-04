@@ -69,9 +69,7 @@ const Header: React.FC = () => {
             
             {/* Logo Dignificada e Institucional */}
             <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="w-11 h-11 bg-slate-900 text-white rounded-xl flex items-center justify-center font-bold text-xl tracking-tight shadow-sm group-hover:bg-blue-900 transition">
-                ADP
-              </div>
+              <img src="https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp" alt="Logomarca ADP Encanadores - Desentupidora no CIC em Curitiba" width="56" height="56" className="w-12 h-12 sm:w-14 sm:h-14 object-contain shrink-0" decoding="async" />
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight text-slate-900 leading-tight">
                   ADP Desentupidora

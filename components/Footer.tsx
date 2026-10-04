@@ -123,9 +123,7 @@ const Footer: React.FC = () => {
           {/* Coluna 1: Empresa e Base Física */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold text-lg border border-slate-700">
-                ADP
-              </div>
+              <img src="https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp" alt="Logomarca ADP Encanadores - Desentupidora no CIC em Curitiba" width="64" height="64" loading="lazy" decoding="async" className="w-16 h-16 object-contain bg-white rounded-full p-1 shrink-0" />
               <span className="font-bold text-xl text-white">ADP Desentupidora</span>
             </div>
             

@@ -13,7 +13,7 @@ export interface BlogArticle {
   relatedServiceSlug?: string;
 }
 
-export const ADP_LOGO_OVERLAY = "https://img.supremasite.com.br/adp/adp-logo-padrao-120x120.png";
+export const ADP_LOGO_OVERLAY = "https://img.supremasite.com.br/adp/logomarca-adp-encanadores-cic-em-curitiba.webp";
 
 /**
  * Lista oficial com os nomes exatos de arquivos confirmados pelo servidor do cliente
@@ -50,7 +50,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 4,
     title: "Manutenção Preventiva em Condomínios na RMC: Economize Evitando Emergências",
-    image: "https://img.supremasite.com.br/adp/06-manutencao-hidraulica-e-preventiva-cic-curitiba.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-94.jpg",
     alt: "Manutenção preventiva hidráulica em condomínios na RMC Curitiba - ADP",
     summary: "Prumadas prediais e colunas verticais demandam rotina preventiva para evitar transbordamentos em apartamentos térreos e prejuízos coletivos.",
     tag: "Condomínios e Prédios",
@@ -59,7 +59,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 5,
     title: "A Importância do Certificado de Limpeza de Caixa d'Água em Condomínios",
-    image: "https://img.supremasite.com.br/adp/05-limpeza-de-caixa-dagua-e-reservatorios-cic-curitiba.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-93.jpg",
     alt: "Certificado de limpeza de caixa d'água em condomínios Curitiba - ADP Desentupidora",
     summary: "Higienização técnica e desinfecção periódica de reservatórios atendendo às exigências sanitárias com emissão de laudo técnico oficial.",
     tag: "Saúde e Sanepar",
@@ -68,7 +68,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 6,
     title: "Mau Cheiro no Esgoto em Curitiba? 5 Causas Comuns e Como Resolver",
-    image: "https://img.supremasite.com.br/adp/01-desentupimento-de-pias-e-ralos-cic-curitiba.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-92.jpg",
     alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP",
     summary: "Gases que retornam por ralos e pias costumam indicar sifonamento seco, ressecamento de anéis ou caixas de gordura sobrecarregadas.",
     tag: "Diagnóstico Hidráulico",
@@ -77,7 +77,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 7,
     title: "Desentupimento 24h em Curitiba: Quando Chamar a Emergência?",
-    image: "https://img.supremasite.com.br/adp/02-desentupimento-de-vasos-sanitarios-cic-curitiba.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-95.jpg",
     alt: "Desentupimento 24h emergência em Curitiba CIC - atendimento rápido ADP",
     summary: "O que fazer em casos de transbordamento de esgoto, refluxo sanitário ou retenção geral em residências e empresas fora do horário comercial.",
     tag: "Emergência Hidráulica",
@@ -86,7 +86,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 8,
     title: "3 Maneiras de Desentupir Vaso Sanitário (e Quando Chamar a ADP)",
-    image: "https://img.supremasite.com.br/adp/adp-site2-vasos-sanitarios-1080x1080-v2.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-97.jpg",
     alt: "Como desentupir vaso sanitário - 3 maneiras e quando chamar ADP Desentupidora",
     summary: "Diferença entre métodos manuais com desentupidor de borracha e quando a obstrução mecânica profunda exige sondas rotativas industriais.",
     tag: "Dicas Práticas",
@@ -95,7 +95,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 9,
     title: "Chegada em 40 Minutos: A Desentupidora Mais Rápida de Curitiba",
-    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-9.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-96.jpg",
     alt: "Chegada em 40 minutos - desentupidora mais rápida de Curitiba - ADP CIC",
     summary: "Logística estratégica com base no bairro CIC e viaturas volantes distribuídas para deslocamento rápido aos bairros da capital e RMC.",
     tag: "Agilidade Operacional",
@@ -104,7 +104,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     id: 10,
     title: "Por Que Escolher a ADP? Nossos Diferenciais em Serviços Hidráulicos",
-    image: "https://img.supremasite.com.br/adp/adp-site2-hero-curitiba-2200x1000-v2.jpg",
+    image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg",
     alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba",
     summary: "Sede física registrada no CIC, frota própria de caminhões combinados, técnicos treinados, garantia técnica por escrito e transparência total.",
     tag: "Qualidade Comprovada",
@@ -156,6 +156,7 @@ export const BlogCover: React.FC<BlogCoverProps> = ({
       />
       <img 
         src={ADP_LOGO_OVERLAY} 
+        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
         className="logo-overlay absolute bottom-5 right-5 w-[60px] h-[60px] bg-white rounded-full p-[5px] shadow-md object-contain z-10 pointer-events-none" 
         alt="ADP Desentupidora"
         width={60}

@@ -36,11 +36,11 @@ const Home: React.FC = () => {
   // Mapeamento semântico dos serviços para as capas 16:9 com logo overlay
   const serviceCovers: Record<string, { image: string; alt: string }> = {
     "desentupimento-de-esgoto": {
-      image: "https://img.supremasite.com.br/adp/blog-mau-cheiro-esgoto-causas-curitiba-16-9.jpg",
+      image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-92.jpg",
       alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP"
     },
     "limpeza-de-fossa": {
-      image: "https://img.supremasite.com.br/adp/blog-manutencao-preventiva-condominios-rmc-16-9.jpg",
+      image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-94.jpg",
       alt: "Manutenção preventiva hidráulica em condomínios na RMC Curitiba - ADP"
     },
     "caca-vazamentos": {
@@ -52,11 +52,11 @@ const Home: React.FC = () => {
       alt: "Desentupimento sem quebrar com hidrojateamento em Curitiba - tecnologia ADP"
     },
     "limpeza-de-caixa-dagua": {
-      image: "https://img.supremasite.com.br/adp/blog-certificado-limpeza-caixa-dagua-condominios-16-9.jpg",
+      image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-93.jpg",
       alt: "Certificado de limpeza de caixa d'água em condomínios Curitiba - ADP Desentupidora"
     },
     "video-inspecao": {
-      image: "https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg",
+      image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg",
       alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba"
     }
   };
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
               {/* Imagem de Destaque Hero em 16:9 com Logo Sobreposta */}
               <div className="pt-2">
                 <BlogCover 
-                  image="https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg"
+                  image="https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg"
                   alt="Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba"
                   priority={true}
                   className="shadow-xl border border-slate-700/80"
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
             
             <div className="md:col-span-5">
               <BlogCover 
-                image="https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-9.jpg"
+                image="https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-96.jpg"
                 alt="Chegada em 40 minutos - desentupidora mais rápida de Curitiba - ADP CIC"
                 className="shadow-md"
               />
@@ -233,21 +233,21 @@ const Home: React.FC = () => {
                 title: "Pia ou Ralo Entupido", 
                 desc: "Água acumulando na cuba, escoando devagar ou com retorno de mau cheiro. Desobstrução rápida com molas espirais.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                image: "https://img.supremasite.com.br/adp/blog-mau-cheiro-esgoto-causas-curitiba-16-9.jpg",
+                image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-92.jpg",
                 alt: "Mau cheiro no esgoto em Curitiba - 5 causas comuns e solução ADP"
               },
               { 
                 title: "Vaso Sanitário Obstruído", 
                 desc: "Nível da água subindo ao acionar a descarga com risco de refluxo. Desobstrução técnica sem arranhar ou quebrar a louça.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                image: "https://img.supremasite.com.br/adp/blog-3-maneiras-desentupir-vaso-sanitario-adp-16-9.jpg",
+                image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-97.jpg",
                 alt: "Como desentupir vaso sanitário - 3 maneiras e quando chamar ADP Desentupidora"
               },
               { 
                 title: "Rede de Esgoto Principal", 
                 desc: "Retorno de água suja nas caixas de inspeção do quintal ou ralos do piso térreo. Limpeza profunda da canalização coletora.", 
                 link: "/servicos/desentupimento-de-esgoto", 
-                image: "https://img.supremasite.com.br/adp/blog-desentupimento-24h-emergencia-curitiba-16-9.jpg",
+                image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-95.jpg",
                 alt: "Desentupimento 24h emergência em Curitiba CIC - atendimento rápido ADP"
               },
               { 
@@ -303,7 +303,7 @@ const Home: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {SERVICES.map((serv) => {
               const cover = serviceCovers[serv.slug] || {
-                image: "https://img.supremasite.com.br/adp/blog-por-que-escolher-adp-diferenciais-hidraulicos-16-9.jpg",
+                image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg",
                 alt: `Serviço de ${serv.title} em Curitiba - ADP Desentupidora`
               };
 

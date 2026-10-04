@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import * as reactHelmetAsync from 'react-helmet-async';
 
-const HelmetProvider = (reactHelmetAsync as any).HelmetProvider || (reactHelmetAsync as any).default?.HelmetProvider;
+const HelmetProvider = (reactHelmetAsync as any).HelmetProvider || (reactHelmetAsync as any).default?.HelmetProvider || (reactHelmetAsync as any);
 
 const rootElement = document.getElementById("root");
 
@@ -28,11 +28,21 @@ if (rootElement) {
   }
 }
 
-// Service Worker Registration com proteção de origem para preview
-if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.location.hostname !== 'localhost' && !window.location.hostname.includes('usercontent.goog')) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {
-      // Ignora erro de registro em ambiente de visualização
+// Service Worker: registra apenas em produção fora de iframe; no preview/dev remove SWs e caches antigos
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  const isPreview =
+    window.self !== window.top ||
+    window.location.hostname === 'localhost' ||
+    /usercontent\.goog|run\.app|aistudio/.test(window.location.hostname);
+
+  if (import.meta.env.PROD && !isPreview) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
     });
-  });
+  } else {
+    navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister())).catch(() => {});
+    if ('caches' in window) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {});
+    }
+  }
 }
