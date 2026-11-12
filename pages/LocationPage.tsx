@@ -1,3 +1,4 @@
+import LocalAccessGuidance from '../components/LocalAccessGuidance';
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { 
@@ -550,7 +551,7 @@ const LocationPage: React.FC = () => {
              <div className="text-slate-700 text-base leading-relaxed space-y-4">
                 <p>{dynamic.editorial}</p>
                 <p>
-                  A <strong>ADP Desentupidora</strong> atende residências, edifícios e comércios em <strong>{locationName}</strong> com foco em diagnóstico não invasivo. As desobstruções são realizadas com maquinário mecânico rotativo e hidrojateamento de alta pressão, eliminando incrustações sem danos à alvenaria.
+                  A <strong>ADP Desentupidora</strong> atende residências, edifícios e comércios em <strong>{locationName}</strong> com foco em diagnóstico não invasivo. As desobstruções são realizadas com maquinário mecânico rotativo e hidrojateamento de alta pressão, conforme a condição da rede e o acesso disponível. A necessidade de abertura ou reparo é avaliada no local.
                 </p>
              </div>
 
@@ -565,6 +566,7 @@ const LocationPage: React.FC = () => {
              </div>
           </article>
 
+          <LocalAccessGuidance name={locationName} metro={isCity} />
           {/* Seção de Transparência de Preço com Foto 16:9 */}
           <section className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-8 items-center">

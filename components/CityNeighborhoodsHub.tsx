@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { getCityInventory, qualifiedPathsFor } from '../data/metroNeighborhoods';
@@ -8,6 +8,8 @@ import { getCityInventory, qualifiedPathsFor } from '../data/metroNeighborhoods'
  * Só cria link para páginas efetivamente implementadas (QUALIFIED_PAGES).
  */
 const CityNeighborhoodsHub: React.FC<{ citySlug?: string }> = ({ citySlug }) => {
+  const [query,setQuery]=useState('');
+  const normalize=(v:string)=>v.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
   const inv = getCityInventory(citySlug);
   if (!inv) return null;
   const withPage = new Set(qualifiedPathsFor(inv.citySlug));
@@ -33,14 +35,16 @@ const CityNeighborhoodsHub: React.FC<{ citySlug?: string }> = ({ citySlug }) => 
         {inv.completeness === 'completo' ? `Bairros de ${inv.city} atendidos` : `Bairros e localidades de ${inv.city}`}
       </h2>
       <p className="mt-3 text-slate-700 leading-relaxed">
-        {inv.city} faz parte da área de cobertura da ADP. {inv.completeness === 'completo' ? 'A lista abaixo segue a fonte municipal indicada.' : 'A lista abaixo é parcial: reúne apenas os nomes encontrados em fontes oficiais até agora. Se o seu bairro não aparece, o atendimento é o mesmo.'} Os nomes destacados têm página própria com orientações; para os demais, basta chamar e informar o endereço completo.
+        {inv.city} faz parte da área de cobertura da ADP. {inv.completeness === 'completo' ? 'A lista abaixo segue a fonte municipal indicada.' : 'A lista abaixo é parcial: reúne os nomes encontrados nas fontes indicadas. Se o seu bairro não aparece, informe o endereço para consultar a disponibilidade.'} Os nomes destacados têm página própria com orientações; para os demais, basta chamar e informar o endereço completo.
       </p>
-      {groups.map((g) => (
+      <label className="adp-local-search">Encontrar bairro ou localidade<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Digite o nome, com ou sem acento" /></label>
+      <p role="status" className="text-sm mt-2">{inv.localities.filter(l=>normalize(l.name+' '+(l.aliases||[]).join(' ')).includes(normalize(query))).length} nomes encontrados na lista de {inv.city}.</p>
+      {groups.filter(g=>inv.localities.some(l=>l.classification===g&&normalize(l.name+' '+(l.aliases||[]).join(' ')).includes(normalize(query)))).map((g) => (
         <div key={g} className="mt-6">
           <h3 className="font-display font-bold uppercase text-xl">{label(g)}</h3>
           <ul className="mt-3 flex flex-wrap gap-2">
             {inv.localities
-              .filter((l) => l.classification === g)
+              .filter((l) => l.classification === g && normalize(l.name+' '+(l.aliases||[]).join(' ')).includes(normalize(query)))
               .map((l) =>
                 withPage.has(l.slug) ? (
                   <li key={l.slug}>
@@ -65,7 +69,7 @@ const CityNeighborhoodsHub: React.FC<{ citySlug?: string }> = ({ citySlug }) => 
         <a href={inv.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#c4161c]">
           {inv.sourceLabel} <ExternalLink size={12} aria-hidden="true" />
         </a>
-        {inv.completeness === 'parcial' ? ' — lista parcial.' : '.'}
+        {inv.completeness === 'parcial' ? ' — lista parcial.' : ' — cobertura da lista conforme o documento de origem, não uma atualização cadastral em tempo real.'}
         {inv.extraSources?.map((src) => (
           <span key={src.url}>
             {' · '}

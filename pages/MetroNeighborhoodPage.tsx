@@ -1,3 +1,4 @@
+import LocalAccessGuidance from '../components/LocalAccessGuidance';
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Phone, MessageCircle, ArrowRight, ChevronDown, MapPin, ExternalLink } from 'lucide-react';
@@ -97,6 +98,7 @@ const MetroNeighborhoodPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 grid lg:grid-cols-12 gap-12">
         <main className="lg:col-span-8 space-y-14">
+          <LocalAccessGuidance name={`${page.name}, ${cityName}`} metro />
           {/* SOBRE A LOCALIDADE */}
           <section>
             <h2 className="font-display font-extrabold uppercase text-3xl sm:text-4xl">Sobre o atendimento {page.prep ?? (page.name === 'Cachoeira' || page.name === 'Costeira' ? 'na' : 'no')} {page.name}</h2>

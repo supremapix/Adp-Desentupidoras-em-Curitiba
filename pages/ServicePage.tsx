@@ -1,3 +1,4 @@
+import ServicePreparation from '../components/ServicePreparation';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
@@ -51,7 +52,7 @@ const ServicePage = () => {
       title: "Desentupimento de Esgoto",
       icon: <Droplets size={36} className="text-blue-700" />,
       heroText: "Desobstrução técnica de redes coletoras, ramais de pias, ralos e vasos sanitários em Curitiba e Região Metropolitana.",
-      description: "O entupimento de redes de esgoto é um problema que requer intervenção técnica para evitar o refluxo de dejetos, contaminação ambiental e odores no imóvel. A ADP Desentupidora atua com máquinas desobstrutoras rotativas dotadas de cabos espirais flexíveis de aço e hidrojateamento de alta pressão, que removem incrustações de gordura, lodo e raízes sem necessidade de quebra de pisos ou paredes.",
+      description: "O entupimento de redes de esgoto é um problema que requer intervenção técnica para evitar o refluxo de dejetos, contaminação ambiental e odores no imóvel. A ADP Desentupidora atua com máquinas desobstrutoras rotativas dotadas de cabos espirais flexíveis de aço e hidrojateamento de alta pressão, para remover obstruções conforme a avaliação da rede. A possibilidade de trabalhar sem abertura de pisos ou paredes depende do acesso e do estado da tubulação.",
       coverImage: BLOG_IMAGES.EMERGENCIA_24H,
       secondaryImage: BLOG_IMAGES.VASO_SANITARIO,
       causes: [
@@ -83,7 +84,7 @@ const ServicePage = () => {
         },
         {
           q: "O procedimento danifica os canos de PVC?",
-          a: "Não. Os cabos e pontas são desenvolvidos para deslizar pelas curvas de tubulações de PVC e manilhas de barro sem furar ou quebrar os encanamentos estruturais."
+          a: "A ferramenta e o procedimento precisam ser escolhidos conforme o material e a condição da tubulação. Redes antigas ou fragilizadas exigem avaliação; não é possível garantir ausência de dano sem conhecer o estado da instalação."
         }
       ]
     },
@@ -473,6 +474,7 @@ const ServicePage = () => {
           </article>
 
           {/* Seção de Transparência de Preço com a Imagem Canônica de Orçamento */}
+          <ServicePreparation slug={slug || ""} />
           <section className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-5">
