@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Phone, Menu, X, ChevronDown, MessageCircle, ZoomIn, ZoomOut, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_LINK, WHATSAPP_DISPLAY, SERVICES } from '../constants';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const menuTrigger=useRef<HTMLButtonElement>(null);
+  const location=useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSeniorText, setIsSeniorText] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(true);
@@ -17,6 +19,8 @@ const Header: React.FC = () => {
     }
   }, []);
 
+  useEffect(()=>setIsMenuOpen(false),[location.pathname]);
+  useEffect(()=>{window.dispatchEvent(new CustomEvent('adp-mobile-menu-toggle',{detail:{isOpen:isMenuOpen}}));const key=(e:KeyboardEvent)=>{if(e.key==='Escape'&&isMenuOpen){setIsMenuOpen(false);menuTrigger.current?.focus();}};document.addEventListener('keydown',key);return()=>document.removeEventListener('keydown',key)},[isMenuOpen]);
   const toggleSeniorText = () => {
     const nextState = !isSeniorText;
     setIsSeniorText(nextState);
@@ -136,6 +140,8 @@ const Header: React.FC = () => {
 
               {/* Botão do Menu Mobile com Rótulo Claro para Idosos */}
               <button 
+                ref={menuTrigger}
+                aria-controls="adp-main-menu"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="lg:hidden inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-slate-300 text-slate-900 bg-slate-50 hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-blue-600 font-bold text-sm shadow-sm"
                 aria-label={isMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
@@ -159,7 +165,7 @@ const Header: React.FC = () => {
 
         {/* Menu Mobile Especialmente Projetado para Idosos */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-slate-100 border-t border-slate-200 shadow-2xl max-h-[85vh] overflow-y-auto">
+          <div id="adp-main-menu" className="lg:hidden bg-slate-100 border-t border-slate-200 shadow-2xl max-h-[85vh] overflow-y-auto">
             <div className="p-4 sm:p-6 space-y-4">
               
               {/* Bloco 1: Ações Principais de Contato (Botões Grandes com Letra Legível) */}
