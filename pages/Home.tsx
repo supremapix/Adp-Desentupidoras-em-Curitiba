@@ -45,6 +45,8 @@ const Home: React.FC = () => {
   };
 
   const homeFaqs = [
+    { q: "Preciso de encanador ou de desentupidora?", a: "Vazamento e perda de água pedem avaliação da instalação hidráulica; água que não escoa ou retorna pelo ralo pode indicar obstrução. Alguns casos combinam os dois problemas. Descreva os sinais para a ADP orientar a avaliação, sem precisar escolher o equipamento por conta própria." },
+    { q: "O que informar ao pedir um encanador em Curitiba?", a: "Informe o bairro, o tipo de imóvel, o ponto afetado e quando o problema começou. Avise se vários ralos estão retornando água ou se o vazamento continua mesmo com as torneiras fechadas. Fotos podem ajudar a organizar a visita, mas não substituem a avaliação presencial." },
     {
       q: "Como é calculado o orçamento para desentupimento em Curitiba?",
       a: "O valor é definido após avaliação técnica presencial da tubulação, considerando a extensão do bloqueio, o diâmetro da tubulação e o maquinário necessário (máquina rotativa de cabos flexíveis ou hidrojato). O orçamento detalhado é apresentado para aprovação antes de iniciar o serviço."
@@ -55,7 +57,7 @@ const Home: React.FC = () => {
     },
     {
       q: "Qual a área de atendimento da ADP Desentupidora?",
-      a: "Atendemos os 74 bairros oficiais de Curitiba e os municípios da Região Metropolitana, incluindo São José dos Pinhais, Araucária, Colombo, Pinhais, Fazenda Rio Grande e Campo Largo, com equipes técnicas volantes."
+      a: "Atendemos bairros de Curitiba e municípios da Região Metropolitana, incluindo São José dos Pinhais, Araucária, Colombo, Pinhais, Fazenda Rio Grande e Campo Largo, com equipes técnicas volantes."
     },
     {
       q: "Como é confirmada a conclusão do serviço?",
@@ -81,9 +83,9 @@ const Home: React.FC = () => {
   return (
     <div className="bg-[#faf6ef] text-slate-900">
       <EnhancedSEO 
-        title="Desentupidora em Curitiba | ADP Serviços Especializados"
-        description="Serviços de desentupimento em Curitiba e Região Metropolitana. Desobstrução técnica de esgoto, pias, ralos, vasos e caça vazamentos com diagnóstico preciso."
-        keywords="desentupidora curitiba, desentupimento curitiba, desentupidora de esgoto, caca vazamentos curitiba, limpa fossa curitiba"
+        title="Encanador e Desentupidora em Curitiba | ADP Serviços"
+        description="Precisa de encanador em Curitiba? ADP: avaliação de vazamentos e desentupimento de pias, ralos e esgoto. Consulte atendimento e orçamento antes de começar."
+        keywords="encanador curitiba, encanadores curitiba, desentupidora curitiba, desentupimento curitiba, desentupidora de esgoto, caca vazamentos curitiba, limpa fossa curitiba"
         canonicalPath="/"
         includeLocalBusiness={true}
       />
@@ -97,8 +99,8 @@ const Home: React.FC = () => {
               ADP Encanadores · {COMPANY_NEIGHBORHOOD}, Curitiba
             </p>
             <h1 className="mt-4 font-display font-extrabold uppercase leading-[0.95] text-[44px] sm:text-6xl lg:text-7xl text-slate-900">
-              Desentupidora em Curitiba
-              <span className="block text-[#c4161c]">Entupiu? A gente vai até você.</span>
+              Encanador em Curitiba
+              <span className="block text-[#c4161c]">Vazou ou entupiu? Fale com a ADP.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-700 max-w-xl">
               Desentupimento de pias, ralos, vasos e esgoto, limpeza de fossa e caça-vazamento em Curitiba e Região Metropolitana. O técnico avalia no local e passa o valor antes de começar.
@@ -155,6 +157,20 @@ const Home: React.FC = () => {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section aria-labelledby="encanador-ou-desentupidora" className="bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+          <h2 id="encanador-ou-desentupidora" className="font-display font-extrabold uppercase text-3xl sm:text-4xl">Quando chamar um encanador em Curitiba?</h2>
+          <p className="text-lg text-slate-700 max-w-4xl leading-relaxed">Uma mancha de umidade, consumo de água fora do habitual ou retorno de esgoto não têm necessariamente a mesma causa. A ADP avalia o problema no imóvel para orientar o serviço adequado. Não é preciso saber o nome da peça ou do equipamento para pedir ajuda.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="rounded-xl border border-slate-200 p-6"><h3 className="font-bold text-xl">Suspeita de vazamento</h3><p className="mt-3 leading-relaxed">Informe onde aparece a umidade e se houve mudança no consumo. A localização do ponto precisa ser avaliada antes de decidir por uma intervenção.</p><Link className="inline-block py-3 underline font-bold text-[#c4161c]" to="/servicos/caca-vazamentos">Entenda o caça-vazamentos</Link></div>
+            <div className="rounded-xl border border-slate-200 p-6"><h3 className="font-bold text-xl">Pia, ralo ou vaso entupido</h3><p className="mt-3 leading-relaxed">Conte se o problema afeta apenas um ponto ou vários locais. Escoamento lento e retorno de água ajudam a orientar a inspeção da rede.</p><Link className="inline-block py-3 underline font-bold text-[#c4161c]" to="/servicos/desentupimento-de-esgoto">Veja o serviço de desentupimento</Link></div>
+            <div className="rounded-xl border border-slate-200 p-6"><h3 className="font-bold text-xl">Antes de autorizar</h3><p className="mt-3 leading-relaxed">Confira o que será feito, o valor total e se há custos adicionais. Combine o teste final e peça esclarecimentos sobre qualquer mudança no orçamento.</p><Link className="inline-block py-3 underline font-bold text-[#c4161c]" to="/como-funciona">Como funciona o atendimento</Link></div>
+          </div>
+          <p className="text-lg text-slate-700">Para consultar disponibilidade, envie seu bairro e uma descrição do problema. A previsão de chegada é combinada conforme a localização e a agenda, sem prazo fixo prometido para toda Curitiba.</p>
+          <Link to="/cobertura" className="inline-flex min-h-[48px] items-center underline font-bold text-[#c4161c]">Consultar bairros e cidades atendidos</Link>
+        </div>
       </section>
 
       {/* SERVIÇOS */}
