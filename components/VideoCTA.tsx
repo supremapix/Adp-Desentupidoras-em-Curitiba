@@ -16,7 +16,7 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
 
   const getDescription = () => {
     if (service) {
-      return `Conheça a metodologia de atendimento para ${service}. Trabalhamos com máquinas elétricas de sondas espirais rotativas e hidrojateamento de alta pressão para desobstrução limpa e precisa, sem danificar as canalizações.`;
+      return `Para ${service}, informe os sintomas e as condições de acesso. O método, os equipamentos e os limites do atendimento precisam ser definidos conforme a avaliação e o serviço contratado.`;
     }
     if (location) {
       return `Equipes volantes preparadas para atender ${location}. Veículos equipados para desobstrução residencial, predial e comercial com diagnóstico presencial no local.`;
@@ -45,11 +45,11 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
             <div className="space-y-3 pt-1">
               <div className="flex items-start gap-3 text-sm text-slate-300">
                 <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span>Máquinas rotativas com cabos espirais flexíveis para desobstrução mecânica da tubulação</span>
+                <span>Descrição do problema e verificação dos pontos de acesso antes da execução</span>
               </div>
               <div className="flex items-start gap-3 text-sm text-slate-300">
                 <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
-                <span>Hidrojateamento com água em alta pressão para limpeza profunda de gordura e resíduos</span>
+                <span>Método e equipamentos compatíveis com o serviço e com as condições da instalação</span>
               </div>
               <div className="flex items-start gap-3 text-sm text-slate-300">
                 <CheckCircle className="text-emerald-400 flex-shrink-0 mt-0.5" size={18} />
@@ -88,8 +88,8 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
               <div className="flex items-start gap-3">
                 <ShieldCheck size={20} className="text-blue-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-semibold">Sem Danos Estruturais</strong>
-                  <span className="text-slate-400 text-xs">As sondas mecânicas raspam as paredes internas do cano sem quebrar azulejos, calçadas ou alvenaria.</span>
+                  <strong className="text-white block font-semibold">Avaliação Antes da Intervenção</strong>
+                  <span className="text-slate-400 text-xs">A possibilidade de usar os acessos existentes depende do estado da instalação. Reparos podem exigir abertura localizada.</span>
                 </div>
               </div>
 
@@ -104,8 +104,8 @@ const VideoCTA: React.FC<VideoCTAProps> = ({ location, service }) => {
               <div className="flex items-start gap-3">
                 <ShieldCheck size={20} className="text-blue-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-semibold">Garantia Comprovada</strong>
-                  <span className="text-slate-400 text-xs">Emissão de comprovante formal e ordem de serviço com garantia técnica dos procedimentos efetuados.</span>
+                  <strong className="text-white block font-semibold">Escopo e Registros do Atendimento</strong>
+                  <span className="text-slate-400 text-xs">Confirme no orçamento os registros fornecidos, as condições de garantia e os serviços que não estão incluídos.</span>
                 </div>
               </div>
             </div>

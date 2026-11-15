@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
               Garantia e Segurança
             </h4>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Todos os atendimentos contam com equipe identificada, equipamentos mecânicos não destrutivos e emissão de comprovante e garantia técnica do serviço executado.
+              Antes de autorizar, confirme a identificação da equipe, o método proposto, o registro do atendimento e as condições de garantia. A necessidade de reparos depende da avaliação da instalação.
             </p>
             <div className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
               <span className="font-bold text-white block">Atendimento por Equipes Volantes</span>

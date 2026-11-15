@@ -31,10 +31,10 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     id: 2,
-    title: "Desentupimento Sem Quebrar em Curitiba: Conheça o Hidrojateamento",
+    title: "Hidrojateamento em Curitiba: Quando a Avaliação Indica Esse Método",
     image: "https://img.supremasite.com.br/adp/blog-hidrojateamento-desentupimento-sem-quebrar-16-9.jpg",
-    alt: "Desentupimento sem quebrar com hidrojateamento em Curitiba - tecnologia ADP",
-    summary: "A água pressurizada limpa e raspa as paredes internas da tubulação eliminando placas de gordura sem danificar pisos ou cerâmicas.",
+    alt: "Hidrojateamento para limpeza de tubulações em Curitiba - ADP",
+    summary: "A limpeza com água pressurizada depende do acesso e das condições da tubulação. Confirme a adequação do método antes de autorizar o serviço.",
     tag: "Tecnologia Hidrojato",
     relatedServiceSlug: "hidrojateamento"
   },
@@ -43,7 +43,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     title: "Caça Vazamento com Ultrassom: Onde Encontrar em Curitiba e Região",
     image: "https://img.supremasite.com.br/adp/blog-caca-vazamento-ultrassom-curitiba-16-9.jpg",
     alt: "Caça vazamento com ultrassom em Curitiba - detector eletrônico ADP Encanadores",
-    summary: "Localização acústica precisa de vazamentos não visíveis em canos pressurizados com geofone digital, evitando quebra-quebra desnecessário.",
+    summary: "A investigação acústica pode ajudar a localizar perdas em tubulações pressurizadas. O resultado depende da instalação e dos testes disponíveis.",
     tag: "Detecção Eletrônica",
     relatedServiceSlug: "caca-vazamentos"
   },
@@ -61,8 +61,8 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     title: "A Importância do Certificado de Limpeza de Caixa d'Água em Condomínios",
     image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-93.jpg",
     alt: "Certificado de limpeza de caixa d'água em condomínios Curitiba - ADP Desentupidora",
-    summary: "Higienização técnica e desinfecção periódica de reservatórios atendendo às exigências sanitárias com emissão de laudo técnico oficial.",
-    tag: "Saúde e Sanepar",
+    summary: "Ao contratar a higienização do reservatório, confirme o procedimento, as condições de acesso e o registro que será fornecido. Limpeza e análise da água são serviços distintos.",
+    tag: "Cuidados com o Reservatório",
     relatedServiceSlug: "limpeza-de-caixa-dagua"
   },
   {
@@ -85,19 +85,19 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     id: 8,
-    title: "3 Maneiras de Desentupir Vaso Sanitário (e Quando Chamar a ADP)",
+    title: "Vaso Sanitário Entupido: O Que Informar ao Pedir Atendimento",
     image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-97.jpg",
-    alt: "Como desentupir vaso sanitário - 3 maneiras e quando chamar ADP Desentupidora",
-    summary: "Diferença entre métodos manuais com desentupidor de borracha e quando a obstrução mecânica profunda exige sondas rotativas industriais.",
+    alt: "Vaso sanitário entupido e avaliação de atendimento ADP",
+    summary: "Relate se há retorno, objeto descartado ou outros pontos afetados. Evite novas descargas quando houver risco de transbordamento e não misture produtos químicos.",
     tag: "Dicas Práticas",
     relatedServiceSlug: "desentupimento-de-esgoto"
   },
   {
     id: 9,
-    title: "Chegada em 40 Minutos: A Desentupidora Mais Rápida de Curitiba",
+    title: "Atendimento em Curitiba e Região: Como Consultar a Previsão de Chegada",
     image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-96.jpg",
-    alt: "Chegada em 40 minutos - desentupidora mais rápida de Curitiba - ADP CIC",
-    summary: "Logística estratégica com base no bairro CIC e viaturas volantes distribuídas para deslocamento rápido aos bairros da capital e RMC.",
+    alt: "Atendimento volante da ADP com base no CIC, Curitiba",
+    summary: "Informe endereço, acesso e urgência para consultar disponibilidade e previsão de chegada. A rota e a escala da equipe variam conforme o chamado.",
     tag: "Agilidade Operacional",
     relatedServiceSlug: "desentupimento-de-esgoto"
   },
@@ -107,7 +107,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     image: "https://img.supremasite.com.br/adp/blog-chegada-40-minutos-desentupidora-rapida-curitiba-16-91.jpg",
     alt: "Por que escolher a ADP Desentupidora - diferenciais hidráulicos no CIC Curitiba",
     summary: "Sede física no CIC, maquinário rotativo, hidrojateamento, avaliação técnica no local e transparência nas etapas do atendimento.",
-    tag: "Qualidade Comprovada",
+    tag: "Estrutura de Atendimento",
     relatedServiceSlug: "video-inspecao"
   }
 ];

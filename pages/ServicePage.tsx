@@ -112,7 +112,7 @@ const ServicePage = () => {
         "Atendimento a residências, condomínios, chácaras e indústrias"
       ],
       process: [
-        { step: "01", title: "Abertura e Ventilação", desc: "Abertura cuidadosa da tampa da fossa para dissipação de gases acumulados." },
+        { step: "01", title: "Avaliação e Isolamento da Área", desc: "Preparação da área pela equipe, com avaliação dos riscos e controle de acesso. O cliente não deve abrir ou entrar no sistema." },
         { step: "02", title: "Conexão dos Mangotes", desc: "Acoplamento de mangotes de alta sucção da bomba do caminhão ao compartimento." },
         { step: "03", title: "Sucção dos Resíduos", desc: "Esgotamento da fase líquida e pastosa sedimentada no fundo da fossa." },
         { step: "04", title: "Transporte do Efluente", desc: "Fechamento do sistema e transporte dos resíduos recolhidos em caminhão tanque homologado." }
@@ -120,7 +120,7 @@ const ServicePage = () => {
       faqs: [
         {
           q: "Com qual frequência a fossa séptica deve ser esgotada?",
-          a: "Em média, recomenda-se a limpeza anual ou bianual, dependendo do volume do reservatório e da quantidade de usuários no imóvel."
+          a: "O intervalo depende do projeto do sistema, do uso, do histórico e da avaliação técnica. Consulte o responsável pela instalação para definir a manutenção; não adote um prazo único para qualquer fossa."
         },
         {
           q: "Vocês atendem chácaras e áreas rurais na Região Metropolitana?",
@@ -130,12 +130,12 @@ const ServicePage = () => {
     },
     "caca-vazamentos": {
       seoTitle: "Caça Vazamentos em Curitiba | Detecção com Geofone | ADP",
-      seoDesc: "Localização precisa de vazamentos não visíveis em Curitiba. Geofone eletrônico para detectar vazamentos em canos embutidos sem quebrar o imóvel.",
+      seoDesc: "Investigação de vazamentos em Curitiba. Avaliação de consumo, umidade e tubulações para orientar localização e orçamento do reparo.",
       seoKeywords: "caca vazamentos curitiba, deteccao de vazamento, geofone curitiba, conta de agua alta curitiba",
       title: "Caça Vazamentos Especializado",
       icon: <Wrench size={36} className="text-blue-700" />,
       heroText: "Detecção acústica de vazamentos não visíveis em tubulações pressurizadas para solucionar contas de água elevadas.",
-      description: "Uma conta de água com aumento anormal ou o ponteiro do hidrômetro girando sem torneiras abertas é indício claro de vazamento oculto. A ADP Desentupidora utiliza geofones eletrônicos ultrassensíveis para escutar o ruído característico de escape de água sob pressão, permitindo identificar o local exato da ruptura sem quebra-quebra generalizado.",
+      description: "Aumento de consumo e umidade merecem investigação, mas não confirmam sozinhos um vazamento oculto. O histórico do imóvel, as leituras e os testes ajudam a avaliar a suspeita. A investigação acústica pode auxiliar a localização, com limitações conforme ruídos, acesso e condições da tubulação.",
       coverImage: BLOG_IMAGES.CACA_VAZAMENTO,
       secondaryImage: BLOG_IMAGES.PRECO,
       causes: [
@@ -174,7 +174,7 @@ const ServicePage = () => {
       title: "Hidrojateamento de Alta Pressão",
       icon: <Droplets size={36} className="text-blue-700" />,
       heroText: "Desincrustação profunda com água em alta pressão para tubulações de grande diâmetro e redes coletoras.",
-      description: "Para tubulações industriais, caixas de gordura de restaurantes e galerias de condomínios onde há acúmulo severo de graxa e resíduos endurecidos, o hidrojateamento é o método mais eficaz. A água pressurizada limpa toda a circunferência interna da tubulação, restaurando o diâmetro original do cano sem a utilização de agentes químicos abrasivos.",
+      description: "Para tubulações industriais, caixas de gordura de restaurantes e galerias de condomínios onde há acúmulo severo de graxa e resíduos endurecidos, o hidrojateamento é uma das opções a avaliar. A pressão e o equipamento precisam ser compatíveis com a tubulação. A limpeza não recupera um cano danificado nem substitui reparos estruturais.",
       coverImage: BLOG_IMAGES.HIDROJATEAMENTO,
       secondaryImage: BLOG_IMAGES.DIFERENCIAIS_ADP,
       causes: [
@@ -184,21 +184,21 @@ const ServicePage = () => {
         "Entupimentos recorrentes que sondas mecânicas não lavam totalmente"
       ],
       benefits: [
-        "Limpeza integral em 360 graus das paredes internas da tubulação",
-        "Solução ecológica que utiliza exclusivamente água sob pressão",
+        "Limpeza de resíduos em trechos acessíveis, conforme condições da rede",
+        "Método de limpeza que utiliza água pressurizada",
         "Apropriado para redes coletoras e galerias prediais de grande extensão",
-        "Redução drástica da frequência de novas obstruções"
+        "Orientação para prevenir recorrências conforme a causa encontrada"
       ],
       process: [
         { step: "01", title: "Aferição de Pressão", desc: "Ajuste da bomba pressurizadora de acordo com o material da tubulação." },
         { step: "02", title: "Inserção do Bico Técnico", desc: "Introdução da mangueira especial com bicos propulsores multidirecionais." },
         { step: "03", title: "Varredura e Desincrustação", desc: "Avanço autopropelido do bico cortando placas de gordura e arrastando sedimentos." },
-        { step: "04", title: "Enxágue e Validação", desc: "Fluxo abundante de água para garantir canalização 100% desobstruída." }
+        { step: "04", title: "Enxágue e Validação", desc: "Teste de escoamento e registro das condições observadas após a limpeza." }
       ],
       faqs: [
         {
           q: "Qual a diferença entre hidrojateamento e máquina desentupidora rotativa?",
-          a: "A máquina rotativa utiliza cabos de aço que perfuram e removem o tampão pontual. O hidrojateamento lava e desincrusta as paredes do cano por completo, sendo ideal para redes gordurosas ou de diâmetro maior."
+          a: "A máquina rotativa utiliza cabos de aço que perfuram e removem o tampão pontual. O hidrojateamento utiliza água pressurizada para remover resíduos. A escolha depende do acesso, material, condição e tipo de obstrução, sem garantia de limpeza integral de qualquer rede."
         },
         {
           q: "O hidrojateamento pode ser feito em apartamentos?",
@@ -612,7 +612,7 @@ const ServicePage = () => {
 
               <div className="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
                 <div><strong>Base:</strong> {COMPANY_ADDRESS}, {COMPANY_NEIGHBORHOOD}</div>
-                <div>Garantia técnica comprovada em ordem de serviço.</div>
+                <div>Confirme escopo, registros e condições de garantia no orçamento.</div>
               </div>
             </div>
 
