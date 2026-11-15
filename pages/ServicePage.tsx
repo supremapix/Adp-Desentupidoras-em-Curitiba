@@ -1,3 +1,4 @@
+import ServiceEditorial from '../components/ServiceEditorial';
 import ServicePreparation from '../components/ServicePreparation';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -47,7 +48,7 @@ const ServicePage = () => {
   const servicesContent: Record<string, ServiceDetail> = {
     "desentupimento-de-esgoto": {
       seoTitle: "Desentupimento de Esgoto em Curitiba | ADP Desentupidora",
-      seoDesc: "Desentupimento de rede de esgoto em Curitiba e Região Metropolitana. Desobstrução com máquinas rotativas e hidrojato sem quebrar pisos. Orçamento no local.",
+      seoDesc: "Desentupimento de rede de esgoto em Curitiba e Região Metropolitana. Avaliação da obstrução, dos acessos e do método de limpeza. Orçamento no local.",
       seoKeywords: "desentupimento esgoto curitiba, desentupidora de esgoto, desobstrução de esgoto curitiba, cano entupido curitiba",
       title: "Desentupimento de Esgoto",
       icon: <Droplets size={36} className="text-blue-700" />,
@@ -63,9 +64,9 @@ const ServicePage = () => {
       ],
       benefits: [
         "Restauração do fluxo normal da rede de esgoto",
-        "Eliminação de odores e refluxos insalubres",
-        "Execução sem quebra de alvenaria na grande maioria dos casos",
-        "Garantia técnica do serviço prestado com emissão de laudo"
+        "Avaliação das causas de refluxo e escoamento lento",
+        "Possibilidade de utilizar acessos existentes, conforme avaliação",
+        "Escopo, registros e condições de garantia definidos no orçamento"
       ],
       process: [
         { step: "01", title: "Inspeção Inicial", desc: "Avaliação técnica do ponto de refluxo e identificação da caixa de inspeção correspondente." },
@@ -144,7 +145,7 @@ const ServicePage = () => {
         "Ressecamento de tubulações antigas submetidas a alta pressão da rede"
       ],
       benefits: [
-        "Identificação pontual da ruptura sem demolição de pisos ou paredes",
+        "Investigação para orientar o ponto de intervenção, quando identificável",
         "Economia direta com a contenção do desperdício de água potável",
         "Laudo técnico descritivo do ponto identificado",
         "Possibilidade de execução do reparo hidráulico pontual"
@@ -152,17 +153,17 @@ const ServicePage = () => {
       process: [
         { step: "01", title: "Teste de Estanqueidade", desc: "Bloqueio de pontos de consumo e monitoramento do hidrômetro para comprovar a perda." },
         { step: "02", title: "Varredura com Geofone", desc: "Aplicação do sensor acústico de solo sobre as linhas da canalização pressurizada." },
-        { step: "03", title: "Demarcação do Ponto", desc: "Sinalização exata do local com maior emissão sonora de vazamento." },
+        { step: "03", title: "Demarcação do Ponto", desc: "Marcação da área indicada pela avaliação e pelos testes disponíveis." },
         { step: "04", title: "Laudo ou Reparo", desc: "Emissão de parecer técnico e execução de abertura localizada para conserto caso solicitado." }
       ],
       faqs: [
         {
           q: "Como o geofone consegue encontrar o vazamento dentro da parede ou do chão?",
-          a: "A água que vaza sob pressão emite uma vibração acústica de frequência característica. O geofone amplifica esse sinal e filtra ruídos externos, permitindo ao técnico isolar o ponto exato de vazamento."
+          a: "A água que vaza sob pressão emite uma vibração acústica de frequência característica. O geofone amplifica esse sinal e filtra ruídos externos, auxiliando o profissional na investigação. Ruídos e condições da instalação podem limitar o resultado."
         },
         {
           q: "O serviço de caça-vazamento inclui o conserto?",
-          a: "O serviço básico compreende a localização e demarcação precisa do ponto com laudo técnico. O reparo hidráulico pontual pode ser realizado pela própria equipe mediante orçamento prévio aprovado."
+          a: "Confirme se a proposta cobre investigação, registro dos resultados e reparo ou apenas uma dessas etapas. O conserto deve ter escopo e valor aprovados antes da execução."
         }
       ]
     },
@@ -246,12 +247,12 @@ const ServicePage = () => {
     },
     "video-inspecao": {
       seoTitle: "Vídeo Inspeção de Esgoto em Curitiba | Câmera para Canos | ADP",
-      seoDesc: "Vídeo inspeção robotizada de tubulações em Curitiba. Câmera de alta resolução para filmagem interna de redes de esgoto sem quebrar nada.",
+      seoDesc: "Vídeo inspeção de tubulações em Curitiba. Avaliação visual de trechos acessíveis para investigar obstruções recorrentes e planejar intervenções.",
       seoKeywords: "video inspecao esgoto curitiba, filmagem tubulacao curitiba, inspecao camera esgoto curitiba",
       title: "Vídeo Inspeção de Tubulações",
       icon: <Camera size={36} className="text-blue-700" />,
       heroText: "Filmagem interna com câmera de alta resolução para diagnóstico visual preciso de redes de esgoto e canalizações.",
-      description: "Quando uma tubulação sofre entupimentos frequentes ou há suspeita de rompimento estrutural sob lajes e pisos, a vídeo inspeção é o método mais avançado de diagnóstico. Uma microcâmera com iluminação LED percorre o interior do encanamento, transmitindo imagens em alta definição que revelam rachaduras, ligações irregulares ou desabamento do cano.",
+      description: "Quando uma tubulação sofre entupimentos frequentes ou há suspeita de rompimento estrutural sob lajes e pisos, a vídeo inspeção pode complementar o diagnóstico. Uma microcâmera com iluminação LED percorre o interior do encanamento, transmitindo imagens em alta definição que revelam rachaduras, ligações irregulares ou desabamento do cano.",
       coverImage: BLOG_IMAGES.DIFERENCIAIS_ADP,
       secondaryImage: BLOG_IMAGES.HIDROJATEAMENTO,
       causes: [
@@ -261,25 +262,25 @@ const ServicePage = () => {
         "Verificação técnica pós-obra para validar integridade da rede"
       ],
       benefits: [
-        "Localização milimétrica do defeito com indicação da profundidade",
-        "Eliminação da quebra desnecessária de revestimentos e alvenarias",
-        "Gravação digital da filmagem para análise do cliente e engenharia",
-        "Laudo técnico visual com fotos e descrição das irregularidades"
+        "Registro visual dos trechos que puderem ser inspecionados",
+        "Informações para planejar intervenções e reduzir aberturas desnecessárias",
+        "Formato de entrega das imagens combinado no orçamento",
+        "Descrição dos achados e limitações observadas, conforme escopo contratado"
       ],
       process: [
         { step: "01", title: "Acesso à Rede", desc: "Introdução da haste com câmera através de ralos, vasos ou caixas de inspeção." },
         { step: "02", title: "Navegação e Gravação", desc: "Avanço da sonda iluminada registrando imagens em tempo real em monitor." },
-        { step: "03", title: "Mapeamento das Anomalias", desc: "Marcação da metragem exata e da profundidade de eventuais rachaduras ou bloqueios." },
+        { step: "03", title: "Mapeamento das Anomalias", desc: "Registro das ocorrências visíveis e das limitações de alcance da inspeção." },
         { step: "04", title: "Entrega do Parecer", desc: "Disponibilização do vídeo e orientação técnica para solução direcionada." }
       ],
       faqs: [
         {
           q: "Qual a vantagem de fazer a vídeo inspeção antes de consertar o cano?",
-          a: "A filmagem mostra exatamente onde e qual é o problema (rachadura, raiz, objeto preso ou deformação). Com isso, abre-se o piso apenas sobre o local exato necessário, economizando em obras."
+          a: "A filmagem pode mostrar alterações no trecho acessível e ajudar a planejar o reparo. A qualidade da imagem, o acesso e a condição da rede limitam a conclusão; não há garantia de localizar todo defeito ou evitar qualquer abertura."
         },
         {
           q: "A câmera passa em canos de pequeno diâmetro?",
-          a: "Sim, dispomos de cabos de sondagem com cabeçotes articulados capazes de inspecionar canalizações a partir de 50mm de diâmetro."
+          a: "Informe o diâmetro conhecido, os acessos e as curvas da rede para confirmar a compatibilidade do equipamento. A viabilidade precisa ser verificada antes de prometer inspeção de todo o trecho."
         }
       ]
     }
@@ -474,6 +475,7 @@ const ServicePage = () => {
           </article>
 
           {/* Seção de Transparência de Preço com a Imagem Canônica de Orçamento */}
+          <ServiceEditorial slug={slug} />
           <ServicePreparation slug={slug || ""} />
           <section className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-8 items-center">
