@@ -1,3 +1,4 @@
+import EditorialQuestions from '../components/EditorialQuestions';
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, HelpCircle, DollarSign, Wrench, Shield, Clock } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
@@ -152,6 +153,7 @@ const FaqPage = () => {
             </section>
           ))}
 
+          <EditorialQuestions />
           <VideoCTA location="Curitiba e Região Metropolitana" />
         </div>
 
