@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
+import * as HelmetAsync from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+
+const Helmet = (HelmetAsync.Helmet ?? (HelmetAsync as unknown as { default: typeof HelmetAsync }).default.Helmet);
 
 export const SANITATION_PATH = '/guias/historia-do-saneamento';
 const base = 'https://adpservicos.app.br';
