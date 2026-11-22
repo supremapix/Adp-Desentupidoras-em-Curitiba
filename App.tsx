@@ -11,6 +11,7 @@ import CoveragePage from './pages/CoveragePage';
 import FaqPage from './pages/FaqPage';
 import SitemapPage from './pages/SitemapPage';
 import CuritibaSEOPage from './pages/CuritibaSEOPage';
+import SanitationHistory, { SANITATION_PATH } from './pages/SanitationHistory';
 import NotFound from './pages/NotFound';
 
 export const AppRoutes: React.FC = () => {
@@ -27,6 +28,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/duvidas" element={<FaqPage />} />
         <Route path="/mapa-do-site" element={<SitemapPage />} />
         <Route path="/suprema-sites" element={<SupremaPage />} />
+        <Route path={SANITATION_PATH} element={<SanitationHistory />} />
         {/* Catch-all route for 404 errors */}
         <Route path="*" element={<NotFound />} />
       </Routes>

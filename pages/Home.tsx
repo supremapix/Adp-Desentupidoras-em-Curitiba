@@ -241,6 +241,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* ARTIGOS */}
+      <aside className="mx-auto my-10 max-w-6xl rounded-xl border border-slate-200 bg-slate-50 px-5 py-6" aria-labelledby="adp-history-feature"><h2 id="adp-history-feature" className="text-2xl font-bold text-slate-900">História do saneamento</h2><p className="my-2 text-slate-700">De um canal romano ao encanamento da Praça Zacarias: veja a linha do tempo ilustrada da água e do esgoto.</p><Link to="/guias/historia-do-saneamento" className="font-bold text-red-800 underline underline-offset-2">Ler o guia histórico</Link></aside>
       <BlogArticlesSection limit={6} title="Dicas e respostas" subtitle="Textos curtos para entender o problema antes de chamar o técnico." />
 
       {/* PERGUNTAS FREQUENTES */}

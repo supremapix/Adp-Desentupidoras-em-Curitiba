@@ -35,6 +35,7 @@ function getAllRoutes(): RouteInfo[] {
     { path: '/cobertura', isIndexable: true, priority: '0.9', changefreq: 'weekly' },
     { path: '/duvidas', isIndexable: true, priority: '0.8', changefreq: 'monthly' },
     { path: '/mapa-do-site', isIndexable: true, priority: '0.8', changefreq: 'weekly' },
+    { path: '/guias/historia-do-saneamento', isIndexable: true, priority: '0.7', changefreq: 'monthly' },
     { path: '/suprema-sites', isIndexable: false, priority: '0.1', changefreq: 'yearly' }
   ];
 
