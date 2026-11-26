@@ -53,7 +53,7 @@ const CuritibaSEOPage = () => {
     },
     {
       q: "Como é preservada a estrutura de pisos e paredes durante o serviço?",
-      a: "Utilizamos máquinas desentupidoras rotativas com cabos espirais flexíveis de aço e pontas desincrustadoras que entram diretamente pelos ralos ou caixas de inspeção, preservando a alvenaria conforme a avaliação técnica no local."
+      a: "A equipe verifica se é possível trabalhar pelo ralo ou pela caixa de inspeção. O método depende das condições da tubulação e, se for necessário abrir um trecho, isso deve ser informado antes do serviço."
     }
   ];
 
@@ -168,8 +168,8 @@ const CuritibaSEOPage = () => {
             <div className="text-slate-500 text-xs font-medium">Avaliação no Local</div>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
-            <div className="text-lg font-bold text-slate-900 mb-0.5">Sem Quebra</div>
-            <div className="text-slate-500 text-xs font-medium">Máquinas Rotativas</div>
+            <div className="text-lg font-bold text-slate-900 mb-0.5">Acessos existentes</div>
+            <div className="text-slate-500 text-xs font-medium">Uso conforme avaliação</div>
           </div>
           <div className="bg-white p-4 rounded-xl border border-slate-200/80 text-center">
             <div className="text-lg font-bold text-slate-900 mb-0.5">Garantia</div>
@@ -253,11 +253,21 @@ const CuritibaSEOPage = () => {
                     <Link to={`/servicos/${s.slug}`} className="text-blue-700 font-semibold hover:underline">
                       {s.title}
                     </Link>
-                    <span className="text-slate-600">: {s.shortDesc}</span>
+                    <span className="text-slate-600">: {s.slug === "desentupimento-de-esgoto" ? "Desobstrução de ramais e tubulações de esgoto em residências, condomínios e comércios." : s.shortDesc}</span>
                   </li>
                 ))}
               </ul>
             </article>
+
+            <section aria-labelledby="triagem-esgoto-curitiba" className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+              <h2 id="triagem-esgoto-curitiba" className="text-2xl font-bold text-slate-900 mb-4">Entupimento no imóvel ou problema na rua?</h2>
+              <ul className="list-disc pl-5 space-y-3 text-slate-700 leading-relaxed">
+                <li><strong>Pia, ralo ou vaso sem escoar:</strong> ao pedir uma avaliação, informe quais pontos foram afetados, quando começou e em qual bairro fica o imóvel.</li>
+                <li><strong>Esgoto vazando na rua ou na calçada:</strong> comunique a <a href="https://www.sanepar.com.br/informe-um-problema" className="font-semibold text-blue-700 underline underline-offset-2">Sanepar pelo canal oficial</a>.</li>
+                <li><strong>Esgoto voltando para dentro do imóvel:</strong> a Sanepar orienta solicitar vistoria pelo <a href="tel:08002000115" className="font-semibold text-blue-700 underline underline-offset-2">0800 200 0115</a>. O refluxo, sozinho, não indica onde está a obstrução.</li>
+              </ul>
+              <p className="mt-4 text-slate-700">Para tubulações do imóvel, veja como funciona o <Link to="/servicos/desentupimento-de-esgoto" className="font-semibold text-blue-700 underline underline-offset-2">desentupimento de esgoto da ADP</Link>.</p>
+            </section>
 
             {/* Comprehensive FAQ Section */}
             <section className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
