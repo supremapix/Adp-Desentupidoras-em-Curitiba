@@ -477,6 +477,18 @@ const ServicePage = () => {
           {/* Seção de Transparência de Preço com a Imagem Canônica de Orçamento */}
           <ServiceEditorial slug={slug} />
           <ServicePreparation slug={slug || ""} />
+          {slug === "desentupimento-de-esgoto" && (
+            <aside className="rounded-xl border border-slate-200 bg-slate-50 p-5 sm:p-6" aria-label="Guia de atendimento em Curitiba">
+              <p className="text-sm leading-relaxed text-slate-700">
+                O esgoto voltou pelo ralo ou o problema parece vir da rua? Antes de pedir
+                atendimento, consulte o{" "}
+                <Link to="/desentupidora-curitiba" className="font-bold text-blue-700 underline underline-offset-2 hover:text-blue-900">
+                  guia da ADP sobre desentupimento em Curitiba
+                </Link>
+                . Ele explica o que informar à equipe e quando acionar a Sanepar.
+              </p>
+            </aside>
+          )}
           <section className="pt-8 border-t-2 border-slate-900">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-5">
