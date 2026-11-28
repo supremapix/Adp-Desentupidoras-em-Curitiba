@@ -37,7 +37,7 @@ const CuritibaSEOPage = () => {
   const curitibaFaqs = [
     {
       q: "Como solicitar um orçamento de desentupimento em Curitiba?",
-      a: "Você pode entrar em contato diretamente com nossa central pelo telefone ou WhatsApp. Nossos técnicos realizam a triagem inicial e agendam a avaliação técnica presencial da tubulação para diagnóstico e apresentação de orçamento claro."
+      a: "Fale com a ADP por telefone ou WhatsApp e diga se o ponto afetado fica em casa, no comércio ou em uma área comum do condomínio. O orçamento depende do acesso à tubulação, do trecho afetado e do método necessário. Antes de agendar, pergunte se a avaliação tem custo; antes de autorizar o serviço, confirme o que está incluído no valor apresentado."
     },
     {
       q: "Quais tipos de desentupimento são realizados em Curitiba?",
